@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Yatham Organics - Add Product</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+
+    margin: 0;
+
+    font-family: Arial, sans-serif;
+
+    background: #f3f6f4;
+
+}
+
+.container {
+
+    width: 90%;
+
+    max-width: 600px;
+
+    margin: 40px auto;
+
+    background: white;
+
+    padding: 25px;
+
+    border-radius: 15px;
+
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+
+}
+
+h1 {
+
+    text-align: center;
+
+    margin-bottom: 25px;
+
+}
+
+.form-group {
+
+    margin-bottom: 15px;
+
+}
+
+label {
+
+    display: block;
+
+    font-weight: bold;
+
+    margin-bottom: 6px;
+
+}
+
+input,
+select {
+
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 7px;
+
+    font-size: 15px;
+
+}
+
+button {
+
+    width: 100%;
+
+    padding: 13px;
+
+    background: #198754;
+
+    color: white;
+
+    border: none;
+
+    border-radius: 7px;
+
+    font-size: 16px;
+
+    cursor: pointer;
+
+}
+
+button:hover {
+
+    background: #157347;
+
+}
+
+#message {
+
+    text-align: center;
+
+    margin-top: 15px;
+
+    font-weight: bold;
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+<h1>📦 Add Product</h1>
+
+
+<form id="productForm">
+
+
+<div class="form-group">
+
+<label>Product ID</label>
+
+<input
+type="text"
+id="productId"
+placeholder="Example: P001"
+required>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Product Name</label>
+
+<input
+type="text"
+id="productName"
+placeholder="Example: Foxtail Millet Rava"
+required>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Telugu Name</label>
+
+<input
+type="text"
+id="teluguName"
+placeholder="Example: కొర్రలు రవ్వ">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Category</label>
+
+<select id="category" required>
+
+<option value="">Select Category</option>
+
+<option>Rice</option>
+
+<option>Dal & Pulses</option>
+
+<option>Millets</option>
+
+<option>Flours</option>
+
+<option>Oils</option>
+
+<option>Seeds</option>
+
+<option>Vegetables</option>
+
+<option>Fruits</option>
+
+<option>Others</option>
+
+</select>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Pack Size</label>
+
+<input
+type="text"
+id="packSize"
+placeholder="Example: 1 Kg"
+required>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Purchase Price</label>
+
+<input
+type="number"
+id="purchasePrice"
+placeholder="Example: 80"
+step="0.01">
+
+</div>
+
+
+<div class="form-group">
+
+<label>Selling Price</label>
+
+<input
+type="number"
+id="sellingPrice"
+placeholder="Example: 110"
+step="0.01"
+required>
+
+</div>
+
+
+<div class="form-group">
+
+<label>Stock Quantity</label>
+
+<input
+type="number"
+id="stockQuantity"
+placeholder="Example: 25"
+required>
+
+</div>
+
+
+<button type="submit">
+
+➕ Add Product
+
+</button>
+
+
+</form>
+
+
+<div id="message"></div>
+
+
+</div>
+
+
+<script>
+
+
+const SCRIPT_URL =
+"https://script.google.com/macros/s/AKfycbwXgZzLkG7BeXH2zSwk26Eceqe3fPoo5M7jNnCreHuzjPLd7ZNM_tUXgE_oN873PeSs6Q/exec";
+
+
+document
+.getElementById("productForm")
+.addEventListener("submit", function(event) {
+
+
+event.preventDefault();
+
+
+const message =
+document.getElementById("message");
+
+
+message.innerText =
+"⏳ Adding product...";
+
+
+const product = {
+
+
+productId:
+document.getElementById("productId").value,
+
+
+productName:
+document.getElementById("productName").value,
+
+
+teluguName:
+document.getElementById("teluguName").value,
+
+
+category:
+document.getElementById("category").value,
+
+
+packSize:
+document.getElementById("packSize").value,
+
+
+purchasePrice:
+document.getElementById("purchasePrice").value,
+
+
+sellingPrice:
+document.getElementById("sellingPrice").value,
+
+
+stockQuantity:
+document.getElementById("stockQuantity").value
+
+};
+
+
+fetch(SCRIPT_URL, {
+
+method: "POST",
+
+body: JSON.stringify(product)
+
+})
+
+
+.then(response => response.json())
+
+
+.then(result => {
+
+
+if (result.success) {
+
+
+message.innerText =
+"✅ Product added successfully!";
+
+
+document
+.getElementById("productForm")
+.reset();
+
+
+}
+
+else {
+
+
+message.innerText =
+"❌ " + result.message;
+
+}
+
+
+})
+
+
+.catch(error => {
+
+
+console.error(error);
+
+
+message.innerText =
+"❌ Something went wrong.";
+
+});
+
+
+});
+
+
+</script>
+
+
+</body>
+
+</html>
