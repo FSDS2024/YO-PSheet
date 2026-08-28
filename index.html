@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
@@ -7,116 +6,317 @@
 <meta charset="UTF-8">
 
 <meta name="viewport"
-      content="width=device-width, initial-scale=1.0">
+content="width=device-width,initial-scale=1">
 
-<title>Yatham Organics - Add Product</title>
+<title>Yatham Organics Billing</title>
 
 <style>
 
-* {
-    box-sizing: border-box;
+*{
+box-sizing:border-box;
 }
 
-body {
+body{
 
-    margin: 0;
+margin:0;
 
-    font-family: Arial, sans-serif;
+font-family:Arial,sans-serif;
 
-    background: #f3f6f4;
+background:#f3f6f4;
 
-}
-
-.container {
-
-    width: 90%;
-
-    max-width: 600px;
-
-    margin: 40px auto;
-
-    background: white;
-
-    padding: 25px;
-
-    border-radius: 15px;
-
-    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+color:#222;
 
 }
 
-h1 {
+.container{
 
-    text-align: center;
+max-width:1100px;
 
-    margin-bottom: 25px;
+margin:auto;
 
-}
-
-.form-group {
-
-    margin-bottom: 15px;
+padding:20px;
 
 }
 
-label {
+.header{
 
-    display: block;
+background:#214d2b;
 
-    font-weight: bold;
+color:white;
 
-    margin-bottom: 6px;
+padding:22px;
+
+border-radius:14px;
+
+margin-bottom:18px;
+
+}
+
+.header h1{
+
+margin:0;
+
+}
+
+.card{
+
+background:white;
+
+padding:20px;
+
+border-radius:14px;
+
+margin-bottom:18px;
+
+box-shadow:0 3px 12px rgba(0,0,0,.08);
+
+}
+
+h2{
+
+color:#214d2b;
+
+margin-top:0;
+
+}
+
+.grid{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:14px;
+
+}
+
+label{
+
+display:block;
+
+font-weight:bold;
+
+font-size:13px;
+
+margin-bottom:5px;
 
 }
 
 input,
-select {
+select{
 
-    width: 100%;
+width:100%;
 
-    padding: 12px;
+padding:11px;
 
-    border: 1px solid #ccc;
+border:1px solid #ccd8c9;
 
-    border-radius: 7px;
+border-radius:8px;
 
-    font-size: 15px;
-
-}
-
-button {
-
-    width: 100%;
-
-    padding: 13px;
-
-    background: #198754;
-
-    color: white;
-
-    border: none;
-
-    border-radius: 7px;
-
-    font-size: 16px;
-
-    cursor: pointer;
+font-size:14px;
 
 }
 
-button:hover {
+button{
 
-    background: #157347;
+border:0;
+
+border-radius:8px;
+
+padding:11px 16px;
+
+font-weight:bold;
+
+cursor:pointer;
 
 }
 
-#message {
+.green{
 
-    text-align: center;
+background:#214d2b;
 
-    margin-top: 15px;
+color:white;
 
-    font-weight: bold;
+}
+
+.light{
+
+background:#e7f0e5;
+
+color:#214d2b;
+
+}
+
+.red{
+
+background:#f8dddd;
+
+color:#a22;
+
+}
+
+.bill-row{
+
+display:grid;
+
+grid-template-columns:2.2fr 120px 80px 110px 110px 45px;
+
+gap:8px;
+
+align-items:end;
+
+margin-bottom:12px;
+
+}
+
+.amount{
+
+font-weight:bold;
+
+padding:11px 0;
+
+}
+
+.summary{
+
+max-width:350px;
+
+margin-left:auto;
+
+}
+
+.sum{
+
+display:flex;
+
+justify-content:space-between;
+
+padding:7px;
+
+}
+
+.grand{
+
+border-top:2px solid #214d2b;
+
+font-size:20px;
+
+font-weight:bold;
+
+padding-top:12px;
+
+}
+
+.actions{
+
+display:flex;
+
+gap:10px;
+
+flex-wrap:wrap;
+
+}
+
+.status{
+
+margin-top:12px;
+
+font-weight:bold;
+
+}
+
+.loading{
+
+padding:20px;
+
+text-align:center;
+
+}
+
+.catalogue{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fill,minmax(220px,1fr));
+
+gap:12px;
+
+}
+
+.product{
+
+border:1px solid #ddd;
+
+border-radius:10px;
+
+padding:12px;
+
+}
+
+.product h3{
+
+margin:0;
+
+color:#214d2b;
+
+}
+
+.price{
+
+display:flex;
+
+justify-content:space-between;
+
+padding:5px 0;
+
+border-top:1px solid #eee;
+
+font-size:13px;
+
+}
+
+@media(max-width:750px){
+
+.grid{
+
+grid-template-columns:1fr;
+
+}
+
+.bill-row{
+
+grid-template-columns:1fr 100px 70px 90px 90px 40px;
+
+}
+
+}
+
+@media print{
+
+.no-print{
+
+display:none!important;
+
+}
+
+body{
+
+background:white;
+
+}
+
+.container{
+
+padding:0;
+
+}
+
+.card{
+
+box-shadow:none;
+
+}
 
 }
 
@@ -130,217 +330,328 @@ button:hover {
 
 <div class="container">
 
-<h1>📦 Add Product</h1>
 
+<!-- HEADER -->
 
-<form id="productForm">
+<div class="header">
 
+<h1>YATHAM ORGANICS</h1>
 
-<div class="form-group">
-
-<label>Product ID</label>
-
-<input
-type="text"
-id="productId"
-placeholder="Example: P001"
-required>
+<div>Customer Billing System</div>
 
 </div>
 
 
-<div class="form-group">
 
-<label>Product Name</label>
+<!-- CUSTOMER -->
+
+<div class="card">
+
+<h2>Customer Details</h2>
+
+
+<div class="grid">
+
+
+<div>
+
+<label>Customer Name</label>
 
 <input
-type="text"
-id="productName"
-placeholder="Example: Foxtail Millet Rava"
-required>
+id="customer"
+placeholder="Walk-in Customer">
 
 </div>
 
 
-<div class="form-group">
+<div>
 
-<label>Telugu Name</label>
+<label>Mobile Number</label>
 
 <input
-type="text"
-id="teluguName"
-placeholder="Example: కొర్రలు రవ్వ">
+id="mobile"
+placeholder="Optional">
 
 </div>
 
 
-<div class="form-group">
+</div>
 
-<label>Category</label>
 
-<select id="category" required>
+<div style="margin-top:14px">
 
-<option value="">Select Category</option>
+<label>Address / Community</label>
 
-<option>Rice</option>
+<input
+id="address"
+placeholder="Optional">
 
-<option>Dal & Pulses</option>
+</div>
 
-<option>Millets</option>
 
-<option>Flours</option>
+</div>
 
-<option>Oils</option>
 
-<option>Seeds</option>
 
-<option>Vegetables</option>
+<!-- BILL -->
 
-<option>Fruits</option>
+<div class="card">
 
-<option>Others</option>
+<h2>Bill</h2>
+
+
+<div class="grid">
+
+
+<div>
+
+<label>Date</label>
+
+<input
+id="billDate"
+type="date">
+
+</div>
+
+
+<div>
+
+<label>Discount (₹)</label>
+
+<input
+id="discount"
+type="number"
+min="0"
+step="0.01"
+value="0">
+
+</div>
+
+
+</div>
+
+
+<br>
+
+
+<div id="billItems"></div>
+
+
+<button
+class="light no-print"
+onclick="addBillItem()">
+
+＋ Add Product
+
+</button>
+
+
+</div>
+
+
+
+<!-- TOTAL -->
+
+<div class="card">
+
+<div class="summary">
+
+
+<div class="sum">
+
+<span>Subtotal</span>
+
+<b id="subtotal">₹0.00</b>
+
+</div>
+
+
+<div class="sum">
+
+<span>Discount</span>
+
+<b id="discountTotal">₹0.00</b>
+
+</div>
+
+
+<div class="sum grand">
+
+<span>Grand Total</span>
+
+<span id="grandTotal">₹0.00</span>
+
+</div>
+
+
+</div>
+
+</div>
+
+
+
+<!-- PAYMENT -->
+
+<div class="card no-print">
+
+<h2>Payment</h2>
+
+
+<div class="grid">
+
+
+<div>
+
+<label>Payment Mode</label>
+
+<select id="paymentMode">
+
+<option>Cash</option>
+
+<option>UPI</option>
+
+<option>Card</option>
+
+<option>Bank Transfer</option>
 
 </select>
 
 </div>
 
 
-<div class="form-group">
+<div>
 
-<label>Pack Size</label>
+<label>Payment Status</label>
 
-<input
-type="text"
-id="packSize"
-placeholder="Example: 1 Kg"
-required>
+<select id="paymentStatus">
 
-</div>
+<option>Paid</option>
 
+<option>Pending</option>
 
-<div class="form-group">
-
-<label>Purchase Price</label>
-
-<input
-type="number"
-id="purchasePrice"
-placeholder="Example: 80"
-step="0.01">
+</select>
 
 </div>
 
 
-<div class="form-group">
-
-<label>Selling Price</label>
-
-<input
-type="number"
-id="sellingPrice"
-placeholder="Example: 110"
-step="0.01"
-required>
-
 </div>
 
 
-<div class="form-group">
-
-<label>Stock Quantity</label>
-
-<input
-type="number"
-id="stockQuantity"
-placeholder="Example: 25"
-required>
-
-</div>
+<br>
 
 
-<button type="submit">
+<div class="actions">
 
-➕ Add Product
+
+<button
+class="green"
+onclick="saveBill()">
+
+💾 Save Bill
 
 </button>
 
 
-</form>
+<button
+class="green"
+onclick="printBill()">
+
+🖨 Print Bill
+
+</button>
 
 
-<div id="message"></div>
+<button
+class="light"
+onclick="newBill()">
+
+＋ New Bill
+
+</button>
+
+
+<button
+class="light"
+onclick="loadProducts()">
+
+🔄 Refresh Products
+
+</button>
 
 
 </div>
 
 
+<div id="status"
+class="status">
+
+</div>
+
+
+</div>
+
+
+
+<!-- PRODUCTS -->
+
+<div class="card no-print">
+
+<h2>Available Products</h2>
+
+
+<div id="productsCatalogue"
+class="loading">
+
+⏳ Loading products from Google Sheets...
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
 <script>
+
+
+/* ==================================
+   GOOGLE APPS SCRIPT URL
+================================== */
 
 
 const SCRIPT_URL =
 "https://script.google.com/macros/s/AKfycbwXgZzLkG7BeXH2zSwk26Eceqe3fPoo5M7jNnCreHuzjPLd7ZNM_tUXgE_oN873PeSs6Q/exec";
 
 
-document
-.getElementById("productForm")
-.addEventListener("submit", function(event) {
+let products = [];
 
 
-event.preventDefault();
+
+/* ==================================
+   LOAD PRODUCTS
+================================== */
 
 
-const message =
-document.getElementById("message");
+function loadProducts(){
+
+const box =
+document.getElementById(
+"productsCatalogue"
+);
 
 
-message.innerText =
-"⏳ Adding product...";
+box.innerHTML =
+"⏳ Loading products...";
 
 
-const product = {
-
-
-productId:
-document.getElementById("productId").value,
-
-
-productName:
-document.getElementById("productName").value,
-
-
-teluguName:
-document.getElementById("teluguName").value,
-
-
-category:
-document.getElementById("category").value,
-
-
-packSize:
-document.getElementById("packSize").value,
-
-
-purchasePrice:
-document.getElementById("purchasePrice").value,
-
-
-sellingPrice:
-document.getElementById("sellingPrice").value,
-
-
-stockQuantity:
-document.getElementById("stockQuantity").value
-
-};
-
-
-fetch(SCRIPT_URL, {
-
-method: "POST",
-
-body: JSON.stringify(product)
-
-})
+fetch(
+SCRIPT_URL +
+"?action=getProducts&_=" +
+Date.now()
+)
 
 
 .then(response => response.json())
@@ -349,27 +660,23 @@ body: JSON.stringify(product)
 .then(result => {
 
 
-if (result.success) {
+if(!result.success){
 
-
-message.innerText =
-"✅ Product added successfully!";
-
-
-document
-.getElementById("productForm")
-.reset();
-
+throw new Error(
+result.message
+);
 
 }
 
-else {
+
+products =
+result.products || [];
 
 
-message.innerText =
-"❌ " + result.message;
+renderCatalogue();
 
-}
+
+refreshProductDropdowns();
 
 
 })
@@ -381,17 +688,1376 @@ message.innerText =
 console.error(error);
 
 
-message.innerText =
-"❌ Something went wrong.";
+box.innerHTML =
+"❌ Unable to load products from Google Sheets.";
+
+});
+
+}
+
+
+
+/* ==================================
+   PRODUCT DROPDOWN
+================================== */
+
+
+function productOptions(){
+
+let html =
+'<option value="">Select Product</option>';
+
+
+products.forEach((p,index)=>{
+
+html +=
+
+'<option value="' +
+index +
+'">' +
+
+escapeHTML(
+p.productName
+) +
+
+" — " +
+
+escapeHTML(
+p.teluguName
+) +
+
+'</option>';
 
 });
 
 
+return html;
+
+}
+
+
+
+/* ==================================
+   ADD BILL ITEM
+================================== */
+
+
+function addBillItem(){
+
+
+const row =
+document.createElement("div");
+
+
+row.className =
+"bill-row";
+
+
+row.innerHTML = `
+
+<div>
+
+<label>Product</label>
+
+<select class="productSelect">
+
+${productOptions()}
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>Pack</label>
+
+<select class="packSelect">
+
+<option value="">Select</option>
+
+</select>
+
+</div>
+
+
+<div>
+
+<label>Qty</label>
+
+<input
+class="qty"
+type="number"
+min="1"
+value="1">
+
+</div>
+
+
+<div>
+
+<label>Rate</label>
+
+<div class="rate amount">
+
+₹0.00
+
+</div>
+
+</div>
+
+
+<div>
+
+<label>Amount</label>
+
+<div class="lineAmount amount">
+
+₹0.00
+
+</div>
+
+</div>
+
+
+<button
+type="button"
+class="red removeBtn">
+
+✕
+
+</button>
+
+`;
+
+
+document
+.getElementById("billItems")
+.appendChild(row);
+
+
+
+const productSelect =
+row.querySelector(
+".productSelect"
+);
+
+
+const packSelect =
+row.querySelector(
+".packSelect"
+);
+
+
+const qty =
+row.querySelector(".qty");
+
+
+productSelect
+.addEventListener(
+"change",
+function(){
+
+updateProduct(row);
+
 });
+
+
+packSelect
+.addEventListener(
+"change",
+function(){
+
+updatePack(row);
+
+});
+
+
+qty
+.addEventListener(
+"input",
+calculate
+);
+
+
+row.querySelector(
+".removeBtn"
+)
+.addEventListener(
+"click",
+function(){
+
+row.remove();
+
+calculate();
+
+});
+
+
+}
+
+
+
+/* ==================================
+   UPDATE PRODUCT
+================================== */
+
+
+function updateProduct(row){
+
+const index =
+Number(
+row.querySelector(
+".productSelect"
+).value
+);
+
+
+const product =
+products[index];
+
+
+const pack =
+row.querySelector(
+".packSelect"
+);
+
+
+pack.innerHTML =
+'<option value="">Select Pack</option>';
+
+
+if(!product){
+
+row.dataset.price = 0;
+
+calculate();
+
+return;
+
+}
+
+
+/*
+
+Products sheet has one row
+per pack size.
+
+Example:
+
+Sesame Oil | 1 Kg | 672.60
+Sesame Oil | 500 g | 340.10
+
+*/
+
+const sameProduct =
+products.filter(
+p =>
+String(p.productId) ===
+String(product.productId)
+);
+
+
+sameProduct.forEach(p=>{
+
+const option =
+document.createElement(
+"option"
+);
+
+
+option.value =
+p.packSize;
+
+
+option.textContent =
+p.packSize +
+" — ₹" +
+Number(
+p.sellingPrice
+).toFixed(2);
+
+
+option.dataset.price =
+p.sellingPrice;
+
+
+pack.appendChild(option);
+
+});
+
+
+if(sameProduct.length){
+
+pack.value =
+sameProduct[0].packSize;
+
+updatePack(row);
+
+}
+
+}
+
+
+
+/* ==================================
+   UPDATE PACK
+================================== */
+
+
+function updatePack(row){
+
+const index =
+Number(
+row.querySelector(
+".productSelect"
+).value
+);
+
+
+const product =
+products[index];
+
+
+const pack =
+row.querySelector(
+".packSelect"
+).value;
+
+
+if(!product || !pack){
+
+row.dataset.price = 0;
+
+return;
+
+}
+
+
+const match =
+products.find(
+p =>
+String(p.productId) ===
+String(product.productId)
+&&
+String(p.packSize) ===
+String(pack)
+);
+
+
+const price =
+match ?
+Number(match.sellingPrice) :
+0;
+
+
+row.dataset.price =
+price;
+
+
+row.querySelector(
+".rate"
+).textContent =
+money(price);
+
+
+calculate();
+
+}
+
+
+
+/* ==================================
+   CALCULATE
+================================== */
+
+
+function calculate(){
+
+let subtotal = 0;
+
+
+document
+.querySelectorAll(".bill-row")
+.forEach(row=>{
+
+
+const price =
+Number(
+row.dataset.price || 0
+);
+
+
+const qty =
+Number(
+row.querySelector(
+".qty"
+).value || 0
+);
+
+
+const amount =
+price * qty;
+
+
+subtotal += amount;
+
+
+row.querySelector(
+".lineAmount"
+).textContent =
+money(amount);
+
+
+});
+
+
+const discount =
+Math.min(
+
+Math.max(
+
+Number(
+document.getElementById(
+"discount"
+).value || 0
+),
+
+0
+
+),
+
+subtotal
+
+);
+
+
+document.getElementById(
+"subtotal"
+).textContent =
+money(subtotal);
+
+
+document.getElementById(
+"discountTotal"
+).textContent =
+money(discount);
+
+
+document.getElementById(
+"grandTotal"
+).textContent =
+money(
+subtotal - discount
+);
+
+}
+
+
+
+/* ==================================
+   SAVE BILL
+================================== */
+
+
+function saveBill(){
+
+
+const items = [];
+
+
+let subtotal = 0;
+
+
+document
+.querySelectorAll(".bill-row")
+.forEach(row=>{
+
+
+const productIndex =
+Number(
+row.querySelector(
+".productSelect"
+).value
+);
+
+
+const product =
+products[productIndex];
+
+
+const pack =
+row.querySelector(
+".packSelect"
+).value;
+
+
+const quantity =
+Number(
+row.querySelector(
+".qty"
+).value || 0
+);
+
+
+const price =
+Number(
+row.dataset.price || 0
+);
+
+
+if(
+product &&
+pack &&
+quantity > 0 &&
+price > 0
+){
+
+
+const amount =
+price * quantity;
+
+
+subtotal += amount;
+
+
+items.push({
+
+productId:
+product.productId,
+
+productName:
+product.productName,
+
+teluguName:
+product.teluguName,
+
+category:
+product.category,
+
+packSize:
+pack,
+
+quantity:
+quantity,
+
+sellingPrice:
+price,
+
+amount:
+amount
+
+});
+
+
+}
+
+});
+
+
+if(!items.length){
+
+alert(
+"Please select at least one product."
+);
+
+return;
+
+}
+
+
+const discount =
+Math.min(
+
+Math.max(
+
+Number(
+document.getElementById(
+"discount"
+).value || 0
+),
+
+0
+
+),
+
+subtotal
+
+);
+
+
+const grandTotal =
+subtotal - discount;
+
+
+const now =
+new Date();
+
+
+const billId =
+"BILL-" +
+now.getTime();
+
+
+const data = {
+
+action:
+"saveBill",
+
+billId:
+billId,
+
+billDate:
+document.getElementById(
+"billDate"
+).value,
+
+billTime:
+now.toLocaleTimeString(),
+
+customerName:
+document.getElementById(
+"customer"
+).value ||
+"Walk-in Customer",
+
+mobile:
+document.getElementById(
+"mobile"
+).value,
+
+address:
+document.getElementById(
+"address"
+).value,
+
+discount:
+discount,
+
+grandTotal:
+grandTotal,
+
+paymentMode:
+document.getElementById(
+"paymentMode"
+).value,
+
+paymentStatus:
+document.getElementById(
+"paymentStatus"
+).value,
+
+items:
+items
+
+};
+
+
+const status =
+document.getElementById(
+"status"
+);
+
+
+status.innerText =
+"⏳ Saving bill...";
+
+
+fetch(
+SCRIPT_URL,
+{
+
+method:"POST",
+
+body:
+JSON.stringify(data)
+
+})
+
+
+.then(
+response =>
+response.json()
+)
+
+
+.then(result=>{
+
+
+if(result.success){
+
+status.innerText =
+"✅ Bill saved successfully: " +
+result.billId;
+
+
+}else{
+
+status.innerText =
+"❌ " +
+result.message;
+
+}
+
+})
+
+
+.catch(error=>{
+
+console.error(error);
+
+status.innerText =
+"❌ Unable to save bill.";
+
+});
+
+}
+
+
+
+/* ==================================
+   PRINT BILL
+================================== */
+
+
+function printBill(){
+
+
+const customer =
+document.getElementById(
+"customer"
+).value ||
+"Walk-in Customer";
+
+
+const mobile =
+document.getElementById(
+"mobile"
+).value ||
+"-";
+
+
+const date =
+document.getElementById(
+"billDate"
+).value;
+
+
+const rows = [];
+
+
+let subtotal = 0;
+
+
+document
+.querySelectorAll(".bill-row")
+.forEach(row=>{
+
+
+const index =
+Number(
+row.querySelector(
+".productSelect"
+).value
+);
+
+
+const product =
+products[index];
+
+
+const pack =
+row.querySelector(
+".packSelect"
+).value;
+
+
+const qty =
+Number(
+row.querySelector(
+".qty"
+).value || 0
+);
+
+
+const rate =
+Number(
+row.dataset.price || 0
+);
+
+
+if(
+product &&
+pack &&
+rate > 0 &&
+qty > 0
+){
+
+
+const amount =
+rate * qty;
+
+
+subtotal += amount;
+
+
+rows.push({
+
+name:
+product.productName,
+
+telugu:
+product.teluguName,
+
+pack:
+pack,
+
+qty:
+qty,
+
+rate:
+rate,
+
+amount:
+amount
+
+});
+
+}
+
+});
+
+
+if(!rows.length){
+
+alert(
+"Please select a product."
+);
+
+return;
+
+}
+
+
+const discount =
+Math.min(
+
+Math.max(
+
+Number(
+document.getElementById(
+"discount"
+).value || 0
+),
+
+0
+
+),
+
+subtotal
+
+);
+
+
+const total =
+subtotal - discount;
+
+
+const popup =
+window.open(
+"",
+"_blank"
+);
+
+
+if(!popup){
+
+alert(
+"Please allow pop-ups."
+);
+
+return;
+
+}
+
+
+let table = "";
+
+
+rows.forEach(
+(item,index)=>{
+
+table += `
+
+<tr>
+
+<td>${index+1}</td>
+
+<td>
+
+${escapeHTML(item.name)}
+
+<br>
+
+<small>
+${escapeHTML(item.telugu)}
+</small>
+
+</td>
+
+<td>${escapeHTML(item.pack)}</td>
+
+<td>${item.qty}</td>
+
+<td>${money(item.rate)}</td>
+
+<td>${money(item.amount)}</td>
+
+</tr>
+
+`;
+
+});
+
+
+popup.document.write(`
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Yatham Organics Bill</title>
+
+<style>
+
+body{
+
+font-family:Arial;
+
+padding:25px;
+
+}
+
+h1{
+
+color:#214d2b;
+
+}
+
+table{
+
+width:100%;
+
+border-collapse:collapse;
+
+margin-top:20px;
+
+}
+
+th,td{
+
+padding:9px;
+
+border-bottom:1px solid #ddd;
+
+text-align:left;
+
+}
+
+.right{
+
+text-align:right;
+
+}
+
+.total{
+
+font-size:20px;
+
+font-weight:bold;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<h1>YATHAM ORGANICS</h1>
+
+<p>Customer Bill</p>
+
+<hr>
+
+
+<p>
+
+<b>Date:</b>
+${escapeHTML(date)}
+
+<br>
+
+<b>Customer:</b>
+${escapeHTML(customer)}
+
+<br>
+
+<b>Mobile:</b>
+${escapeHTML(mobile)}
+
+</p>
+
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>#</th>
+
+<th>Product</th>
+
+<th>Pack</th>
+
+<th>Qty</th>
+
+<th>Rate</th>
+
+<th>Amount</th>
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+${table}
+
+</tbody>
+
+</table>
+
+
+<div class="right">
+
+<p>
+
+Subtotal:
+<b>${money(subtotal)}</b>
+
+</p>
+
+
+<p>
+
+Discount:
+<b>${money(discount)}</b>
+
+</p>
+
+
+<p class="total">
+
+Grand Total:
+${money(total)}
+
+</p>
+
+</div>
+
+
+<p style="text-align:center;margin-top:40px">
+
+Thank you for choosing Yatham Organics!
+
+</p>
+
+
+<script>
+
+window.onload=function(){
+
+setTimeout(function(){
+
+window.print();
+
+},500);
+
+};
+
+<\/script>
+
+
+</body>
+
+</html>
+
+`);
+
+
+popup.document.close();
+
+}
+
+
+
+/* ==================================
+   NEW BILL
+================================== */
+
+
+function newBill(){
+
+
+if(
+!confirm(
+"Start a new bill?"
+)
+){
+
+return;
+
+}
+
+
+document.getElementById(
+"customer"
+).value = "";
+
+
+document.getElementById(
+"mobile"
+).value = "";
+
+
+document.getElementById(
+"address"
+).value = "";
+
+
+document.getElementById(
+"discount"
+).value = "0";
+
+
+document.getElementById(
+"paymentMode"
+).value = "Cash";
+
+
+document.getElementById(
+"paymentStatus"
+).value = "Paid";
+
+
+document.getElementById(
+"billItems"
+).innerHTML = "";
+
+
+document.getElementById(
+"status"
+).innerText = "";
+
+
+addBillItem();
+
+
+calculate();
+
+}
+
+
+
+/* ==================================
+   CATALOGUE
+================================== */
+
+
+function renderCatalogue(){
+
+
+const box =
+document.getElementById(
+"productsCatalogue"
+);
+
+
+if(!products.length){
+
+box.innerHTML =
+"No products found.";
+
+return;
+
+}
+
+
+let html = "";
+
+
+products.forEach(p=>{
+
+
+html += `
+
+<div class="product">
+
+<h3>
+${escapeHTML(
+p.productName
+)}
+</h3>
+
+<div>
+${escapeHTML(
+p.teluguName
+)}
+</div>
+
+<small>
+${escapeHTML(
+p.category
+)}
+</small>
+
+<div class="price">
+
+<span>
+${escapeHTML(
+p.packSize
+)}
+</span>
+
+<b>
+₹${Number(
+p.sellingPrice
+).toFixed(2)}
+</b>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+
+box.innerHTML =
+`<div class="catalogue">
+${html}
+</div>`;
+
+}
+
+
+
+/* ==================================
+   REFRESH DROPDOWNS
+================================== */
+
+
+function refreshProductDropdowns(){
+
+document
+.querySelectorAll(
+".productSelect"
+)
+.forEach(select=>{
+
+const current =
+select.value;
+
+select.innerHTML =
+productOptions();
+
+select.value =
+current;
+
+});
+
+}
+
+
+
+/* ==================================
+   HELPERS
+================================== */
+
+
+function money(value){
+
+return "₹" +
+Number(value || 0)
+.toFixed(2);
+
+}
+
+
+function escapeHTML(value){
+
+return String(value ?? "")
+.replace(
+/[&<>"']/g,
+function(char){
+
+return {
+
+"&":"&amp;",
+
+"<":"&lt;",
+
+">":"&gt;",
+
+'"':"&quot;",
+
+"'":"&#039;"
+
+}[char];
+
+});
+
+}
+
+
+
+/* ==================================
+   START
+================================== */
+
+
+document.getElementById(
+"billDate"
+).value =
+new Date()
+.toISOString()
+.slice(0,10);
+
+
+document.getElementById(
+"discount"
+)
+.addEventListener(
+"input",
+calculate
+);
+
+
+addBillItem();
+
+loadProducts();
+
+calculate();
 
 
 </script>
-
 
 </body>
 
