@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -10,247 +11,490 @@
 
 <title>Yatham Organics Billing</title>
 
+
 <style>
 
 *{
-    box-sizing:border-box;
+box-sizing:border-box;
 }
+
 
 body{
-    margin:0;
-    font-family:Arial,sans-serif;
-    background:#f3f6f4;
-    color:#222;
+
+margin:0;
+
+font-family:Arial,sans-serif;
+
+background:#f3f6f4;
+
+color:#222;
+
 }
 
-.container{
-    max-width:1200px;
-    margin:auto;
-    padding:20px;
+
+.wrap{
+
+max-width:1200px;
+
+margin:auto;
+
+padding:18px;
+
 }
+
 
 .header{
-    background:#215b32;
-    color:white;
-    padding:25px;
-    border-radius:15px;
-    margin-bottom:20px;
+
+background:#214d2b;
+
+color:white;
+
+padding:24px;
+
+border-radius:16px 16px 0 0;
+
 }
+
 
 .header h1{
-    margin:0 0 5px;
+
+margin:0 0 5px;
+
 }
+
+
+.tabs{
+
+display:flex;
+
+gap:8px;
+
+background:#214d2b;
+
+padding:0 14px 14px;
+
+border-radius:0 0 16px 16px;
+
+}
+
+
+.tab{
+
+border:0;
+
+background:#e7f0e5;
+
+color:#214d2b;
+
+padding:13px 22px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+border-radius:9px;
+
+}
+
+
+.tab.active{
+
+background:white;
+
+}
+
+
+.page{
+
+display:none;
+
+}
+
+
+.page.active{
+
+display:block;
+
+}
+
 
 .card{
-    background:white;
-    padding:20px;
-    border-radius:15px;
-    margin-bottom:20px;
-    box-shadow:0 3px 15px rgba(0,0,0,.08);
+
+background:white;
+
+padding:20px;
+
+border-radius:15px;
+
+margin-top:18px;
+
+box-shadow:0 2px 12px #0001;
+
 }
+
 
 h2{
-    color:#215b32;
-    margin-top:0;
+
+margin-top:0;
+
+color:#214d2b;
+
 }
+
 
 .grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:15px;
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:14px;
+
 }
 
-.form-group{
-    margin-bottom:12px;
-}
 
 label{
-    display:block;
-    font-weight:bold;
-    margin-bottom:6px;
+
+display:block;
+
+font-size:13px;
+
+font-weight:bold;
+
+margin-bottom:6px;
+
 }
+
 
 input,
 select{
-    width:100%;
-    padding:11px;
-    border:1px solid #ccd8ce;
-    border-radius:8px;
-    font-size:15px;
+
+width:100%;
+
+padding:11px;
+
+border:1px solid #ccd8c9;
+
+border-radius:9px;
+
+font-size:15px;
+
+background:white;
+
 }
 
-button{
-    border:0;
-    padding:11px 17px;
-    border-radius:8px;
-    font-weight:bold;
-    cursor:pointer;
-    margin:4px;
-}
-
-.green{
-    background:#215b32;
-    color:white;
-}
-
-.light{
-    background:#e4efe5;
-    color:#215b32;
-}
-
-.red{
-    background:#f7dddd;
-    color:#a00000;
-}
 
 .bill-row{
-    display:grid;
-    grid-template-columns:
-        2fr
-        140px
-        80px
-        110px
-        120px
-        45px;
 
-    gap:8px;
+display:grid;
 
-    align-items:end;
+grid-template-columns:
+2fr 130px 80px 110px 120px 45px;
 
-    margin-bottom:12px;
+gap:8px;
 
-    padding:12px;
+align-items:end;
 
-    background:#f8faf8;
+margin:14px 0;
 
-    border-radius:10px;
 }
+
 
 .amount{
-    padding:11px 0;
-    font-weight:bold;
+
+padding:11px 0;
+
+font-weight:bold;
+
+text-align:right;
+
 }
+
+
+.btn{
+
+border:0;
+
+border-radius:9px;
+
+padding:11px 16px;
+
+font-weight:bold;
+
+cursor:pointer;
+
+margin:3px;
+
+}
+
+
+.green{
+
+background:#214d2b;
+
+color:white;
+
+}
+
+
+.light{
+
+background:#e7f0e5;
+
+color:#214d2b;
+
+}
+
+
+.red{
+
+background:#f8dddd;
+
+color:#a22;
+
+}
+
+
+.actions{
+
+display:flex;
+
+flex-wrap:wrap;
+
+gap:8px;
+
+}
+
 
 .summary{
-    max-width:400px;
-    margin-left:auto;
+
+max-width:380px;
+
+margin-left:auto;
+
 }
+
 
 .sum{
-    display:flex;
-    justify-content:space-between;
-    padding:8px;
+
+display:flex;
+
+justify-content:space-between;
+
+padding:8px;
+
 }
+
 
 .grand{
-    border-top:2px solid #215b32;
-    font-size:20px;
-    font-weight:bold;
-    margin-top:8px;
-    padding-top:12px;
+
+border-top:2px solid #214d2b;
+
+font-size:21px;
+
+font-weight:bold;
+
+padding-top:13px;
+
 }
 
-.product-grid{
-    display:grid;
-    grid-template-columns:
-        repeat(auto-fill,minmax(230px,1fr));
-
-    gap:12px;
-}
-
-.product-card{
-    border:1px solid #d9e3da;
-    padding:15px;
-    border-radius:10px;
-}
-
-.product-card h3{
-    margin:0;
-    color:#215b32;
-}
-
-.telugu{
-    margin-top:5px;
-}
-
-.meta{
-    color:#777;
-    font-size:13px;
-    margin:5px 0;
-}
-
-.price{
-    display:flex;
-    justify-content:space-between;
-    padding:5px 0;
-    border-top:1px solid #eee;
-}
-
-.toolbar{
-    display:flex;
-    gap:10px;
-    margin-bottom:15px;
-}
-
-.toolbar input{
-    flex:1;
-}
 
 .status{
-    padding:12px;
-    border-radius:8px;
-    margin-top:10px;
-    font-weight:bold;
+
+margin-top:12px;
+
+font-weight:bold;
+
 }
+
 
 .success{
-    background:#dff3e3;
-    color:#17652b;
+
+color:#168238;
+
 }
+
 
 .error{
-    background:#f9dddd;
-    color:#9c0000;
+
+color:#c00000;
+
 }
 
+
 .loading{
-    text-align:center;
-    padding:30px;
+
+color:#a66a00;
+
 }
+
+
+.toolbar{
+
+display:grid;
+
+grid-template-columns:1fr 220px;
+
+gap:10px;
+
+}
+
+
+.catalogue{
+
+display:grid;
+
+grid-template-columns:
+repeat(auto-fill,minmax(260px,1fr));
+
+gap:14px;
+
+margin-top:18px;
+
+}
+
+
+.product{
+
+border:1px solid #dce5d9;
+
+border-radius:12px;
+
+padding:15px;
+
+}
+
+
+.product h3{
+
+margin:0;
+
+color:#214d2b;
+
+}
+
+
+.telugu{
+
+margin:6px 0;
+
+font-size:16px;
+
+}
+
+
+.meta{
+
+font-size:12px;
+
+color:#687268;
+
+margin-bottom:8px;
+
+}
+
+
+.price{
+
+display:flex;
+
+justify-content:space-between;
+
+border-top:1px solid #e5eae3;
+
+padding:8px 0;
+
+}
+
+
+.empty{
+
+text-align:center;
+
+padding:25px;
+
+color:#687268;
+
+}
+
 
 @media(max-width:800px){
 
-    .grid{
-        grid-template-columns:1fr;
-    }
+.grid{
 
-    .bill-row{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .toolbar{
-        flex-direction:column;
-    }
+grid-template-columns:1fr;
 
 }
 
+.bill-row{
+
+grid-template-columns:1fr 1fr;
+
+}
+
+.toolbar{
+
+grid-template-columns:1fr;
+
+}
+
+}
+
+
+@media(max-width:520px){
+
+.wrap{
+
+padding:10px;
+
+}
+
+.tabs{
+
+overflow-x:auto;
+
+}
+
+.tab{
+
+white-space:nowrap;
+
+}
+
+}
+
+
 @media print{
 
-    .no-print{
-        display:none!important;
-    }
+.no-print{
 
-    body{
-        background:white;
-    }
+display:none!important;
 
-    .container{
-        padding:0;
-    }
+}
 
-    .card{
-        box-shadow:none;
-    }
+body{
+
+background:white;
+
+}
+
+#cataloguePage{
+
+display:none!important;
+
+}
+
+#billingPage{
+
+display:block!important;
+
+}
+
+.card{
+
+box-shadow:none;
+
+}
 
 }
 
@@ -262,75 +506,118 @@ button{
 <body>
 
 
-<div class="container">
+<div class="wrap">
 
 
 <div class="header">
 
 <h1>YATHAM ORGANICS</h1>
 
-<div>Customer Billing System</div>
+<div>
+Customer Billing & Product Catalogue
+</div>
 
 </div>
 
 
-<!-- CUSTOMER -->
+<div class="tabs no-print">
+
+<button
+class="tab active"
+data-page="billingPage">
+
+🧾 Billing
+
+</button>
+
+
+<button
+class="tab"
+data-page="cataloguePage">
+
+📦 Product Catalogue
+
+</button>
+
+</div>
+
+
+
+<!-- ================= BILLING ================= -->
+
+<section
+id="billingPage"
+class="page active">
+
 
 <div class="card">
 
 <h2>Customer Details</h2>
 
+
 <div class="grid">
 
-<div class="form-group">
 
-<label>Customer Name</label>
+<div>
+
+<label>
+Customer Name
+</label>
 
 <input
-id="customerName"
+id="customer"
 placeholder="Walk-in Customer">
 
 </div>
 
 
-<div class="form-group">
+<div>
 
-<label>Mobile Number</label>
+<label>
+Mobile Number
+</label>
 
 <input
 id="mobile"
-placeholder="Mobile Number">
+placeholder="Optional">
 
 </div>
 
+
 </div>
 
 
-<div class="form-group">
+<div style="margin-top:14px">
 
-<label>Address / Community</label>
+<label>
+Address / Community
+</label>
 
 <input
 id="address"
-placeholder="Address">
+placeholder="Optional">
 
 </div>
 
+
 </div>
 
 
-<!-- BILL -->
 
 <div class="card">
 
-<h2>Billing</h2>
+
+<h2>Bill</h2>
 
 
 <div class="grid">
 
-<div class="form-group">
 
-<label>Bill Date</label>
+<div>
+
+<label>
+Bill Date
+</label>
 
 <input
 id="billDate"
@@ -339,18 +626,30 @@ type="date">
 </div>
 
 
-<div class="form-group">
+<div>
 
-<label>Discount ₹</label>
+<label>
+Discount (₹)
+</label>
 
 <input
 id="discount"
 type="number"
-value="0"
 min="0"
-step="0.01">
+step="0.01"
+value="0">
 
 </div>
+
+
+</div>
+
+
+<div
+id="productStatus"
+class="status loading">
+
+⏳ Loading products...
 
 </div>
 
@@ -359,27 +658,33 @@ step="0.01">
 
 
 <button
-class="light no-print"
-onclick="addBillItem()">
+class="btn light no-print"
+id="addItemBtn"
+type="button">
 
 ＋ Add Product
 
 </button>
 
+
 </div>
 
 
-<!-- PAYMENT -->
 
 <div class="card">
 
+
 <h2>Payment</h2>
+
 
 <div class="grid">
 
-<div class="form-group">
 
-<label>Payment Mode</label>
+<div>
+
+<label>
+Payment Mode
+</label>
 
 <select id="paymentMode">
 
@@ -391,14 +696,18 @@ onclick="addBillItem()">
 
 <option>Bank Transfer</option>
 
+<option>Other</option>
+
 </select>
 
 </div>
 
 
-<div class="form-group">
+<div>
 
-<label>Payment Status</label>
+<label>
+Payment Status
+</label>
 
 <select id="paymentStatus">
 
@@ -412,55 +721,75 @@ onclick="addBillItem()">
 
 </div>
 
-</div>
 
 </div>
 
 
-<!-- TOTAL -->
+</div>
+
+
 
 <div class="card">
 
+
 <div class="summary">
+
 
 <div class="sum">
 
-<span>Subtotal</span>
+<span>
+Subtotal
+</span>
 
-<b id="subtotal">₹0.00</b>
+<b id="subtotal">
+₹0.00
+</b>
 
 </div>
 
 
 <div class="sum">
 
-<span>Discount</span>
+<span>
+Discount
+</span>
 
-<b id="discountTotal">₹0.00</b>
+<b id="discountTotal">
+₹0.00
+</b>
 
 </div>
 
 
 <div class="sum grand">
 
-<span>Grand Total</span>
+<span>
+Grand Total
+</span>
 
-<span id="grandTotal">₹0.00</span>
+<span id="grandTotal">
+₹0.00
+</span>
+
+</div>
+
 
 </div>
 
 </div>
 
-</div>
 
-
-<!-- BUTTONS -->
 
 <div class="card no-print">
 
+
+<div class="actions">
+
+
 <button
-class="green"
-onclick="saveBill()">
+class="btn green"
+id="saveBtn"
+type="button">
 
 💾 Save Bill
 
@@ -468,8 +797,9 @@ onclick="saveBill()">
 
 
 <button
-class="green"
-onclick="printBill()">
+class="btn green"
+id="printBtn"
+type="button">
 
 🖨 Print Bill
 
@@ -477,8 +807,9 @@ onclick="printBill()">
 
 
 <button
-class="light"
-onclick="newBill()">
+class="btn light"
+id="newBtn"
+type="button">
 
 ＋ New Bill
 
@@ -486,68 +817,100 @@ onclick="newBill()">
 
 
 <button
-class="light"
-onclick="loadProducts()">
+class="btn light"
+id="refreshBtn"
+type="button">
 
 🔄 Refresh Products
 
 </button>
 
 
-<div id="status"></div>
+</div>
+
+
+<div
+id="saveStatus"
+class="status">
 
 </div>
 
 
-<!-- PRODUCTS -->
+</div>
 
-<div class="card no-print">
 
-<h2>Available Products</h2>
+</section>
+
+
+
+<!-- ================= CATALOGUE ================= -->
+
+<section
+id="cataloguePage"
+class="page">
+
+
+<div class="card">
+
+
+<h2>
+Product Catalogue
+</h2>
 
 
 <div class="toolbar">
 
+
 <input
 id="search"
-placeholder="Search product..."
-oninput="renderProducts()">
+placeholder="Search product / Telugu / category">
 
 
-<select
-id="category"
-onchange="renderProducts()">
+<select id="category">
 
-<option value="">All Categories</option>
+<option value="">
+All Categories
+</option>
 
 </select>
 
-</div>
-
-
-<div id="productList"
-class="product-grid">
-
-<div class="loading">
-
-Loading products...
-
-</div>
-
-</div>
 
 </div>
 
 
+<div
+id="catalogueStatus"
+class="status loading">
+
+⏳ Loading products...
+
 </div>
+
+
+<div
+id="catalogue"
+class="catalogue">
+
+</div>
+
+
+</div>
+
+
+</section>
+
+
+</div>
+
 
 
 <script>
 
 
-/* =================================
+/* ==================================================
    GOOGLE APPS SCRIPT URL
-================================= */
+================================================== */
+
 
 const SCRIPT_URL =
 "https://script.google.com/macros/s/AKfycbyV4y5p_SCHkL7SvNWpAux2CwLBmmfOnLH7BKXKytqlNkt9AjPZnsZtJNVzusJbtwRAOA/exec";
@@ -556,1072 +919,1502 @@ const SCRIPT_URL =
 let products = [];
 
 
-/* =================================
-   PAGE LOAD
-================================= */
 
-document.addEventListener(
-"DOMContentLoaded",
+/* ==================================================
+   HELPERS
+================================================== */
+
+
+function esc(value){
+
+return String(value ?? "")
+.replace(/[&<>"']/g,function(c){
+
+return {
+
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+
+}[c];
+
+});
+
+}
+
+
+
+function money(value){
+
+return "₹" +
+Number(value || 0)
+.toFixed(2);
+
+}
+
+
+
+function setStatus(
+id,
+text,
+type=""
+){
+
+const element =
+document.getElementById(id);
+
+element.className =
+"status " + type;
+
+element.textContent =
+text;
+
+}
+
+
+
+/* ==================================================
+   TABS
+================================================== */
+
+
+document
+.querySelectorAll(".tab")
+.forEach(function(button){
+
+button.addEventListener(
+"click",
 function(){
 
-    document.getElementById(
-        "billDate"
-    ).value =
-        new Date()
-        .toISOString()
-        .split("T")[0];
+document
+.querySelectorAll(".tab")
+.forEach(function(tab){
 
-
-    addBillItem();
-
-    loadProducts();
+tab.classList.remove("active");
 
 });
 
 
-/* =================================
-   LOAD PRODUCTS FROM GOOGLE SHEET
-================================= */
+document
+.querySelectorAll(".page")
+.forEach(function(page){
+
+page.classList.remove("active");
+
+});
+
+
+button.classList.add("active");
+
+
+document
+.getElementById(
+button.dataset.page
+)
+.classList.add("active");
+
+
+});
+
+});
+
+
+
+/* ==================================================
+   LOAD PRODUCTS
+================================================== */
+
 
 async function loadProducts(){
 
-    const list =
-        document.getElementById(
-            "productList"
-        );
-
-    list.innerHTML =
-        '<div class="loading">Loading products...</div>';
+setStatus(
+"productStatus",
+"⏳ Loading products from Google Sheets...",
+"loading"
+);
 
 
-    try{
-
-        const response =
-            await fetch(
-                SCRIPT_URL +
-                "?action=products"
-            );
+setStatus(
+"catalogueStatus",
+"⏳ Loading products from Google Sheets...",
+"loading"
+);
 
 
-        const result =
-            await response.json();
+try{
 
 
-        if(!result.success){
-
-            throw new Error(
-                result.message ||
-                "Unable to load products"
-            );
-
-        }
+const response =
+await fetch(
+SCRIPT_URL +
+"?action=products&ts=" +
+Date.now()
+);
 
 
-        products =
-            result.products || [];
+if(!response.ok){
 
-
-        populateCategories();
-
-        renderProducts();
-
-        refreshBillProductOptions();
-
-
-        showStatus(
-            "Products loaded successfully.",
-            "success"
-        );
-
-
-    }catch(error){
-
-        console.error(error);
-
-        list.innerHTML =
-            '<div class="error status">' +
-            '❌ Unable to load products from Google Sheets.<br><br>' +
-            error.message +
-            '</div>';
-
-    }
+throw new Error(
+"HTTP " + response.status
+);
 
 }
 
 
-/* =================================
-   CATEGORIES
-================================= */
-
-function populateCategories(){
-
-    const category =
-        document.getElementById(
-            "category"
-        );
+const result =
+await response.json();
 
 
-    const categories =
-        [
-            ...new Set(
-                products
-                .map(p=>p.category)
-                .filter(Boolean)
-            )
-        ];
+if(!result.success){
 
-
-    category.innerHTML =
-        '<option value="">All Categories</option>';
-
-
-    categories.forEach(c=>{
-
-        category.innerHTML +=
-            `<option value="${escapeHtml(c)}">
-                ${escapeHtml(c)}
-            </option>`;
-
-    });
+throw new Error(
+result.message ||
+"Unable to load products"
+);
 
 }
 
 
-/* =================================
-   PRODUCT CATALOGUE
-================================= */
-
-function renderProducts(){
-
-    const search =
-        document.getElementById(
-            "search"
-        ).value
-        .toLowerCase();
+products =
+result.products || [];
 
 
-    const category =
-        document.getElementById(
-            "category"
-        ).value;
+setStatus(
+"productStatus",
+"✅ " +
+products.length +
+" products loaded from Google Sheets.",
+"success"
+);
 
 
-    const list =
-        products.filter(p=>{
-
-            const text =
-                (
-                    p.productName +
-                    " " +
-                    p.teluguName +
-                    " " +
-                    p.category
-                ).toLowerCase();
+setStatus(
+"catalogueStatus",
+"✅ " +
+products.length +
+" products loaded from Google Sheets.",
+"success"
+);
 
 
-            return
-                text.includes(search) &&
-                (
-                    !category ||
-                    p.category === category
-                );
-
-        });
+renderCategories();
 
 
-    const box =
-        document.getElementById(
-            "productList"
-        );
+renderCatalogue();
 
 
-    if(!list.length){
-
-        box.innerHTML =
-            "<div>No products found.</div>";
-
-        return;
-
-    }
+document
+.getElementById("billItems")
+.innerHTML="";
 
 
-    box.innerHTML =
-        list.map(p=>`
+addBillItem();
 
-        <div class="product-card">
 
-            <h3>
-                ${escapeHtml(p.productName)}
-            </h3>
+calculate();
 
-            <div class="telugu">
-                ${escapeHtml(p.teluguName)}
-            </div>
 
-            <div class="meta">
-                ${escapeHtml(p.category)}
-            </div>
+}
+catch(error){
 
-            <div class="price">
 
-                <span>
-                    ${escapeHtml(p.packSize)}
-                </span>
+console.error(error);
 
-                <b>
-                    ₹${Number(
-                        p.sellingPrice
-                    ).toFixed(2)}
-                </b>
 
-            </div>
+setStatus(
+"productStatus",
+"❌ Unable to load products. " +
+error.message,
+"error"
+);
 
-        </div>
 
-        `).join("");
+setStatus(
+"catalogueStatus",
+"❌ Unable to load products. " +
+error.message,
+"error"
+);
+
+
+}
 
 }
 
 
-/* =================================
+
+/* ==================================================
    PRODUCT OPTIONS
-================================= */
+================================================== */
+
 
 function productOptions(){
 
-    let html =
-        '<option value="">Select Product</option>';
+return (
 
+'<option value="">Select Product</option>' +
 
-    products.forEach((p,index)=>{
+products
+.map(function(product,index){
 
-        html +=
-            `<option value="${index}">
-                ${escapeHtml(
-                    p.productName
-                )}
-                -
-                ${escapeHtml(
-                    p.teluguName
-                )}
-                -
-                ${escapeHtml(
-                    p.packSize
-                )}
-            </option>`;
+return (
 
-    });
+'<option value="' +
+index +
+'">' +
 
+esc(product.productName) +
 
-    return html;
+(
+product.teluguName
+?
+" — " +
+esc(product.teluguName)
+:
+""
+) +
+
+'</option>'
+
+);
+
+})
+.join("")
+
+);
 
 }
 
 
-/* =================================
-   ADD BILL ITEM
-================================= */
+
+/* ==================================================
+   ADD BILL ROW
+================================================== */
+
 
 function addBillItem(){
 
-    const container =
-        document.getElementById(
-            "billItems"
-        );
+const row =
+document.createElement("div");
 
 
-    const row =
-        document.createElement(
-            "div"
-        );
+row.className =
+"bill-row";
 
 
-    row.className =
-        "bill-row";
+row.innerHTML =
+
+'<div>' +
+
+'<label>Product</label>' +
+
+'<select class="productSelect">' +
+
+productOptions() +
+
+'</select>' +
+
+'</div>' +
 
 
-    row.innerHTML = `
+'<div>' +
 
-        <div>
+'<label>Pack Size</label>' +
 
-            <label>Product</label>
+'<select class="packSelect">' +
 
-            <select
-                class="productSelect">
+'<option value="">Select Pack</option>' +
 
-                ${productOptions()}
+'</select>' +
 
-            </select>
-
-        </div>
+'</div>' +
 
 
-        <div>
+'<div>' +
 
-            <label>Pack Size</label>
+'<label>Qty</label>' +
 
-            <select
-                class="packSelect">
+'<input class="qty" type="number" min="1" value="1">' +
 
-                <option value="">
-                    Select Pack
-                </option>
-
-            </select>
-
-        </div>
+'</div>' +
 
 
-        <div>
+'<div>' +
 
-            <label>Qty</label>
+'<label>Rate</label>' +
 
-            <input
-                class="qty"
-                type="number"
-                min="1"
-                value="1">
+'<div class="rate amount">₹0.00</div>' +
 
-        </div>
+'</div>' +
 
 
-        <div>
+'<div>' +
 
-            <label>Rate</label>
+'<label>Amount</label>' +
 
-            <div class="rate amount">
-                ₹0.00
-            </div>
+'<div class="lineAmount amount">₹0.00</div>' +
 
-        </div>
+'</div>' +
 
 
-        <div>
-
-            <label>Amount</label>
-
-            <div class="lineAmount amount">
-                ₹0.00
-            </div>
-
-        </div>
+'<button class="btn red removeBtn" type="button">✕</button>';
 
 
-        <button
-            class="red removeBtn"
-            type="button">
-
-            ✕
-
-        </button>
-
-    `;
+document
+.getElementById("billItems")
+.appendChild(row);
 
 
-    container.appendChild(row);
+
+row
+.querySelector(".productSelect")
+.addEventListener(
+"change",
+function(){
+
+updateProductRow(row);
+
+}
+);
 
 
-    const productSelect =
-        row.querySelector(
-            ".productSelect"
-        );
+
+row
+.querySelector(".packSelect")
+.addEventListener(
+"change",
+function(){
+
+updatePackRow(row);
+
+}
+);
 
 
-    const packSelect =
-        row.querySelector(
-            ".packSelect"
-        );
+
+row
+.querySelector(".qty")
+.addEventListener(
+"input",
+calculate
+);
 
 
-    const qty =
-        row.querySelector(
-            ".qty"
-        );
 
+row
+.querySelector(".removeBtn")
+.addEventListener(
+"click",
+function(){
 
-    productSelect
-        .addEventListener(
-            "change",
-            function(){
+row.remove();
 
-                updateProductRow(row);
+calculate();
 
-            }
-        );
-
-
-    packSelect
-        .addEventListener(
-            "change",
-            function(){
-
-                updatePackRow(row);
-
-            }
-        );
-
-
-    qty.addEventListener(
-        "input",
-        calculate
-    );
-
-
-    row.querySelector(
-        ".removeBtn"
-    ).addEventListener(
-        "click",
-        function(){
-
-            row.remove();
-
-            calculate();
-
-        }
-    );
+}
+);
 
 }
 
 
-/* =================================
-   REFRESH PRODUCT DROPDOWNS
-================================= */
 
-function refreshBillProductOptions(){
+/* ==================================================
+   PRODUCT CHANGE
+================================================== */
 
-    document
-    .querySelectorAll(
-        ".productSelect"
-    )
-    .forEach(select=>{
-
-        const current =
-            select.value;
-
-        select.innerHTML =
-            productOptions();
-
-        select.value =
-            current;
-
-    });
-
-}
-
-
-/* =================================
-   PRODUCT SELECTED
-================================= */
 
 function updateProductRow(row){
 
-    const index =
-        Number(
-            row.querySelector(
-                ".productSelect"
-            ).value
-        );
+const index =
+Number(
+row.querySelector(
+".productSelect"
+).value
+);
 
 
-    const product =
-        products[index];
+const product =
+products[index];
 
 
-    const packSelect =
-        row.querySelector(
-            ".packSelect"
-        );
+const pack =
+row.querySelector(
+".packSelect"
+);
 
 
-    packSelect.innerHTML =
-        '<option value="">Select Pack</option>';
+pack.innerHTML =
+'<option value="">Select Pack</option>';
 
 
-    if(!product){
+if(!product){
 
-        row.dataset.rate = "0";
+row.dataset.price="0";
 
-        row.querySelector(
-            ".rate"
-        ).textContent =
-            "₹0.00";
+row.querySelector(
+".rate"
+).textContent="₹0.00";
 
-        calculate();
+calculate();
 
-        return;
-
-    }
-
-
-    /*
-       One row in Products =
-       one product + one pack size.
-
-       Therefore we add that pack size.
-    */
-
-    packSelect.innerHTML +=
-        `<option value="${escapeHtml(
-            product.packSize
-        )}">
-
-            ${escapeHtml(
-                product.packSize
-            )}
-
-        </option>`;
-
-
-    packSelect.value =
-        product.packSize;
-
-
-    row.dataset.productIndex =
-        index;
-
-
-    updatePackRow(row);
+return;
 
 }
 
 
-/* =================================
-   PACK SELECTED
-================================= */
+/*
+Products sheet has ONE pack size
+per product row.
+
+If your Pack Size contains:
+500 g, 1 Kg
+
+both will be available.
+*/
+
+
+const packSizes =
+String(
+product.packSize || ""
+)
+.split(",")
+.map(function(x){
+
+return x.trim();
+
+})
+.filter(Boolean);
+
+
+if(packSizes.length){
+
+packSizes.forEach(function(size){
+
+pack.insertAdjacentHTML(
+"beforeend",
+
+'<option value="' +
+esc(size) +
+'">' +
+esc(size) +
+'</option>'
+
+);
+
+});
+
+
+pack.value =
+packSizes[0];
+
+
+updatePackRow(row);
+
+
+}
+else{
+
+
+row.dataset.price =
+String(
+Number(
+product.sellingPrice
+) || 0
+);
+
+
+row.querySelector(
+".rate"
+).textContent =
+money(
+product.sellingPrice
+);
+
+
+calculate();
+
+}
+
+}
+
+
+
+/* ==================================================
+   PACK CHANGE
+================================================== */
+
 
 function updatePackRow(row){
 
-    const index =
-        Number(
-            row.dataset.productIndex
-        );
+const index =
+Number(
+row.querySelector(
+".productSelect"
+).value
+);
 
 
-    const product =
-        products[index];
+const product =
+products[index];
 
 
-    if(!product){
+if(!product){
 
-        row.dataset.rate = "0";
-
-        calculate();
-
-        return;
-
-    }
-
-
-    const rate =
-        Number(
-            product.sellingPrice
-        ) || 0;
-
-
-    row.dataset.rate =
-        rate;
-
-
-    row.querySelector(
-        ".rate"
-    ).textContent =
-        money(rate);
-
-
-    calculate();
+return;
 
 }
 
 
-/* =================================
-   CALCULATE BILL
-================================= */
+const price =
+Number(
+product.sellingPrice
+) || 0;
+
+
+row.dataset.price =
+String(price);
+
+
+row.querySelector(
+".rate"
+).textContent =
+price
+?
+money(price)
+:
+"Price not set";
+
+
+calculate();
+
+}
+
+
+
+/* ==================================================
+   CALCULATE
+================================================== */
+
 
 function calculate(){
 
-    let subtotal = 0;
+let subtotal = 0;
 
 
-    document
-    .querySelectorAll(
-        ".bill-row"
-    )
-    .forEach(row=>{
+document
+.querySelectorAll(".bill-row")
+.forEach(function(row){
 
-        const rate =
-            Number(
-                row.dataset.rate
-            ) || 0;
+const price =
+Number(
+row.dataset.price || 0
+);
 
 
-        const qty =
-            Number(
-                row.querySelector(
-                    ".qty"
-                ).value
-            ) || 0;
+const qty =
+Number(
+row.querySelector(
+".qty"
+).value || 0
+);
 
 
-        const amount =
-            rate * qty;
+const amount =
+price * qty;
 
 
-        subtotal +=
-            amount;
+subtotal += amount;
 
 
-        row.querySelector(
-            ".lineAmount"
-        ).textContent =
-            money(amount);
+row.querySelector(
+".lineAmount"
+).textContent =
+money(amount);
 
-    });
+});
 
 
-    const discount =
-        Math.min(
+const discount =
+Math.min(
 
-            Math.max(
+Math.max(
 
-                Number(
-                    document
-                    .getElementById(
-                        "discount"
-                    ).value
-                ) || 0,
+Number(
+document.getElementById(
+"discount"
+).value || 0
+),
 
-                0
+0
 
-            ),
+),
 
-            subtotal
+subtotal
 
-        );
-
-
-    document.getElementById(
-        "subtotal"
-    ).textContent =
-        money(subtotal);
-
-
-    document.getElementById(
-        "discountTotal"
-    ).textContent =
-        money(discount);
-
-
-    document.getElementById(
-        "grandTotal"
-    ).textContent =
-        money(
-            subtotal -
-            discount
-        );
-
-}
-
-
-/* =================================
-   SAVE BILL
-================================= */
-
-async function saveBill(){
-
-    const rows =
-        document.querySelectorAll(
-            ".bill-row"
-        );
-
-
-    const items = [];
-
-    let subtotal = 0;
-
-
-    rows.forEach(row=>{
-
-        const index =
-            Number(
-                row.dataset.productIndex
-            );
-
-
-        const product =
-            products[index];
-
-
-        const pack =
-            row.querySelector(
-                ".packSelect"
-            ).value;
-
-
-        const qty =
-            Number(
-                row.querySelector(
-                    ".qty"
-                ).value
-            ) || 0;
-
-
-        const rate =
-            Number(
-                row.dataset.rate
-            ) || 0;
-
-
-        if(
-            product &&
-            pack &&
-            qty > 0 &&
-            rate > 0
-        ){
-
-            const amount =
-                rate * qty;
-
-
-            subtotal +=
-                amount;
-
-
-            items.push({
-
-                productName:
-                    product.productName,
-
-                teluguName:
-                    product.teluguName,
-
-                packSize:
-                    pack,
-
-                qty:
-                    qty,
-
-                rate:
-                    rate,
-
-                amount:
-                    amount
-
-            });
-
-        }
-
-    });
-
-
-    if(!items.length){
-
-        showStatus(
-            "❌ Please select at least one product.",
-            "error"
-        );
-
-        return;
-
-    }
-
-
-    const discount =
-        Math.min(
-
-            Math.max(
-
-                Number(
-                    document
-                    .getElementById(
-                        "discount"
-                    ).value
-                ) || 0,
-
-                0
-
-            ),
-
-            subtotal
-
-        );
-
-
-    const grandTotal =
-        subtotal -
-        discount;
-
-
-    const data = {
-
-        action:
-            "saveBill",
-
-        billDate:
-            document
-            .getElementById(
-                "billDate"
-            ).value,
-
-        customerName:
-            document
-            .getElementById(
-                "customerName"
-            ).value,
-
-        mobile:
-            document
-            .getElementById(
-                "mobile"
-            ).value,
-
-        address:
-            document
-            .getElementById(
-                "address"
-            ).value,
-
-        subtotal:
-            subtotal,
-
-        discount:
-            discount,
-
-        grandTotal:
-            grandTotal,
-
-        paymentMode:
-            document
-            .getElementById(
-                "paymentMode"
-            ).value,
-
-        paymentStatus:
-            document
-            .getElementById(
-                "paymentStatus"
-            ).value,
-
-        items:
-            items
-
-    };
-
-
-    showStatus(
-        "⏳ Saving bill...",
-        "success"
-    );
-
-
-    try{
-
-        const response =
-            await fetch(
-                SCRIPT_URL,
-                {
-
-                    method:"POST",
-
-                    headers:{
-                        "Content-Type":
-                            "text/plain;charset=utf-8"
-                    },
-
-                    body:
-                        JSON.stringify(data)
-
-                }
-            );
-
-
-        const result =
-            await response.json();
-
-
-        if(!result.success){
-
-            throw new Error(
-                result.message ||
-                "Bill could not be saved."
-            );
-
-        }
-
-
-        showStatus(
-
-            "✅ Bill saved successfully! Bill No: " +
-            result.billNo,
-
-            "success"
-
-        );
-
-
-    }catch(error){
-
-        console.error(error);
-
-
-        showStatus(
-
-            "❌ Bill saving failed: " +
-            error.message,
-
-            "error"
-
-        );
-
-    }
-
-}
-
-
-/* =================================
-   NEW BILL
-================================= */
-
-function newBill(){
-
-    if(
-        !confirm(
-            "Start a new bill?"
-        )
-    ){
-
-        return;
-
-    }
-
-
-    document.getElementById(
-        "customerName"
-    ).value = "";
-
-
-    document.getElementById(
-        "mobile"
-    ).value = "";
-
-
-    document.getElementById(
-        "address"
-    ).value = "";
-
-
-    document.getElementById(
-        "discount"
-    ).value = "0";
-
-
-    document.getElementById(
-        "paymentMode"
-    ).value = "Cash";
-
-
-    document.getElementById(
-        "paymentStatus"
-    ).value = "Paid";
-
-
-    document.getElementById(
-        "billItems"
-    ).innerHTML = "";
-
-
-    addBillItem();
-
-    calculate();
-
-}
-
-
-/* =================================
-   PRINT
-================================= */
-
-function printBill(){
-
-    window.print();
-
-}
-
-
-/* =================================
-   STATUS
-================================= */
-
-function showStatus(
-    message,
-    type
-){
-
-    const status =
-        document.getElementById(
-            "status"
-        );
-
-
-    status.className =
-        "status " +
-        type;
-
-
-    status.innerHTML =
-        message;
-
-}
-
-
-/* =================================
-   MONEY
-================================= */
-
-function money(value){
-
-    return "₹" +
-        Number(
-            value || 0
-        ).toFixed(2);
-
-}
-
-
-/* =================================
-   ESCAPE HTML
-================================= */
-
-function escapeHtml(value){
-
-    return String(
-        value ?? ""
-    )
-    .replace(
-        /[&<>"']/g,
-        function(char){
-
-            return {
-
-                "&":"&amp;",
-                "<":"&lt;",
-                ">":"&gt;",
-                '"':"&quot;",
-                "'":"&#039;"
-
-            }[char];
-
-        }
-    );
-
-}
+);
 
 
 document.getElementById(
-    "discount"
-).addEventListener(
-    "input",
-    calculate
+"subtotal"
+).textContent =
+money(subtotal);
+
+
+document.getElementById(
+"discountTotal"
+).textContent =
+money(discount);
+
+
+document.getElementById(
+"grandTotal"
+).textContent =
+money(
+subtotal - discount
 );
+
+}
+
+
+
+/* ==================================================
+   GET BILL DATA
+================================================== */
+
+
+function getBillData(){
+
+const items = [];
+
+let subtotal = 0;
+
+
+document
+.querySelectorAll(".bill-row")
+.forEach(function(row){
+
+
+const index =
+Number(
+row.querySelector(
+".productSelect"
+).value
+);
+
+
+const product =
+products[index];
+
+
+const packSize =
+row.querySelector(
+".packSelect"
+).value;
+
+
+const quantity =
+Number(
+row.querySelector(
+".qty"
+).value || 0
+);
+
+
+const rate =
+Number(
+row.dataset.price || 0
+);
+
+
+if(
+product &&
+quantity > 0 &&
+rate > 0
+){
+
+
+const amount =
+quantity * rate;
+
+
+subtotal += amount;
+
+
+items.push({
+
+productId:
+product.productId || "",
+
+productName:
+product.productName || "",
+
+teluguName:
+product.teluguName || "",
+
+packSize:
+packSize ||
+product.packSize ||
+"",
+
+quantity:
+quantity,
+
+rate:
+rate,
+
+amount:
+amount
+
+});
+
+}
+
+});
+
+
+const discount =
+Math.min(
+
+Math.max(
+
+Number(
+document.getElementById(
+"discount"
+).value || 0
+),
+
+0
+
+),
+
+subtotal
+
+);
+
+
+return {
+
+action:
+"saveBill",
+
+
+billId:
+"BILL-" +
+Date.now(),
+
+
+billDate:
+document.getElementById(
+"billDate"
+).value,
+
+
+customerName:
+document.getElementById(
+"customer"
+).value ||
+"Walk-in Customer",
+
+
+mobile:
+document.getElementById(
+"mobile"
+).value ||
+"",
+
+
+address:
+document.getElementById(
+"address"
+).value ||
+"",
+
+
+subtotal:
+subtotal,
+
+
+discount:
+discount,
+
+
+grandTotal:
+subtotal - discount,
+
+
+paymentMode:
+document.getElementById(
+"paymentMode"
+).value,
+
+
+paymentStatus:
+document.getElementById(
+"paymentStatus"
+).value,
+
+
+items:
+items
+
+};
+
+}
+
+
+
+/* ==================================================
+   SAVE BILL
+================================================== */
+
+
+async function saveBill(){
+
+const data =
+getBillData();
+
+
+if(!data.items.length){
+
+setStatus(
+"saveStatus",
+"❌ Please select at least one product.",
+"error"
+);
+
+return;
+
+}
+
+
+setStatus(
+"saveStatus",
+"⏳ Saving bill to Google Sheets...",
+"loading"
+);
+
+
+try{
+
+
+const response =
+await fetch(
+SCRIPT_URL,
+{
+
+method:"POST",
+
+body:JSON.stringify(data)
+
+}
+);
+
+
+if(!response.ok){
+
+throw new Error(
+"HTTP " +
+response.status
+);
+
+}
+
+
+const result =
+await response.json();
+
+
+if(!result.success){
+
+throw new Error(
+result.message ||
+"Save failed"
+);
+
+}
+
+
+setStatus(
+"saveStatus",
+"✅ Bill saved successfully. Bill ID: " +
+result.billId,
+"success"
+);
+
+
+}
+catch(error){
+
+
+console.error(error);
+
+
+setStatus(
+"saveStatus",
+"❌ Error while saving bill: " +
+error.message,
+"error"
+);
+
+}
+
+}
+
+
+
+/* ==================================================
+   PRINT
+================================================== */
+
+
+function printBill(){
+
+const data =
+getBillData();
+
+
+if(!data.items.length){
+
+alert(
+"Please select at least one product."
+);
+
+return;
+
+}
+
+
+const rows =
+data.items
+.map(function(item,index){
+
+return (
+
+"<tr>" +
+
+"<td>" +
+(index + 1) +
+"</td>" +
+
+"<td>" +
+esc(item.productName) +
+"<br><small>" +
+esc(item.teluguName) +
+"</small>" +
+"</td>" +
+
+"<td>" +
+esc(item.packSize) +
+"</td>" +
+
+"<td>" +
+item.quantity +
+"</td>" +
+
+"<td>" +
+money(item.rate) +
+"</td>" +
+
+"<td>" +
+money(item.amount) +
+"</td>" +
+
+"</tr>"
+
+);
+
+})
+.join("");
+
+
+const popup =
+window.open(
+"",
+"_blank"
+);
+
+
+if(!popup){
+
+alert(
+"Please allow pop-ups."
+);
+
+return;
+
+}
+
+
+popup.document.write(
+
+"<!DOCTYPE html>" +
+
+"<html>" +
+
+"<head>" +
+
+"<title>" +
+esc(data.billId) +
+"</title>" +
+
+"<style>" +
+
+"body{font-family:Arial;padding:25px}" +
+
+"h1{color:#214d2b}" +
+
+"table{width:100%;border-collapse:collapse;margin-top:20px}" +
+
+"th,td{padding:9px;border-bottom:1px solid #ddd;text-align:left}" +
+
+".right{text-align:right}" +
+
+".total{font-size:20px;font-weight:bold}" +
+
+"</style>" +
+
+"</head>" +
+
+"<body>" +
+
+"<h1>YATHAM ORGANICS</h1>" +
+
+"<div>Customer Bill</div>" +
+
+"<hr>" +
+
+"<p>" +
+
+"<b>Bill ID:</b> " +
+esc(data.billId) +
+
+"<br>" +
+
+"<b>Date:</b> " +
+esc(data.billDate) +
+
+"<br>" +
+
+"<b>Customer:</b> " +
+esc(data.customerName) +
+
+"<br>" +
+
+"<b>Mobile:</b> " +
+esc(data.mobile || "-") +
+
+"<br>" +
+
+"<b>Payment:</b> " +
+esc(data.paymentMode) +
+" / " +
+esc(data.paymentStatus) +
+
+"</p>" +
+
+"<table>" +
+
+"<thead>" +
+
+"<tr>" +
+
+"<th>#</th>" +
+
+"<th>Product</th>" +
+
+"<th>Pack</th>" +
+
+"<th>Qty</th>" +
+
+"<th>Rate</th>" +
+
+"<th>Amount</th>" +
+
+"</tr>" +
+
+"</thead>" +
+
+"<tbody>" +
+
+rows +
+
+"</tbody>" +
+
+"</table>" +
+
+"<div class='right'>" +
+
+"<p>Subtotal: <b>" +
+money(data.subtotal) +
+"</b></p>" +
+
+"<p>Discount: <b>" +
+money(data.discount) +
+"</b></p>" +
+
+"<p class='total'>Grand Total: " +
+money(data.grandTotal) +
+"</p>" +
+
+"</div>" +
+
+"<p style='text-align:center;margin-top:35px'>" +
+
+"Thank you for choosing Yatham Organics!" +
+
+"</p>" +
+
+"</body>" +
+
+"</html>"
+
+);
+
+
+popup.document.close();
+
+popup.focus();
+
+
+setTimeout(
+function(){
+
+popup.print();
+
+},
+500
+);
+
+}
+
+
+
+/* ==================================================
+   NEW BILL
+================================================== */
+
+
+function newBill(){
+
+document.getElementById(
+"customer"
+).value="";
+
+
+document.getElementById(
+"mobile"
+).value="";
+
+
+document.getElementById(
+"address"
+).value="";
+
+
+document.getElementById(
+"discount"
+).value="0";
+
+
+document.getElementById(
+"paymentMode"
+).value="Cash";
+
+
+document.getElementById(
+"paymentStatus"
+).value="Paid";
+
+
+document.getElementById(
+"saveStatus"
+).textContent="";
+
+
+document.getElementById(
+"billItems"
+).innerHTML="";
+
+
+addBillItem();
+
+
+calculate();
+
+}
+
+
+
+/* ==================================================
+   CATEGORIES
+================================================== */
+
+
+function renderCategories(){
+
+const select =
+document.getElementById(
+"category"
+);
+
+
+const categories =
+[
+...new Set(
+
+products
+.map(function(p){
+
+return p.category;
+
+})
+.filter(Boolean)
+
+)
+].sort();
+
+
+select.innerHTML =
+'<option value="">All Categories</option>' +
+
+categories
+.map(function(category){
+
+return (
+
+'<option value="' +
+esc(category) +
+'">' +
+esc(category) +
+'</option>'
+
+);
+
+})
+.join("");
+
+}
+
+
+
+/* ==================================================
+   CATALOGUE
+================================================== */
+
+
+function renderCatalogue(){
+
+const search =
+document.getElementById(
+"search"
+)
+.value
+.toLowerCase()
+.trim();
+
+
+const category =
+document.getElementById(
+"category"
+).value;
+
+
+const list =
+products.filter(function(product){
+
+
+const text = [
+
+product.productId,
+
+product.productName,
+
+product.teluguName,
+
+product.category,
+
+product.packSize
+
+]
+.join(" ")
+.toLowerCase();
+
+
+return (
+
+(!search ||
+text.includes(search))
+
+&&
+
+(!category ||
+product.category === category)
+
+);
+
+});
+
+
+const box =
+document.getElementById(
+"catalogue"
+);
+
+
+if(!list.length){
+
+box.innerHTML =
+'<div class="empty">No products found.</div>';
+
+return;
+
+}
+
+
+box.innerHTML =
+list
+.map(function(product){
+
+return (
+
+'<div class="product">' +
+
+"<h3>" +
+esc(product.productName) +
+"</h3>" +
+
+'<div class="telugu">' +
+esc(product.teluguName) +
+"</div>" +
+
+'<div class="meta">' +
+
+"ID: " +
+esc(product.productId) +
+
+" • " +
+
+esc(product.category) +
+
+"</div>" +
+
+'<div class="price">' +
+
+"<span>Pack Size</span>" +
+
+"<b>" +
+esc(product.packSize) +
+"</b>" +
+
+"</div>" +
+
+'<div class="price">' +
+
+"<span>Selling Price</span>" +
+
+"<b>" +
+money(product.sellingPrice) +
+"</b>" +
+
+"</div>" +
+
+"</div>"
+
+);
+
+})
+.join("");
+
+}
+
+
+
+/* ==================================================
+   EVENTS
+================================================== */
+
+
+document
+.getElementById("addItemBtn")
+.addEventListener(
+"click",
+addBillItem
+);
+
+
+document
+.getElementById("saveBtn")
+.addEventListener(
+"click",
+saveBill
+);
+
+
+document
+.getElementById("printBtn")
+.addEventListener(
+"click",
+printBill
+);
+
+
+document
+.getElementById("newBtn")
+.addEventListener(
+"click",
+newBill
+);
+
+
+document
+.getElementById("refreshBtn")
+.addEventListener(
+"click",
+loadProducts
+);
+
+
+document
+.getElementById("discount")
+.addEventListener(
+"input",
+calculate
+);
+
+
+document
+.getElementById("search")
+.addEventListener(
+"input",
+renderCatalogue
+);
+
+
+document
+.getElementById("category")
+.addEventListener(
+"change",
+renderCatalogue
+);
+
+
+
+/* ==================================================
+   START
+================================================== */
+
+
+document.getElementById(
+"billDate"
+).value =
+new Date()
+.toISOString()
+.slice(0,10);
+
+
+loadProducts();
 
 </script>
 
