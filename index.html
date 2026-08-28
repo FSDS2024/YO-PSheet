@@ -1,335 +1,259 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Yatham Organics Billing</title>
 
 <style>
-
 *{
-box-sizing:border-box;
+    box-sizing:border-box;
 }
 
 body{
-
-margin:0;
-
-font-family:Arial,sans-serif;
-
-background:#f3f6f4;
-
-color:#222;
-
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:#f3f6f4;
+    color:#222;
 }
 
 .container{
-
-max-width:1100px;
-
-margin:auto;
-
-padding:20px;
-
+    width:95%;
+    max-width:1200px;
+    margin:25px auto;
 }
 
 .header{
-
-background:#214d2b;
-
-color:white;
-
-padding:22px;
-
-border-radius:14px;
-
-margin-bottom:18px;
-
+    background:#205b32;
+    color:white;
+    padding:25px;
+    border-radius:18px;
+    margin-bottom:20px;
 }
 
 .header h1{
+    margin:0;
+    font-size:30px;
+}
 
-margin:0;
-
+.header p{
+    margin:7px 0 0;
 }
 
 .card{
-
-background:white;
-
-padding:20px;
-
-border-radius:14px;
-
-margin-bottom:18px;
-
-box-shadow:0 3px 12px rgba(0,0,0,.08);
-
+    background:white;
+    padding:22px;
+    border-radius:18px;
+    margin-bottom:20px;
+    box-shadow:0 4px 18px rgba(0,0,0,.08);
 }
 
 h2{
-
-color:#214d2b;
-
-margin-top:0;
-
+    color:#205b32;
+    margin-top:0;
 }
 
 .grid{
-
-display:grid;
-
-grid-template-columns:1fr 1fr;
-
-gap:14px;
-
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
 }
 
 label{
-
-display:block;
-
-font-weight:bold;
-
-font-size:13px;
-
-margin-bottom:5px;
-
+    display:block;
+    font-weight:bold;
+    margin-bottom:6px;
 }
 
 input,
 select{
-
-width:100%;
-
-padding:11px;
-
-border:1px solid #ccd8c9;
-
-border-radius:8px;
-
-font-size:14px;
-
+    width:100%;
+    padding:12px;
+    border:1px solid #cdd8cf;
+    border-radius:9px;
+    font-size:15px;
+    background:white;
 }
 
 button{
-
-border:0;
-
-border-radius:8px;
-
-padding:11px 16px;
-
-font-weight:bold;
-
-cursor:pointer;
-
+    border:none;
+    border-radius:9px;
+    padding:12px 18px;
+    font-size:15px;
+    font-weight:bold;
+    cursor:pointer;
+    margin:4px;
 }
 
 .green{
-
-background:#214d2b;
-
-color:white;
-
+    background:#205b32;
+    color:white;
 }
 
 .light{
-
-background:#e7f0e5;
-
-color:#214d2b;
-
+    background:#e6f0e7;
+    color:#205b32;
 }
 
 .red{
+    background:#f8dddd;
+    color:#a00000;
+}
 
-background:#f8dddd;
+.blue{
+    background:#e2edf9;
+    color:#14548a;
+}
 
-color:#a22;
-
+button:hover{
+    opacity:.9;
 }
 
 .bill-row{
+    display:grid;
+    grid-template-columns:
+        2.3fr
+        1fr
+        .7fr
+        1fr
+        1fr
+        55px;
 
-display:grid;
+    gap:10px;
+    align-items:end;
 
-grid-template-columns:2.2fr 120px 80px 110px 110px 45px;
+    padding:12px;
+    border:1px solid #e0e7e1;
+    border-radius:12px;
+    margin-bottom:10px;
+}
 
-gap:8px;
-
-align-items:end;
-
-margin-bottom:12px;
-
+.rate,
+.amount{
+    padding:12px 5px;
+    font-weight:bold;
 }
 
 .amount{
-
-font-weight:bold;
-
-padding:11px 0;
-
+    text-align:right;
 }
 
 .summary{
-
-max-width:350px;
-
-margin-left:auto;
-
+    max-width:400px;
+    margin-left:auto;
 }
 
-.sum{
-
-display:flex;
-
-justify-content:space-between;
-
-padding:7px;
-
+.summary-row{
+    display:flex;
+    justify-content:space-between;
+    padding:8px 0;
 }
 
-.grand{
-
-border-top:2px solid #214d2b;
-
-font-size:20px;
-
-font-weight:bold;
-
-padding-top:12px;
-
+.grand-total{
+    border-top:2px solid #205b32;
+    margin-top:8px;
+    padding-top:12px;
+    font-size:22px;
+    font-weight:bold;
+    color:#205b32;
 }
 
-.actions{
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+    gap:15px;
+}
 
-display:flex;
+.product-card{
+    border:1px solid #dce5dd;
+    padding:15px;
+    border-radius:12px;
+}
 
-gap:10px;
+.product-card h3{
+    color:#205b32;
+    margin:0 0 5px;
+}
 
-flex-wrap:wrap;
+.telugu{
+    font-size:17px;
+    margin-bottom:7px;
+}
 
+.category{
+    font-size:12px;
+    color:#777;
+    margin-bottom:8px;
+}
+
+.product-price{
+    display:flex;
+    justify-content:space-between;
+    border-top:1px solid #eee;
+    padding:6px 0;
 }
 
 .status{
+    margin-top:12px;
+    font-weight:bold;
+}
 
-margin-top:12px;
+.success{
+    color:#16803c;
+}
 
-font-weight:bold;
-
+.error{
+    color:#c00000;
 }
 
 .loading{
-
-padding:20px;
-
-text-align:center;
-
+    text-align:center;
+    padding:30px;
+    font-weight:bold;
 }
 
-.catalogue{
+@media(max-width:800px){
 
-display:grid;
+    .grid{
+        grid-template-columns:1fr;
+    }
 
-grid-template-columns:
-repeat(auto-fill,minmax(220px,1fr));
+    .bill-row{
+        grid-template-columns:1fr 1fr;
+    }
 
-gap:12px;
-
-}
-
-.product{
-
-border:1px solid #ddd;
-
-border-radius:10px;
-
-padding:12px;
-
-}
-
-.product h3{
-
-margin:0;
-
-color:#214d2b;
-
-}
-
-.price{
-
-display:flex;
-
-justify-content:space-between;
-
-padding:5px 0;
-
-border-top:1px solid #eee;
-
-font-size:13px;
-
-}
-
-@media(max-width:750px){
-
-.grid{
-
-grid-template-columns:1fr;
-
-}
-
-.bill-row{
-
-grid-template-columns:1fr 100px 70px 90px 90px 40px;
-
-}
-
+    .products{
+        grid-template-columns:1fr;
+    }
 }
 
 @media print{
 
-.no-print{
+    .no-print{
+        display:none !important;
+    }
 
-display:none!important;
+    body{
+        background:white;
+    }
 
-}
+    .container{
+        width:100%;
+        margin:0;
+    }
 
-body{
-
-background:white;
-
-}
-
-.container{
-
-padding:0;
-
-}
-
-.card{
-
-box-shadow:none;
+    .card{
+        box-shadow:none;
+    }
 
 }
-
-}
-
 </style>
-
 </head>
-
 
 <body>
 
-
 <div class="container">
-
 
 <!-- HEADER -->
 
@@ -337,10 +261,9 @@ box-shadow:none;
 
 <h1>YATHAM ORGANICS</h1>
 
-<div>Customer Billing System</div>
+<p>Customer Billing System</p>
 
 </div>
-
 
 
 <!-- CUSTOMER -->
@@ -349,16 +272,14 @@ box-shadow:none;
 
 <h2>Customer Details</h2>
 
-
 <div class="grid">
-
 
 <div>
 
 <label>Customer Name</label>
 
 <input
-id="customer"
+id="customerName"
 placeholder="Walk-in Customer">
 
 </div>
@@ -374,11 +295,10 @@ placeholder="Optional">
 
 </div>
 
-
 </div>
 
 
-<div style="margin-top:14px">
+<div style="margin-top:15px">
 
 <label>Address / Community</label>
 
@@ -388,7 +308,6 @@ placeholder="Optional">
 
 </div>
 
-
 </div>
 
 
@@ -397,15 +316,24 @@ placeholder="Optional">
 
 <div class="card">
 
-<h2>Bill</h2>
-
+<h2>Bill Details</h2>
 
 <div class="grid">
+
+<div>
+
+<label>Bill Number</label>
+
+<input
+id="billNo"
+readonly>
+
+</div>
 
 
 <div>
 
-<label>Date</label>
+<label>Bill Date</label>
 
 <input
 id="billDate"
@@ -421,15 +349,13 @@ type="date">
 <input
 id="discount"
 type="number"
+value="0"
 min="0"
-step="0.01"
-value="0">
+step="0.01">
 
 </div>
 
-
 </div>
-
 
 <br>
 
@@ -438,53 +364,12 @@ value="0">
 
 
 <button
-class="light no-print"
-onclick="addBillItem()">
+class="green no-print"
+onclick="addBillRow()">
 
 ＋ Add Product
 
 </button>
-
-
-</div>
-
-
-
-<!-- TOTAL -->
-
-<div class="card">
-
-<div class="summary">
-
-
-<div class="sum">
-
-<span>Subtotal</span>
-
-<b id="subtotal">₹0.00</b>
-
-</div>
-
-
-<div class="sum">
-
-<span>Discount</span>
-
-<b id="discountTotal">₹0.00</b>
-
-</div>
-
-
-<div class="sum grand">
-
-<span>Grand Total</span>
-
-<span id="grandTotal">₹0.00</span>
-
-</div>
-
-
-</div>
 
 </div>
 
@@ -492,13 +377,11 @@ onclick="addBillItem()">
 
 <!-- PAYMENT -->
 
-<div class="card no-print">
+<div class="card">
 
 <h2>Payment</h2>
 
-
 <div class="grid">
-
 
 <div>
 
@@ -506,13 +389,15 @@ onclick="addBillItem()">
 
 <select id="paymentMode">
 
-<option>Cash</option>
+<option value="Cash">Cash</option>
 
-<option>UPI</option>
+<option value="UPI">UPI</option>
 
-<option>Card</option>
+<option value="Card">Card</option>
 
-<option>Bank Transfer</option>
+<option value="Bank Transfer">
+Bank Transfer
+</option>
 
 </select>
 
@@ -525,23 +410,71 @@ onclick="addBillItem()">
 
 <select id="paymentStatus">
 
-<option>Paid</option>
+<option value="Paid">Paid</option>
 
-<option>Pending</option>
+<option value="Pending">Pending</option>
+
+<option value="Partially Paid">
+Partially Paid
+</option>
 
 </select>
 
 </div>
 
+</div>
 
 </div>
 
 
-<br>
+
+<!-- SUMMARY -->
+
+<div class="card">
+
+<div class="summary">
+
+<div class="summary-row">
+
+<span>Subtotal</span>
+
+<b id="subtotal">
+₹0.00
+</b>
+
+</div>
 
 
-<div class="actions">
+<div class="summary-row">
 
+<span>Discount</span>
+
+<b id="discountTotal">
+₹0.00
+</b>
+
+</div>
+
+
+<div class="summary-row grand-total">
+
+<span>Grand Total</span>
+
+<span id="grandTotal">
+₹0.00
+</span>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- ACTIONS -->
+
+<div class="card no-print">
 
 <button
 class="green"
@@ -579,14 +512,11 @@ onclick="loadProducts()">
 </button>
 
 
-</div>
-
-
-<div id="status"
+<div
+id="status"
 class="status">
 
 </div>
-
 
 </div>
 
@@ -598,17 +528,19 @@ class="status">
 
 <h2>Available Products</h2>
 
+<div
+id="products"
+class="products">
 
-<div id="productsCatalogue"
-class="loading">
+<div class="loading">
 
 ⏳ Loading products from Google Sheets...
 
 </div>
 
-
 </div>
 
+</div>
 
 </div>
 
@@ -616,1011 +548,1053 @@ class="loading">
 
 <script>
 
-
-/* ==================================
-   GOOGLE APPS SCRIPT URL
-================================== */
-
+/* =====================================================
+   GOOGLE APPS SCRIPT WEB APP URL
+   ===================================================== */
 
 const SCRIPT_URL =
-"https://script.google.com/macros/s/AKfycbwXgZzLkG7BeXH2zSwk26Eceqe3fPoo5M7jNnCreHuzjPLd7ZNM_tUXgE_oN873PeSs6Q/exec";
+"https://script.google.com/macros/s/AKfycbxHKYcJn--lapvAoP1fdN9F2O-B23KUIMrGslU4x09RvVjuK4aJPTUsAUjjBRG4xlgE/exec";
 
+
+/* =====================================================
+   GLOBAL PRODUCTS
+   ===================================================== */
 
 let products = [];
 
 
+/* =====================================================
+   MONEY
+   ===================================================== */
 
-/* ==================================
-   LOAD PRODUCTS
-================================== */
+function money(value){
 
-
-function loadProducts(){
-
-const box =
-document.getElementById(
-"productsCatalogue"
-);
-
-
-box.innerHTML =
-"⏳ Loading products...";
-
-
-fetch(
-SCRIPT_URL +
-"?action=getProducts&_=" +
-Date.now()
-)
-
-
-.then(response => response.json())
-
-
-.then(result => {
-
-
-if(!result.success){
-
-throw new Error(
-result.message
-);
+    return "₹" +
+        Number(value || 0)
+        .toFixed(2);
 
 }
 
 
-products =
-result.products || [];
+/* =====================================================
+   ESCAPE HTML
+   ===================================================== */
 
+function escapeHTML(value){
 
-renderCatalogue();
+    return String(value ?? "")
+        .replace(/[&<>"']/g,function(char){
 
+            return {
+                "&":"&amp;",
+                "<":"&lt;",
+                ">":"&gt;",
+                '"':"&quot;",
+                "'":"&#039;"
 
-refreshProductDropdowns();
+            }[char];
 
-
-})
-
-
-.catch(error => {
-
-
-console.error(error);
-
-
-box.innerHTML =
-"❌ Unable to load products from Google Sheets.";
-
-});
+        });
 
 }
 
 
+/* =====================================================
+   STATUS
+   ===================================================== */
 
-/* ==================================
-   PRODUCT DROPDOWN
-================================== */
+function showStatus(message,type){
 
+    const status =
+        document.getElementById("status");
 
-function productOptions(){
+    status.className =
+        "status " + type;
 
-let html =
-'<option value="">Select Product</option>';
-
-
-products.forEach((p,index)=>{
-
-html +=
-
-'<option value="' +
-index +
-'">' +
-
-escapeHTML(
-p.productName
-) +
-
-" — " +
-
-escapeHTML(
-p.teluguName
-) +
-
-'</option>';
-
-});
-
-
-return html;
+    status.innerText =
+        message;
 
 }
 
 
-
-/* ==================================
-   ADD BILL ITEM
-================================== */
-
-
-function addBillItem(){
-
-
-const row =
-document.createElement("div");
-
-
-row.className =
-"bill-row";
-
-
-row.innerHTML = `
-
-<div>
-
-<label>Product</label>
-
-<select class="productSelect">
-
-${productOptions()}
-
-</select>
-
-</div>
-
-
-<div>
-
-<label>Pack</label>
-
-<select class="packSelect">
-
-<option value="">Select</option>
-
-</select>
-
-</div>
-
-
-<div>
-
-<label>Qty</label>
-
-<input
-class="qty"
-type="number"
-min="1"
-value="1">
-
-</div>
-
-
-<div>
-
-<label>Rate</label>
-
-<div class="rate amount">
-
-₹0.00
-
-</div>
-
-</div>
-
-
-<div>
-
-<label>Amount</label>
-
-<div class="lineAmount amount">
-
-₹0.00
-
-</div>
-
-</div>
-
-
-<button
-type="button"
-class="red removeBtn">
-
-✕
-
-</button>
-
-`;
-
-
-document
-.getElementById("billItems")
-.appendChild(row);
-
-
-
-const productSelect =
-row.querySelector(
-".productSelect"
-);
-
-
-const packSelect =
-row.querySelector(
-".packSelect"
-);
-
-
-const qty =
-row.querySelector(".qty");
-
-
-productSelect
-.addEventListener(
-"change",
-function(){
-
-updateProduct(row);
-
-});
-
-
-packSelect
-.addEventListener(
-"change",
-function(){
-
-updatePack(row);
-
-});
-
-
-qty
-.addEventListener(
-"input",
-calculate
-);
-
-
-row.querySelector(
-".removeBtn"
-)
-.addEventListener(
-"click",
-function(){
-
-row.remove();
-
-calculate();
-
-});
-
+/* =====================================================
+   GENERATE BILL NUMBER
+   ===================================================== */
+
+function generateBillNo(){
+
+    const now = new Date();
+
+    const year =
+        now.getFullYear();
+
+    const month =
+        String(now.getMonth()+1)
+        .padStart(2,"0");
+
+    const day =
+        String(now.getDate())
+        .padStart(2,"0");
+
+    const random =
+        Math.floor(
+            1000 + Math.random()*9000
+        );
+
+    return "YO-" +
+        year +
+        month +
+        day +
+        "-" +
+        random;
 
 }
 
 
+/* =====================================================
+   LOAD PRODUCTS FROM GOOGLE SHEETS
+   ===================================================== */
 
-/* ==================================
+async function loadProducts(){
+
+    const container =
+        document.getElementById("products");
+
+    container.innerHTML =
+        '<div class="loading">' +
+        '⏳ Loading products from Google Sheets...' +
+        '</div>';
+
+    try{
+
+        const response =
+            await fetch(
+                SCRIPT_URL +
+                "?action=getProducts&callback=x"
+            );
+
+        const text =
+            await response.text();
+
+        console.log("Google response:",text);
+
+        let result;
+
+        try{
+
+            result =
+                JSON.parse(text);
+
+        }catch(error){
+
+            throw new Error(
+                "Google Apps Script did not return JSON. Check doGet()."
+            );
+
+        }
+
+
+        if(!result.success){
+
+            throw new Error(
+                result.message ||
+                "Unable to load products."
+            );
+
+        }
+
+
+        products =
+            result.products || [];
+
+
+        renderProducts();
+
+        refreshProductDropdowns();
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        container.innerHTML =
+            '<div class="error">' +
+            '❌ Unable to load products from Google Sheets.<br><br>' +
+            escapeHTML(error.message) +
+            '</div>';
+
+    }
+
+}
+
+
+/* =====================================================
+   RENDER PRODUCTS
+   ===================================================== */
+
+function renderProducts(){
+
+    const container =
+        document.getElementById("products");
+
+    if(!products.length){
+
+        container.innerHTML =
+            "<p>No products found in Google Sheets.</p>";
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        products.map(function(product){
+
+            const prices =
+                product.prices || {};
+
+
+            const priceHTML =
+                Object.entries(prices)
+                .map(function(entry){
+
+                    const pack =
+                        entry[0];
+
+                    const price =
+                        entry[1];
+
+                    return `
+                    <div class="product-price">
+
+                        <span>
+                            ${escapeHTML(pack)}
+                        </span>
+
+                        <b>
+                            ${money(price)}
+                        </b>
+
+                    </div>
+                    `;
+
+                })
+                .join("");
+
+
+            return `
+
+            <div class="product-card">
+
+                <h3>
+                    ${escapeHTML(product.productName)}
+                </h3>
+
+                <div class="telugu">
+                    ${escapeHTML(product.teluguName)}
+                </div>
+
+                <div class="category">
+                    ${escapeHTML(product.category)}
+                </div>
+
+                ${priceHTML}
+
+            </div>
+
+            `;
+
+        }).join("");
+
+}
+
+
+/* =====================================================
+   PRODUCT OPTIONS
+   ===================================================== */
+
+function getProductOptions(){
+
+    let html =
+        '<option value="">Select Product</option>';
+
+    products.forEach(function(product,index){
+
+        html += `
+
+        <option value="${index}">
+
+            ${escapeHTML(product.productName)}
+            ${product.teluguName ?
+            " — " +
+            escapeHTML(product.teluguName)
+            : ""}
+
+        </option>
+
+        `;
+
+    });
+
+    return html;
+
+}
+
+
+/* =====================================================
+   ADD BILL ROW
+   ===================================================== */
+
+function addBillRow(){
+
+    const container =
+        document.getElementById("billItems");
+
+
+    const row =
+        document.createElement("div");
+
+    row.className =
+        "bill-row";
+
+
+    row.innerHTML = `
+
+        <div>
+
+            <label>Product</label>
+
+            <select class="productSelect">
+
+                ${getProductOptions()}
+
+            </select>
+
+        </div>
+
+
+        <div>
+
+            <label>Pack Size</label>
+
+            <select class="packSelect">
+
+                <option value="">
+                    Select Pack
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <div>
+
+            <label>Qty</label>
+
+            <input
+                class="qty"
+                type="number"
+                min="1"
+                value="1">
+
+        </div>
+
+
+        <div>
+
+            <label>Rate</label>
+
+            <div class="rate">
+                ₹0.00
+            </div>
+
+        </div>
+
+
+        <div>
+
+            <label>Amount</label>
+
+            <div class="amount">
+                ₹0.00
+            </div>
+
+        </div>
+
+
+        <div>
+
+            <button
+                class="red"
+                type="button">
+
+                ✕
+
+            </button>
+
+        </div>
+
+    `;
+
+
+    container.appendChild(row);
+
+
+    const productSelect =
+        row.querySelector(".productSelect");
+
+    const packSelect =
+        row.querySelector(".packSelect");
+
+    const qty =
+        row.querySelector(".qty");
+
+
+    productSelect.addEventListener(
+        "change",
+        function(){
+
+            updateProduct(row);
+
+        }
+    );
+
+
+    packSelect.addEventListener(
+        "change",
+        function(){
+
+            updatePack(row);
+
+        }
+    );
+
+
+    qty.addEventListener(
+        "input",
+        calculateBill
+    );
+
+
+    row.querySelector("button")
+        .addEventListener(
+            "click",
+            function(){
+
+                row.remove();
+
+                calculateBill();
+
+            }
+        );
+
+}
+
+
+/* =====================================================
    UPDATE PRODUCT
-================================== */
-
+   ===================================================== */
 
 function updateProduct(row){
 
-const index =
-Number(
-row.querySelector(
-".productSelect"
-).value
-);
+    const index =
+        Number(
+            row.querySelector(".productSelect").value
+        );
 
 
-const product =
-products[index];
+    const product =
+        products[index];
 
 
-const pack =
-row.querySelector(
-".packSelect"
-);
+    const packSelect =
+        row.querySelector(".packSelect");
 
 
-pack.innerHTML =
-'<option value="">Select Pack</option>';
+    packSelect.innerHTML =
+        '<option value="">Select Pack</option>';
 
 
-if(!product){
-
-row.dataset.price = 0;
-
-calculate();
-
-return;
-
-}
+    row.dataset.price = "0";
 
 
-/*
+    if(!product){
 
-Products sheet has one row
-per pack size.
+        row.querySelector(".rate")
+            .innerText = "₹0.00";
 
-Example:
+        calculateBill();
 
-Sesame Oil | 1 Kg | 672.60
-Sesame Oil | 500 g | 340.10
+        return;
 
-*/
-
-const sameProduct =
-products.filter(
-p =>
-String(p.productId) ===
-String(product.productId)
-);
+    }
 
 
-sameProduct.forEach(p=>{
-
-const option =
-document.createElement(
-"option"
-);
+    const prices =
+        product.prices || {};
 
 
-option.value =
-p.packSize;
+    Object.entries(prices)
+        .forEach(function(entry){
+
+            const pack =
+                entry[0];
+
+            const price =
+                entry[1];
 
 
-option.textContent =
-p.packSize +
-" — ₹" +
-Number(
-p.sellingPrice
-).toFixed(2);
+            const option =
+                document.createElement("option");
+
+            option.value =
+                pack;
+
+            option.textContent =
+                pack +
+                " - " +
+                money(price);
+
+            packSelect.appendChild(option);
+
+        });
 
 
-option.dataset.price =
-p.sellingPrice;
+    const packs =
+        Object.keys(prices);
 
 
-pack.appendChild(option);
+    if(packs.length === 1){
 
-});
+        packSelect.value =
+            packs[0];
 
+        updatePack(row);
 
-if(sameProduct.length){
-
-pack.value =
-sameProduct[0].packSize;
-
-updatePack(row);
-
-}
+    }
 
 }
 
 
-
-/* ==================================
+/* =====================================================
    UPDATE PACK
-================================== */
-
+   ===================================================== */
 
 function updatePack(row){
 
-const index =
-Number(
-row.querySelector(
-".productSelect"
-).value
-);
+    const index =
+        Number(
+            row.querySelector(".productSelect").value
+        );
 
 
-const product =
-products[index];
+    const pack =
+        row.querySelector(".packSelect").value;
 
 
-const pack =
-row.querySelector(
-".packSelect"
-).value;
+    const product =
+        products[index];
 
 
-if(!product || !pack){
+    if(!product || !pack){
 
-row.dataset.price = 0;
+        row.dataset.price =
+            "0";
 
-return;
+        row.querySelector(".rate")
+            .innerText =
+            "₹0.00";
 
-}
+        calculateBill();
 
+        return;
 
-const match =
-products.find(
-p =>
-String(p.productId) ===
-String(product.productId)
-&&
-String(p.packSize) ===
-String(pack)
-);
+    }
 
 
-const price =
-match ?
-Number(match.sellingPrice) :
-0;
+    const price =
+        Number(
+            product.prices[pack] || 0
+        );
 
 
-row.dataset.price =
-price;
+    row.dataset.price =
+        price;
 
 
-row.querySelector(
-".rate"
-).textContent =
-money(price);
+    row.querySelector(".rate")
+        .innerText =
+        money(price);
 
 
-calculate();
+    calculateBill();
 
 }
 
 
+/* =====================================================
+   CALCULATE BILL
+   ===================================================== */
 
-/* ==================================
-   CALCULATE
-================================== */
+function calculateBill(){
 
-
-function calculate(){
-
-let subtotal = 0;
-
-
-document
-.querySelectorAll(".bill-row")
-.forEach(row=>{
+    let subtotal =
+        0;
 
 
-const price =
-Number(
-row.dataset.price || 0
-);
+    document
+        .querySelectorAll(".bill-row")
+        .forEach(function(row){
+
+            const price =
+                Number(
+                    row.dataset.price || 0
+                );
 
 
-const qty =
-Number(
-row.querySelector(
-".qty"
-).value || 0
-);
+            const qty =
+                Number(
+                    row.querySelector(".qty").value || 0
+                );
 
 
-const amount =
-price * qty;
+            const amount =
+                price * qty;
 
 
-subtotal += amount;
+            subtotal +=
+                amount;
 
 
-row.querySelector(
-".lineAmount"
-).textContent =
-money(amount);
+            row.querySelector(".amount")
+                .innerText =
+                money(amount);
+
+        });
 
 
-});
+    let discount =
+        Number(
+            document.getElementById("discount").value || 0
+        );
 
 
-const discount =
-Math.min(
+    if(discount < 0){
 
-Math.max(
+        discount = 0;
 
-Number(
-document.getElementById(
-"discount"
-).value || 0
-),
-
-0
-
-),
-
-subtotal
-
-);
+    }
 
 
-document.getElementById(
-"subtotal"
-).textContent =
-money(subtotal);
+    if(discount > subtotal){
+
+        discount = subtotal;
+
+    }
 
 
-document.getElementById(
-"discountTotal"
-).textContent =
-money(discount);
+    document.getElementById("subtotal")
+        .innerText =
+        money(subtotal);
 
 
-document.getElementById(
-"grandTotal"
-).textContent =
-money(
-subtotal - discount
-);
+    document.getElementById("discountTotal")
+        .innerText =
+        money(discount);
+
+
+    document.getElementById("grandTotal")
+        .innerText =
+        money(subtotal - discount);
 
 }
 
 
+/* =====================================================
+   REFRESH PRODUCT DROPDOWNS
+   ===================================================== */
 
-/* ==================================
+function refreshProductDropdowns(){
+
+    document
+        .querySelectorAll(".productSelect")
+        .forEach(function(select){
+
+            const oldValue =
+                select.value;
+
+            select.innerHTML =
+                getProductOptions();
+
+            select.value =
+                oldValue;
+
+        });
+
+}
+
+
+/* =====================================================
+   COLLECT BILL
+   ===================================================== */
+
+function collectBill(){
+
+    const items = [];
+
+
+    document
+        .querySelectorAll(".bill-row")
+        .forEach(function(row){
+
+            const index =
+                Number(
+                    row.querySelector(".productSelect").value
+                );
+
+
+            const product =
+                products[index];
+
+
+            const pack =
+                row.querySelector(".packSelect").value;
+
+
+            const qty =
+                Number(
+                    row.querySelector(".qty").value || 0
+                );
+
+
+            const rate =
+                Number(
+                    row.dataset.price || 0
+                );
+
+
+            if(product && pack && qty > 0 && rate > 0){
+
+                items.push({
+
+                    productId:
+                        product.productId || "",
+
+                    productName:
+                        product.productName,
+
+                    teluguName:
+                        product.teluguName || "",
+
+                    packSize:
+                        pack,
+
+                    quantity:
+                        qty,
+
+                    rate:
+                        rate,
+
+                    itemAmount:
+                        rate * qty
+
+                });
+
+            }
+
+        });
+
+
+    return items;
+
+}
+
+
+/* =====================================================
    SAVE BILL
-================================== */
+   ===================================================== */
 
+async function saveBill(){
 
-function saveBill(){
+    const items =
+        collectBill();
 
 
-const items = [];
+    if(!items.length){
 
+        alert(
+            "Please select at least one product."
+        );
 
-let subtotal = 0;
+        return;
 
+    }
 
-document
-.querySelectorAll(".bill-row")
-.forEach(row=>{
 
+    const subtotal =
+        items.reduce(
+            function(total,item){
 
-const productIndex =
-Number(
-row.querySelector(
-".productSelect"
-).value
-);
+                return total +
+                    item.itemAmount;
 
+            },
+            0
+        );
 
-const product =
-products[productIndex];
 
+    let discount =
+        Number(
+            document.getElementById("discount").value || 0
+        );
 
-const pack =
-row.querySelector(
-".packSelect"
-).value;
 
+    if(discount < 0){
 
-const quantity =
-Number(
-row.querySelector(
-".qty"
-).value || 0
-);
+        discount = 0;
 
+    }
 
-const price =
-Number(
-row.dataset.price || 0
-);
 
+    if(discount > subtotal){
 
-if(
-product &&
-pack &&
-quantity > 0 &&
-price > 0
-){
+        discount = subtotal;
 
+    }
 
-const amount =
-price * quantity;
 
+    const grandTotal =
+        subtotal - discount;
 
-subtotal += amount;
 
+    const bill = {
 
-items.push({
+        action:
+            "saveBill",
 
-productId:
-product.productId,
+        billNo:
+            document.getElementById("billNo").value,
 
-productName:
-product.productName,
+        billDate:
+            document.getElementById("billDate").value,
 
-teluguName:
-product.teluguName,
+        customerName:
+            document.getElementById("customerName").value ||
+            "Walk-in Customer",
 
-category:
-product.category,
+        mobile:
+            document.getElementById("mobile").value,
 
-packSize:
-pack,
+        address:
+            document.getElementById("address").value,
 
-quantity:
-quantity,
+        items:
+            items,
 
-sellingPrice:
-price,
+        subtotal:
+            subtotal,
 
-amount:
-amount
+        discount:
+            discount,
 
-});
+        grandTotal:
+            grandTotal,
 
+        paymentMode:
+            document.getElementById("paymentMode").value,
 
-}
+        paymentStatus:
+            document.getElementById("paymentStatus").value
 
-});
+    };
 
 
-if(!items.length){
+    showStatus(
+        "⏳ Saving bill...",
+        ""
+    );
 
-alert(
-"Please select at least one product."
-);
 
-return;
+    try{
 
-}
+        const response =
+            await fetch(
+                SCRIPT_URL,
+                {
 
+                    method:"POST",
 
-const discount =
-Math.min(
+                    headers:{
+                        "Content-Type":
+                            "text/plain;charset=utf-8"
+                    },
 
-Math.max(
+                    body:
+                        JSON.stringify(bill)
 
-Number(
-document.getElementById(
-"discount"
-).value || 0
-),
+                }
+            );
 
-0
 
-),
+        const text =
+            await response.text();
 
-subtotal
 
-);
+        console.log(
+            "Save response:",
+            text
+        );
 
 
-const grandTotal =
-subtotal - discount;
+        const result =
+            JSON.parse(text);
 
 
-const now =
-new Date();
+        if(result.success){
 
+            showStatus(
+                "✅ Bill saved successfully!",
+                "success"
+            );
 
-const billId =
-"BILL-" +
-now.getTime();
+        }else{
 
+            throw new Error(
+                result.message ||
+                "Unable to save bill."
+            );
 
-const data = {
+        }
 
-action:
-"saveBill",
+    }
+    catch(error){
 
-billId:
-billId,
+        console.error(error);
 
-billDate:
-document.getElementById(
-"billDate"
-).value,
+        showStatus(
+            "❌ " + error.message,
+            "error"
+        );
 
-billTime:
-now.toLocaleTimeString(),
-
-customerName:
-document.getElementById(
-"customer"
-).value ||
-"Walk-in Customer",
-
-mobile:
-document.getElementById(
-"mobile"
-).value,
-
-address:
-document.getElementById(
-"address"
-).value,
-
-discount:
-discount,
-
-grandTotal:
-grandTotal,
-
-paymentMode:
-document.getElementById(
-"paymentMode"
-).value,
-
-paymentStatus:
-document.getElementById(
-"paymentStatus"
-).value,
-
-items:
-items
-
-};
-
-
-const status =
-document.getElementById(
-"status"
-);
-
-
-status.innerText =
-"⏳ Saving bill...";
-
-
-fetch(
-SCRIPT_URL,
-{
-
-method:"POST",
-
-body:
-JSON.stringify(data)
-
-})
-
-
-.then(
-response =>
-response.json()
-)
-
-
-.then(result=>{
-
-
-if(result.success){
-
-status.innerText =
-"✅ Bill saved successfully: " +
-result.billId;
-
-
-}else{
-
-status.innerText =
-"❌ " +
-result.message;
-
-}
-
-})
-
-
-.catch(error=>{
-
-console.error(error);
-
-status.innerText =
-"❌ Unable to save bill.";
-
-});
+    }
 
 }
 
 
-
-/* ==================================
+/* =====================================================
    PRINT BILL
-================================== */
-
+   ===================================================== */
 
 function printBill(){
 
+    const items =
+        collectBill();
 
-const customer =
-document.getElementById(
-"customer"
-).value ||
-"Walk-in Customer";
 
+    if(!items.length){
 
-const mobile =
-document.getElementById(
-"mobile"
-).value ||
-"-";
+        alert(
+            "Please select at least one product."
+        );
 
+        return;
 
-const date =
-document.getElementById(
-"billDate"
-).value;
+    }
 
 
-const rows = [];
+    const subtotal =
+        items.reduce(
+            function(total,item){
 
+                return total +
+                    item.itemAmount;
 
-let subtotal = 0;
+            },
+            0
+        );
 
 
-document
-.querySelectorAll(".bill-row")
-.forEach(row=>{
+    const discount =
+        Math.min(
+            Number(
+                document.getElementById("discount").value || 0
+            ),
+            subtotal
+        );
 
 
-const index =
-Number(
-row.querySelector(
-".productSelect"
-).value
-);
+    const grandTotal =
+        subtotal - discount;
 
 
-const product =
-products[index];
+    let rows = "";
 
 
-const pack =
-row.querySelector(
-".packSelect"
-).value;
+    items.forEach(function(item,index){
 
+        rows += `
 
-const qty =
-Number(
-row.querySelector(
-".qty"
-).value || 0
-);
+        <tr>
 
+            <td>
+                ${index + 1}
+            </td>
 
-const rate =
-Number(
-row.dataset.price || 0
-);
+            <td>
 
+                ${escapeHTML(item.productName)}
 
-if(
-product &&
-pack &&
-rate > 0 &&
-qty > 0
-){
+                <br>
 
+                <small>
+                    ${escapeHTML(item.teluguName)}
+                </small>
 
-const amount =
-rate * qty;
+            </td>
 
+            <td>
+                ${escapeHTML(item.packSize)}
+            </td>
 
-subtotal += amount;
+            <td>
+                ${item.quantity}
+            </td>
 
+            <td>
+                ${money(item.rate)}
+            </td>
 
-rows.push({
+            <td>
+                ${money(item.itemAmount)}
+            </td>
 
-name:
-product.productName,
+        </tr>
 
-telugu:
-product.teluguName,
+        `;
 
-pack:
-pack,
+    });
 
-qty:
-qty,
 
-rate:
-rate,
+    const popup =
+        window.open(
+            "",
+            "_blank"
+        );
 
-amount:
-amount
 
-});
+    if(!popup){
 
-}
+        alert(
+            "Please allow pop-ups to print the bill."
+        );
 
-});
+        return;
 
+    }
 
-if(!rows.length){
 
-alert(
-"Please select a product."
-);
-
-return;
-
-}
-
-
-const discount =
-Math.min(
-
-Math.max(
-
-Number(
-document.getElementById(
-"discount"
-).value || 0
-),
-
-0
-
-),
-
-subtotal
-
-);
-
-
-const total =
-subtotal - discount;
-
-
-const popup =
-window.open(
-"",
-"_blank"
-);
-
-
-if(!popup){
-
-alert(
-"Please allow pop-ups."
-);
-
-return;
-
-}
-
-
-let table = "";
-
-
-rows.forEach(
-(item,index)=>{
-
-table += `
-
-<tr>
-
-<td>${index+1}</td>
-
-<td>
-
-${escapeHTML(item.name)}
-
-<br>
-
-<small>
-${escapeHTML(item.telugu)}
-</small>
-
-</td>
-
-<td>${escapeHTML(item.pack)}</td>
-
-<td>${item.qty}</td>
-
-<td>${money(item.rate)}</td>
-
-<td>${money(item.amount)}</td>
-
-</tr>
-
-`;
-
-});
-
-
-popup.document.write(`
+    popup.document.write(`
 
 <!DOCTYPE html>
 
@@ -1628,56 +1602,40 @@ popup.document.write(`
 
 <head>
 
-<title>Yatham Organics Bill</title>
+<title>
+Yatham Organics Bill
+</title>
 
 <style>
 
 body{
-
-font-family:Arial;
-
-padding:25px;
-
+    font-family:Arial;
+    padding:30px;
 }
 
 h1{
-
-color:#214d2b;
-
+    color:#205b32;
 }
 
 table{
-
-width:100%;
-
-border-collapse:collapse;
-
-margin-top:20px;
-
+    width:100%;
+    border-collapse:collapse;
+    margin-top:20px;
 }
 
 th,td{
-
-padding:9px;
-
-border-bottom:1px solid #ddd;
-
-text-align:left;
-
-}
-
-.right{
-
-text-align:right;
-
+    padding:9px;
+    border-bottom:1px solid #ddd;
+    text-align:left;
 }
 
 .total{
+    font-size:20px;
+    font-weight:bold;
+}
 
-font-size:20px;
-
-font-weight:bold;
-
+.right{
+    text-align:right;
 }
 
 </style>
@@ -1686,28 +1644,35 @@ font-weight:bold;
 
 <body>
 
+<h1>
+YATHAM ORGANICS
+</h1>
 
-<h1>YATHAM ORGANICS</h1>
-
-<p>Customer Bill</p>
+<p>
+Customer Billing
+</p>
 
 <hr>
 
-
 <p>
 
+<b>Bill No:</b>
+${escapeHTML(document.getElementById("billNo").value)}
+
+<br>
+
 <b>Date:</b>
-${escapeHTML(date)}
+${escapeHTML(document.getElementById("billDate").value)}
 
 <br>
 
 <b>Customer:</b>
-${escapeHTML(customer)}
+${escapeHTML(document.getElementById("customerName").value || "Walk-in Customer")}
 
 <br>
 
 <b>Mobile:</b>
-${escapeHTML(mobile)}
+${escapeHTML(document.getElementById("mobile").value || "-")}
 
 </p>
 
@@ -1737,7 +1702,7 @@ ${escapeHTML(mobile)}
 
 <tbody>
 
-${table}
+${rows}
 
 </tbody>
 
@@ -1747,25 +1712,26 @@ ${table}
 <div class="right">
 
 <p>
-
 Subtotal:
 <b>${money(subtotal)}</b>
-
 </p>
-
 
 <p>
-
 Discount:
 <b>${money(discount)}</b>
-
 </p>
-
 
 <p class="total">
 
 Grand Total:
-${money(total)}
+${money(grandTotal)}
+
+</p>
+
+<p>
+
+Payment:
+${escapeHTML(document.getElementById("paymentMode").value)}
 
 </p>
 
@@ -1779,21 +1745,6 @@ Thank you for choosing Yatham Organics!
 </p>
 
 
-<script>
-
-window.onload=function(){
-
-setTimeout(function(){
-
-window.print();
-
-},500);
-
-};
-
-<\/script>
-
-
 </body>
 
 </html>
@@ -1801,264 +1752,132 @@ window.print();
 `);
 
 
-popup.document.close();
+    popup.document.close();
+
+    popup.focus();
+
+
+    setTimeout(
+        function(){
+
+            popup.print();
+
+        },
+        500
+    );
 
 }
 
 
-
-/* ==================================
+/* =====================================================
    NEW BILL
-================================== */
-
+   ===================================================== */
 
 function newBill(){
 
+    if(
+        !confirm(
+            "Start a new bill?"
+        )
+    ){
 
-if(
-!confirm(
-"Start a new bill?"
-)
-){
+        return;
 
-return;
-
-}
-
-
-document.getElementById(
-"customer"
-).value = "";
+    }
 
 
-document.getElementById(
-"mobile"
-).value = "";
+    document.getElementById(
+        "customerName"
+    ).value = "";
 
 
-document.getElementById(
-"address"
-).value = "";
+    document.getElementById(
+        "mobile"
+    ).value = "";
 
 
-document.getElementById(
-"discount"
-).value = "0";
+    document.getElementById(
+        "address"
+    ).value = "";
 
 
-document.getElementById(
-"paymentMode"
-).value = "Cash";
+    document.getElementById(
+        "discount"
+    ).value = "0";
 
 
-document.getElementById(
-"paymentStatus"
-).value = "Paid";
+    document.getElementById(
+        "billItems"
+    ).innerHTML = "";
 
 
-document.getElementById(
-"billItems"
-).innerHTML = "";
+    document.getElementById(
+        "billNo"
+    ).value =
+        generateBillNo();
 
 
-document.getElementById(
-"status"
-).innerText = "";
+    addBillRow();
 
 
-addBillItem();
+    calculateBill();
 
 
-calculate();
+    showStatus(
+        "",
+        ""
+    );
 
 }
 
 
+/* =====================================================
+   DATE
+   ===================================================== */
 
-/* ==================================
-   CATALOGUE
-================================== */
+function setDate(){
 
-
-function renderCatalogue(){
-
-
-const box =
-document.getElementById(
-"productsCatalogue"
-);
+    const today =
+        new Date()
+        .toISOString()
+        .slice(0,10);
 
 
-if(!products.length){
-
-box.innerHTML =
-"No products found.";
-
-return;
+    document.getElementById(
+        "billDate"
+    ).value =
+        today;
 
 }
 
 
-let html = "";
-
-
-products.forEach(p=>{
-
-
-html += `
-
-<div class="product">
-
-<h3>
-${escapeHTML(
-p.productName
-)}
-</h3>
-
-<div>
-${escapeHTML(
-p.teluguName
-)}
-</div>
-
-<small>
-${escapeHTML(
-p.category
-)}
-</small>
-
-<div class="price">
-
-<span>
-${escapeHTML(
-p.packSize
-)}
-</span>
-
-<b>
-₹${Number(
-p.sellingPrice
-).toFixed(2)}
-</b>
-
-</div>
-
-</div>
-
-`;
-
-});
-
-
-box.innerHTML =
-`<div class="catalogue">
-${html}
-</div>`;
-
-}
-
-
-
-/* ==================================
-   REFRESH DROPDOWNS
-================================== */
-
-
-function refreshProductDropdowns(){
+/* =====================================================
+   START
+   ===================================================== */
 
 document
-.querySelectorAll(
-".productSelect"
-)
-.forEach(select=>{
-
-const current =
-select.value;
-
-select.innerHTML =
-productOptions();
-
-select.value =
-current;
-
-});
-
-}
+    .getElementById("discount")
+    .addEventListener(
+        "input",
+        calculateBill
+    );
 
 
-
-/* ==================================
-   HELPERS
-================================== */
-
-
-function money(value){
-
-return "₹" +
-Number(value || 0)
-.toFixed(2);
-
-}
-
-
-function escapeHTML(value){
-
-return String(value ?? "")
-.replace(
-/[&<>"']/g,
-function(char){
-
-return {
-
-"&":"&amp;",
-
-"<":"&lt;",
-
-">":"&gt;",
-
-'"':"&quot;",
-
-"'":"&#039;"
-
-}[char];
-
-});
-
-}
-
-
-
-/* ==================================
-   START
-================================== */
+setDate();
 
 
 document.getElementById(
-"billDate"
+    "billNo"
 ).value =
-new Date()
-.toISOString()
-.slice(0,10);
+    generateBillNo();
 
 
-document.getElementById(
-"discount"
-)
-.addEventListener(
-"input",
-calculate
-);
+addBillRow();
 
-
-addBillItem();
 
 loadProducts();
-
-calculate();
-
 
 </script>
 
 </body>
-
 </html>
