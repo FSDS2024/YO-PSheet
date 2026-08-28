@@ -7,13 +7,14 @@
 <title>Yatham Organics Billing</title>
 
 <style>
+
 *{
     box-sizing:border-box;
 }
 
 body{
     margin:0;
-    font-family:Arial, sans-serif;
+    font-family:Arial,Helvetica,sans-serif;
     background:#f3f6f4;
     color:#222;
 }
@@ -25,7 +26,7 @@ body{
 }
 
 .header{
-    background:#205b32;
+    background:#1f5630;
     color:white;
     padding:25px;
     border-radius:18px;
@@ -46,11 +47,11 @@ body{
     padding:22px;
     border-radius:18px;
     margin-bottom:20px;
-    box-shadow:0 4px 18px rgba(0,0,0,.08);
+    box-shadow:0 4px 15px rgba(0,0,0,0.08);
 }
 
 h2{
-    color:#205b32;
+    color:#1f5630;
     margin-top:0;
 }
 
@@ -58,6 +59,10 @@ h2{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:15px;
+}
+
+.form-group{
+    margin-bottom:15px;
 }
 
 label{
@@ -70,77 +75,84 @@ input,
 select{
     width:100%;
     padding:12px;
-    border:1px solid #cdd8cf;
+    border:1px solid #ccd8cc;
     border-radius:9px;
     font-size:15px;
     background:white;
 }
 
 button{
-    border:none;
+    border:0;
     border-radius:9px;
     padding:12px 18px;
     font-size:15px;
     font-weight:bold;
     cursor:pointer;
-    margin:4px;
 }
 
-.green{
-    background:#205b32;
+.btn-green{
+    background:#1f5630;
     color:white;
 }
 
-.light{
-    background:#e6f0e7;
-    color:#205b32;
+.btn-light{
+    background:#e4eee3;
+    color:#1f5630;
 }
 
-.red{
+.btn-red{
     background:#f8dddd;
     color:#a00000;
-}
-
-.blue{
-    background:#e2edf9;
-    color:#14548a;
 }
 
 button:hover{
     opacity:.9;
 }
 
-.bill-row{
-    display:grid;
-    grid-template-columns:
-        2.3fr
-        1fr
-        .7fr
-        1fr
-        1fr
-        55px;
-
-    gap:10px;
-    align-items:end;
-
-    padding:12px;
-    border:1px solid #e0e7e1;
-    border-radius:12px;
-    margin-bottom:10px;
+.bill-table-wrapper{
+    overflow-x:auto;
 }
 
-.rate,
-.amount{
-    padding:12px 5px;
+.bill-table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:850px;
+}
+
+.bill-table th{
+    background:#e7f0e6;
+    color:#1f5630;
+    padding:12px;
+    text-align:left;
+}
+
+.bill-table td{
+    padding:9px;
+    border-bottom:1px solid #ddd;
+    vertical-align:middle;
+}
+
+.bill-table input,
+.bill-table select{
+    padding:9px;
+}
+
+.product-name-display{
     font-weight:bold;
 }
 
+.rate{
+    font-weight:bold;
+    color:#1f5630;
+}
+
 .amount{
-    text-align:right;
+    font-weight:bold;
 }
 
 .summary{
-    max-width:400px;
+    width:350px;
+    max-width:100%;
     margin-left:auto;
 }
 
@@ -151,56 +163,27 @@ button:hover{
 }
 
 .grand-total{
-    border-top:2px solid #205b32;
+    border-top:2px solid #1f5630;
     margin-top:8px;
     padding-top:12px;
-    font-size:22px;
+    font-size:21px;
     font-weight:bold;
-    color:#205b32;
+    color:#1f5630;
 }
 
-.products{
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
-    gap:15px;
-}
-
-.product-card{
-    border:1px solid #dce5dd;
-    padding:15px;
-    border-radius:12px;
-}
-
-.product-card h3{
-    color:#205b32;
-    margin:0 0 5px;
-}
-
-.telugu{
-    font-size:17px;
-    margin-bottom:7px;
-}
-
-.category{
-    font-size:12px;
-    color:#777;
-    margin-bottom:8px;
-}
-
-.product-price{
+.actions{
     display:flex;
-    justify-content:space-between;
-    border-top:1px solid #eee;
-    padding:6px 0;
+    gap:10px;
+    flex-wrap:wrap;
 }
 
 .status{
-    margin-top:12px;
+    margin-top:15px;
     font-weight:bold;
 }
 
 .success{
-    color:#16803c;
+    color:#198754;
 }
 
 .error{
@@ -209,33 +192,77 @@ button:hover{
 
 .loading{
     text-align:center;
-    padding:30px;
-    font-weight:bold;
+    padding:25px;
+    font-size:17px;
 }
 
-@media(max-width:800px){
+.product-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(230px,1fr));
+    gap:15px;
+}
+
+.product-card{
+    border:1px solid #dce5d9;
+    border-radius:12px;
+    padding:15px;
+}
+
+.product-card h3{
+    margin:0 0 5px;
+    color:#1f5630;
+}
+
+.product-card .telugu{
+    margin-bottom:8px;
+}
+
+.product-card .category{
+    color:#777;
+    font-size:13px;
+    margin-bottom:10px;
+}
+
+.pack-price{
+    display:flex;
+    justify-content:space-between;
+    padding:7px 0;
+    border-top:1px solid #eee;
+}
+
+.small{
+    font-size:13px;
+    color:#666;
+}
+
+.refresh{
+    margin-bottom:15px;
+}
+
+@media(max-width:750px){
 
     .grid{
         grid-template-columns:1fr;
     }
 
-    .bill-row{
-        grid-template-columns:1fr 1fr;
+    .container{
+        width:97%;
     }
 
-    .products{
-        grid-template-columns:1fr;
+    .header h1{
+        font-size:24px;
     }
+
 }
 
 @media print{
 
-    .no-print{
-        display:none !important;
-    }
-
     body{
         background:white;
+    }
+
+    .no-print{
+        display:none !important;
     }
 
     .container{
@@ -245,9 +272,15 @@ button:hover{
 
     .card{
         box-shadow:none;
+        border:0;
+    }
+
+    .header{
+        border-radius:0;
     }
 
 }
+
 </style>
 </head>
 
@@ -259,9 +292,9 @@ button:hover{
 
 <div class="header">
 
-<h1>YATHAM ORGANICS</h1>
+    <h1>YATHAM ORGANICS</h1>
 
-<p>Customer Billing System</p>
+    <p>Customer Billing System</p>
 
 </div>
 
@@ -274,42 +307,44 @@ button:hover{
 
 <div class="grid">
 
-<div>
+<div class="form-group">
 
 <label>Customer Name</label>
 
 <input
+type="text"
 id="customerName"
 placeholder="Walk-in Customer">
 
 </div>
 
 
-<div>
+<div class="form-group">
 
 <label>Mobile Number</label>
 
 <input
-id="mobile"
-placeholder="Optional">
+type="tel"
+id="customerMobile"
+placeholder="Mobile Number">
 
 </div>
 
 </div>
 
 
-<div style="margin-top:15px">
+<div class="form-group">
 
 <label>Address / Community</label>
 
 <input
-id="address"
-placeholder="Optional">
+type="text"
+id="customerAddress"
+placeholder="Address">
 
 </div>
 
 </div>
-
 
 
 <!-- BILL -->
@@ -320,35 +355,24 @@ placeholder="Optional">
 
 <div class="grid">
 
-<div>
-
-<label>Bill Number</label>
-
-<input
-id="billNo"
-readonly>
-
-</div>
-
-
-<div>
+<div class="form-group">
 
 <label>Bill Date</label>
 
 <input
-id="billDate"
-type="date">
+type="date"
+id="billDate">
 
 </div>
 
 
-<div>
+<div class="form-group">
 
-<label>Discount (₹)</label>
+<label>Discount ₹</label>
 
 <input
-id="discount"
 type="number"
+id="discount"
 value="0"
 min="0"
 step="0.01">
@@ -357,14 +381,46 @@ step="0.01">
 
 </div>
 
+
+<div class="bill-table-wrapper">
+
+<table class="bill-table">
+
+<thead>
+
+<tr>
+
+<th style="width:30%">Product</th>
+
+<th style="width:15%">Pack Size</th>
+
+<th style="width:12%">Quantity</th>
+
+<th style="width:12%">Rate</th>
+
+<th style="width:15%">Amount</th>
+
+<th style="width:8%">Remove</th>
+
+</tr>
+
+</thead>
+
+
+<tbody id="billItems">
+
+</tbody>
+
+</table>
+
+</div>
+
+
 <br>
 
 
-<div id="billItems"></div>
-
-
 <button
-class="green no-print"
+class="btn-light no-print"
 onclick="addBillRow()">
 
 ＋ Add Product
@@ -372,7 +428,6 @@ onclick="addBillRow()">
 </button>
 
 </div>
-
 
 
 <!-- PAYMENT -->
@@ -383,7 +438,7 @@ onclick="addBillRow()">
 
 <div class="grid">
 
-<div>
+<div class="form-group">
 
 <label>Payment Mode</label>
 
@@ -395,16 +450,14 @@ onclick="addBillRow()">
 
 <option value="Card">Card</option>
 
-<option value="Bank Transfer">
-Bank Transfer
-</option>
+<option value="Bank Transfer">Bank Transfer</option>
 
 </select>
 
 </div>
 
 
-<div>
+<div class="form-group">
 
 <label>Payment Status</label>
 
@@ -414,9 +467,7 @@ Bank Transfer
 
 <option value="Pending">Pending</option>
 
-<option value="Partially Paid">
-Partially Paid
-</option>
+<option value="Partial">Partial</option>
 
 </select>
 
@@ -427,8 +478,7 @@ Partially Paid
 </div>
 
 
-
-<!-- SUMMARY -->
+<!-- TOTAL -->
 
 <div class="card">
 
@@ -438,9 +488,7 @@ Partially Paid
 
 <span>Subtotal</span>
 
-<b id="subtotal">
-₹0.00
-</b>
+<b id="subtotal">₹0.00</b>
 
 </div>
 
@@ -449,9 +497,7 @@ Partially Paid
 
 <span>Discount</span>
 
-<b id="discountTotal">
-₹0.00
-</b>
+<b id="discountAmount">₹0.00</b>
 
 </div>
 
@@ -460,9 +506,7 @@ Partially Paid
 
 <span>Grand Total</span>
 
-<span id="grandTotal">
-₹0.00
-</span>
+<span id="grandTotal">₹0.00</span>
 
 </div>
 
@@ -471,13 +515,14 @@ Partially Paid
 </div>
 
 
-
-<!-- ACTIONS -->
+<!-- BUTTONS -->
 
 <div class="card no-print">
 
+<div class="actions">
+
 <button
-class="green"
+class="btn-green"
 onclick="saveBill()">
 
 💾 Save Bill
@@ -486,7 +531,7 @@ onclick="saveBill()">
 
 
 <button
-class="green"
+class="btn-green"
 onclick="printBill()">
 
 🖨 Print Bill
@@ -495,7 +540,7 @@ onclick="printBill()">
 
 
 <button
-class="light"
+class="btn-light"
 onclick="newBill()">
 
 ＋ New Bill
@@ -504,22 +549,19 @@ onclick="newBill()">
 
 
 <button
-class="light"
+class="btn-light"
 onclick="loadProducts()">
 
 🔄 Refresh Products
 
 </button>
 
-
-<div
-id="status"
-class="status">
-
 </div>
 
-</div>
 
+<div id="status" class="status"></div>
+
+</div>
 
 
 <!-- PRODUCTS -->
@@ -528,356 +570,649 @@ class="status">
 
 <h2>Available Products</h2>
 
+<div id="productStatus" class="loading">
+
+Loading products from Google Sheets...
+
+</div>
+
+
 <div
-id="products"
-class="products">
-
-<div class="loading">
-
-⏳ Loading products from Google Sheets...
+id="productCatalogue"
+class="product-grid">
 
 </div>
 
 </div>
 
-</div>
 
 </div>
-
 
 
 <script>
 
-/* =====================================================
-   GOOGLE APPS SCRIPT WEB APP URL
-   ===================================================== */
+/* =========================================================
+   GOOGLE APPS SCRIPT URL
+   ========================================================= */
 
 const SCRIPT_URL =
-"https://script.google.com/macros/s/AKfycbxHKYcJn--lapvAoP1fdN9F2O-B23KUIMrGslU4x09RvVjuK4aJPTUsAUjjBRG4xlgE/exec";
+"https://script.google.com/macros/s/AKfycbycn_UvwXwEsc1HOjvqBRpc8xQyb4hlTR_aTtkix3ePlHg98fD53uZV32p9ycHMEPLa/exec";
 
 
-/* =====================================================
-   GLOBAL PRODUCTS
-   ===================================================== */
+/* =========================================================
+   GLOBAL PRODUCT DATA
+   ========================================================= */
 
 let products = [];
 
 
-/* =====================================================
-   MONEY
-   ===================================================== */
+/* =========================================================
+   PAGE START
+   ========================================================= */
 
-function money(value){
+document.addEventListener("DOMContentLoaded", function(){
 
-    return "₹" +
-        Number(value || 0)
-        .toFixed(2);
+    document.getElementById("billDate").value =
+        new Date().toISOString().split("T")[0];
 
-}
+    loadProducts();
 
+    addBillRow();
 
-/* =====================================================
-   ESCAPE HTML
-   ===================================================== */
-
-function escapeHTML(value){
-
-    return String(value ?? "")
-        .replace(/[&<>"']/g,function(char){
-
-            return {
-                "&":"&amp;",
-                "<":"&lt;",
-                ">":"&gt;",
-                '"':"&quot;",
-                "'":"&#039;"
-
-            }[char];
-
-        });
-
-}
+});
 
 
-/* =====================================================
-   STATUS
-   ===================================================== */
-
-function showStatus(message,type){
-
-    const status =
-        document.getElementById("status");
-
-    status.className =
-        "status " + type;
-
-    status.innerText =
-        message;
-
-}
-
-
-/* =====================================================
-   GENERATE BILL NUMBER
-   ===================================================== */
-
-function generateBillNo(){
-
-    const now = new Date();
-
-    const year =
-        now.getFullYear();
-
-    const month =
-        String(now.getMonth()+1)
-        .padStart(2,"0");
-
-    const day =
-        String(now.getDate())
-        .padStart(2,"0");
-
-    const random =
-        Math.floor(
-            1000 + Math.random()*9000
-        );
-
-    return "YO-" +
-        year +
-        month +
-        day +
-        "-" +
-        random;
-
-}
-
-
-/* =====================================================
+/* =========================================================
    LOAD PRODUCTS FROM GOOGLE SHEETS
-   ===================================================== */
+   ========================================================= */
 
 async function loadProducts(){
 
-    const container =
-        document.getElementById("products");
+    const status =
+        document.getElementById("productStatus");
 
-    container.innerHTML =
-        '<div class="loading">' +
-        '⏳ Loading products from Google Sheets...' +
-        '</div>';
+    status.innerHTML =
+        "⏳ Loading products from Google Sheets...";
 
     try{
 
+        const url =
+            SCRIPT_URL +
+            "?action=getProducts&t=" +
+            Date.now();
+
         const response =
-            await fetch(
-                SCRIPT_URL +
-                "?action=getProducts&callback=x"
-            );
+            await fetch(url, {
+                method:"GET",
+                cache:"no-store"
+            });
 
-        const text =
-            await response.text();
-
-        console.log("Google response:",text);
-
-        let result;
-
-        try{
-
-            result =
-                JSON.parse(text);
-
-        }catch(error){
+        if(!response.ok){
 
             throw new Error(
-                "Google Apps Script did not return JSON. Check doGet()."
+                "HTTP Error " + response.status
             );
 
         }
 
+        const data =
+            await response.json();
 
-        if(!result.success){
-
-            throw new Error(
-                result.message ||
-                "Unable to load products."
-            );
-
-        }
-
+        console.log("Google Sheet Response:", data);
 
         products =
-            result.products || [];
+            normalizeProducts(data);
+
+        console.log("Normalized Products:", products);
+
+        if(!products.length){
+
+            status.innerHTML =
+                "❌ No products found in Google Sheets.";
+
+            document.getElementById(
+                "productCatalogue"
+            ).innerHTML = "";
+
+            return;
+        }
 
 
-        renderProducts();
+        status.innerHTML =
+            "✅ " +
+            products.length +
+            " products loaded successfully.";
 
-        refreshProductDropdowns();
+
+        renderCatalogue();
+
+        refreshAllProductDropdowns();
 
     }
+
     catch(error){
 
         console.error(error);
 
-        container.innerHTML =
-            '<div class="error">' +
-            '❌ Unable to load products from Google Sheets.<br><br>' +
-            escapeHTML(error.message) +
-            '</div>';
+        status.innerHTML =
+            "❌ Unable to load products from Google Sheets.<br>" +
+            "<small>" +
+            error.message +
+            "</small>";
 
     }
 
 }
 
 
-/* =====================================================
-   RENDER PRODUCTS
-   ===================================================== */
+/* =========================================================
+   NORMALIZE GOOGLE SHEET DATA
+   ========================================================= */
 
-function renderProducts(){
+function normalizeProducts(data){
 
-    const container =
-        document.getElementById("products");
+    let rows = [];
 
-    if(!products.length){
 
-        container.innerHTML =
-            "<p>No products found in Google Sheets.</p>";
+    /*
+       CASE 1
 
-        return;
+       {
+          success:true,
+          products:[...]
+       }
+    */
+
+    if(
+        data &&
+        Array.isArray(data.products)
+    ){
+
+        rows = data.products;
 
     }
 
 
-    container.innerHTML =
-        products.map(function(product){
+    /*
+       CASE 2
 
-            const prices =
-                product.prices || {};
+       Direct array
+    */
 
+    else if(Array.isArray(data)){
 
-            const priceHTML =
-                Object.entries(prices)
-                .map(function(entry){
+        rows = data;
 
-                    const pack =
-                        entry[0];
-
-                    const price =
-                        entry[1];
-
-                    return `
-                    <div class="product-price">
-
-                        <span>
-                            ${escapeHTML(pack)}
-                        </span>
-
-                        <b>
-                            ${money(price)}
-                        </b>
-
-                    </div>
-                    `;
-
-                })
-                .join("");
+    }
 
 
-            return `
+    /*
+       CASE 3
 
-            <div class="product-card">
+       {data:[...]}
+    */
 
-                <h3>
-                    ${escapeHTML(product.productName)}
-                </h3>
+    else if(
+        data &&
+        Array.isArray(data.data)
+    ){
 
-                <div class="telugu">
-                    ${escapeHTML(product.teluguName)}
-                </div>
+        rows = data.data;
 
-                <div class="category">
-                    ${escapeHTML(product.category)}
-                </div>
+    }
 
-                ${priceHTML}
 
-            </div>
+    /*
+       CASE 4
 
-            `;
+       {values:[...]}
+    */
 
-        }).join("");
+    else if(
+        data &&
+        Array.isArray(data.values)
+    ){
+
+        rows = data.values;
+
+    }
+
+
+    if(!rows.length){
+
+        return [];
+
+    }
+
+
+    /*
+       If rows are arrays,
+       first row may be headers.
+    */
+
+    if(Array.isArray(rows[0])){
+
+        const headers =
+            rows[0].map(x =>
+                String(x)
+                .trim()
+                .toLowerCase()
+            );
+
+
+        if(
+            headers.includes("product name") ||
+            headers.includes("productname")
+        ){
+
+            rows =
+                rows.slice(1)
+                .map(row => {
+
+                    let obj = {};
+
+                    headers.forEach(
+                        (header,index) => {
+
+                            obj[header] =
+                                row[index];
+
+                        }
+                    );
+
+                    return obj;
+
+                });
+
+        }
+
+    }
+
+
+    /*
+       Convert everything into
+       our standard structure.
+    */
+
+    let output = [];
+
+
+    rows.forEach(row => {
+
+        if(!row) return;
+
+
+        let productId =
+            getField(
+                row,
+                [
+                    "product id",
+                    "productid",
+                    "id"
+                ]
+            );
+
+
+        let productName =
+            getField(
+                row,
+                [
+                    "product name",
+                    "productname",
+                    "name"
+                ]
+            );
+
+
+        let teluguName =
+            getField(
+                row,
+                [
+                    "telugu name",
+                    "teluguname",
+                    "telugu"
+                ]
+            );
+
+
+        let category =
+            getField(
+                row,
+                [
+                    "category",
+                    "category type"
+                ]
+            );
+
+
+        let packSize =
+            getField(
+                row,
+                [
+                    "pack size",
+                    "packsize",
+                    "qty",
+                    "quantity"
+                ]
+            );
+
+
+        let sellingPrice =
+            getField(
+                row,
+                [
+                    "selling price",
+                    "sellingprice",
+                    "price",
+                    "rate"
+                ]
+            );
+
+
+        let purchasePrice =
+            getField(
+                row,
+                [
+                    "purchase price",
+                    "purchaseprice"
+                ]
+            );
+
+
+        let stockQuantity =
+            getField(
+                row,
+                [
+                    "stock quantity",
+                    "stockquantity",
+                    "stock"
+                ]
+            );
+
+
+        if(!productName){
+
+            return;
+
+        }
+
+
+        if(!packSize){
+
+            packSize = "Default";
+
+        }
+
+
+        let price =
+            parseFloat(
+                String(
+                    sellingPrice ?? ""
+                )
+                .replace(/[₹,\s]/g,"")
+            );
+
+
+        if(isNaN(price)){
+
+            price = 0;
+
+        }
+
+
+        output.push({
+
+            productId:
+                String(productId || ""),
+
+            name:
+                String(productName).trim(),
+
+            telugu:
+                String(teluguName || "").trim(),
+
+            category:
+                String(category || "").trim(),
+
+            pack:
+                String(packSize).trim(),
+
+            sellingPrice:
+                price,
+
+            purchasePrice:
+                purchasePrice,
+
+            stock:
+                stockQuantity
+
+        });
+
+    });
+
+
+    return groupProducts(output);
 
 }
 
 
-/* =====================================================
-   PRODUCT OPTIONS
-   ===================================================== */
+/* =========================================================
+   GET FIELD FROM OBJECT
+   ========================================================= */
 
-function getProductOptions(){
+function getField(obj, possibleNames){
+
+    if(!obj || typeof obj !== "object"){
+
+        return "";
+
+    }
+
+
+    const keys =
+        Object.keys(obj);
+
+
+    for(
+        const name of possibleNames
+    ){
+
+        const found =
+            keys.find(key => {
+
+                const normalized =
+                    String(key)
+                    .trim()
+                    .toLowerCase();
+
+                return normalized ===
+                    name.toLowerCase();
+
+            });
+
+
+        if(found !== undefined){
+
+            return obj[found];
+
+        }
+
+    }
+
+
+    return "";
+
+}
+
+
+/* =========================================================
+   GROUP SAME PRODUCTS
+   ========================================================= */
+
+function groupProducts(rows){
+
+    const map = new Map();
+
+
+    rows.forEach(row => {
+
+        const key =
+            (
+                row.productId ||
+                row.name
+            )
+            .toLowerCase()
+            .trim();
+
+
+        if(!map.has(key)){
+
+            map.set(key,{
+
+                productId:
+                    row.productId,
+
+                name:
+                    row.name,
+
+                telugu:
+                    row.telugu,
+
+                category:
+                    row.category,
+
+                packs:[]
+
+            });
+
+        }
+
+
+        const product =
+            map.get(key);
+
+
+        /*
+           Add pack only if not
+           already present.
+        */
+
+        const existing =
+            product.packs.find(
+                p =>
+                    p.pack.toLowerCase() ===
+                    row.pack.toLowerCase()
+            );
+
+
+        if(existing){
+
+            existing.price =
+                row.sellingPrice;
+
+            existing.stock =
+                row.stock;
+
+        }
+
+        else{
+
+            product.packs.push({
+
+                pack:
+                    row.pack,
+
+                price:
+                    row.sellingPrice,
+
+                stock:
+                    row.stock
+
+            });
+
+        }
+
+    });
+
+
+    return Array.from(map.values());
+
+}
+
+
+/* =========================================================
+   PRODUCT DROPDOWN
+   ========================================================= */
+
+function productOptions(){
 
     let html =
         '<option value="">Select Product</option>';
 
-    products.forEach(function(product,index){
 
-        html += `
+    products.forEach(
+        (product,index) => {
 
-        <option value="${index}">
+            html +=
+                '<option value="' +
+                index +
+                '">' +
+                escapeHTML(product.name) +
+                (
+                    product.telugu
+                    ?
+                    " — " +
+                    escapeHTML(product.telugu)
+                    :
+                    ""
+                ) +
+                '</option>';
 
-            ${escapeHTML(product.productName)}
-            ${product.teluguName ?
-            " — " +
-            escapeHTML(product.teluguName)
-            : ""}
+        }
+    );
 
-        </option>
-
-        `;
-
-    });
 
     return html;
 
 }
 
 
-/* =====================================================
+/* =========================================================
    ADD BILL ROW
-   ===================================================== */
+   ========================================================= */
 
 function addBillRow(){
 
-    const container =
-        document.getElementById("billItems");
+    const tbody =
+        document.getElementById(
+            "billItems"
+        );
 
 
-    const row =
-        document.createElement("div");
-
-    row.className =
-        "bill-row";
+    const tr =
+        document.createElement("tr");
 
 
-    row.innerHTML = `
+    tr.innerHTML = `
 
-        <div>
+        <td>
 
-            <label>Product</label>
+            <select
+                class="productSelect"
+                onchange="productChanged(this)">
 
-            <select class="productSelect">
-
-                ${getProductOptions()}
+                ${productOptions()}
 
             </select>
 
-        </div>
+        </td>
 
 
-        <div>
+        <td>
 
-            <label>Pack Size</label>
-
-            <select class="packSelect">
+            <select
+                class="packSelect"
+                onchange="packChanged(this)">
 
                 <option value="">
                     Select Pack
@@ -885,298 +1220,311 @@ function addBillRow(){
 
             </select>
 
-        </div>
+        </td>
 
 
-        <div>
-
-            <label>Qty</label>
+        <td>
 
             <input
-                class="qty"
                 type="number"
+                class="qty"
+                value="1"
                 min="1"
-                value="1">
+                onchange="calculate()"
+                oninput="calculate()">
 
-        </div>
+        </td>
 
 
-        <div>
-
-            <label>Rate</label>
+        <td>
 
             <div class="rate">
                 ₹0.00
             </div>
 
-        </div>
+        </td>
 
 
-        <div>
-
-            <label>Amount</label>
+        <td>
 
             <div class="amount">
                 ₹0.00
             </div>
 
-        </div>
+        </td>
 
 
-        <div>
+        <td>
 
             <button
-                class="red"
-                type="button">
+                type="button"
+                class="btn-red"
+                onclick="removeRow(this)">
 
                 ✕
 
             </button>
 
-        </div>
+        </td>
 
     `;
 
 
-    container.appendChild(row);
-
-
-    const productSelect =
-        row.querySelector(".productSelect");
-
-    const packSelect =
-        row.querySelector(".packSelect");
-
-    const qty =
-        row.querySelector(".qty");
-
-
-    productSelect.addEventListener(
-        "change",
-        function(){
-
-            updateProduct(row);
-
-        }
-    );
-
-
-    packSelect.addEventListener(
-        "change",
-        function(){
-
-            updatePack(row);
-
-        }
-    );
-
-
-    qty.addEventListener(
-        "input",
-        calculateBill
-    );
-
-
-    row.querySelector("button")
-        .addEventListener(
-            "click",
-            function(){
-
-                row.remove();
-
-                calculateBill();
-
-            }
-        );
+    tbody.appendChild(tr);
 
 }
 
 
-/* =====================================================
-   UPDATE PRODUCT
-   ===================================================== */
+/* =========================================================
+   PRODUCT CHANGED
+   ========================================================= */
 
-function updateProduct(row){
+function productChanged(select){
+
+    const row =
+        select.closest("tr");
+
 
     const index =
-        Number(
-            row.querySelector(".productSelect").value
-        );
-
-
-    const product =
-        products[index];
+        Number(select.value);
 
 
     const packSelect =
-        row.querySelector(".packSelect");
+        row.querySelector(
+            ".packSelect"
+        );
+
+
+    const rate =
+        row.querySelector(".rate");
 
 
     packSelect.innerHTML =
         '<option value="">Select Pack</option>';
 
 
-    row.dataset.price = "0";
+    rate.textContent =
+        "₹0.00";
 
 
-    if(!product){
+    row.dataset.price =
+        "0";
 
-        row.querySelector(".rate")
-            .innerText = "₹0.00";
 
-        calculateBill();
+    if(
+        isNaN(index) ||
+        !products[index]
+    ){
+
+        calculate();
 
         return;
 
     }
-
-
-    const prices =
-        product.prices || {};
-
-
-    Object.entries(prices)
-        .forEach(function(entry){
-
-            const pack =
-                entry[0];
-
-            const price =
-                entry[1];
-
-
-            const option =
-                document.createElement("option");
-
-            option.value =
-                pack;
-
-            option.textContent =
-                pack +
-                " - " +
-                money(price);
-
-            packSelect.appendChild(option);
-
-        });
-
-
-    const packs =
-        Object.keys(prices);
-
-
-    if(packs.length === 1){
-
-        packSelect.value =
-            packs[0];
-
-        updatePack(row);
-
-    }
-
-}
-
-
-/* =====================================================
-   UPDATE PACK
-   ===================================================== */
-
-function updatePack(row){
-
-    const index =
-        Number(
-            row.querySelector(".productSelect").value
-        );
-
-
-    const pack =
-        row.querySelector(".packSelect").value;
 
 
     const product =
         products[index];
 
 
-    if(!product || !pack){
+    /*
+       Create pack options
+    */
 
-        row.dataset.price =
-            "0";
+    product.packs.forEach(
+        (pack,index) => {
 
-        row.querySelector(".rate")
-            .innerText =
-            "₹0.00";
+            const option =
+                document.createElement(
+                    "option"
+                );
 
-        calculateBill();
+
+            option.value =
+                index;
+
+
+            option.textContent =
+                pack.pack;
+
+
+            /*
+               Store price directly
+               in option.
+            */
+
+            option.dataset.price =
+                pack.price;
+
+
+            packSelect.appendChild(
+                option
+            );
+
+        }
+    );
+
+
+    /*
+       Automatically select
+       first available pack.
+    */
+
+    if(product.packs.length){
+
+        packSelect.value = "0";
+
+        setPackPrice(
+            row,
+            product.packs[0]
+        );
+
+    }
+
+
+    calculate();
+
+}
+
+
+/* =========================================================
+   PACK CHANGED
+   ========================================================= */
+
+function packChanged(select){
+
+    const row =
+        select.closest("tr");
+
+
+    const productSelect =
+        row.querySelector(
+            ".productSelect"
+        );
+
+
+    const productIndex =
+        Number(productSelect.value);
+
+
+    if(
+        isNaN(productIndex) ||
+        !products[productIndex]
+    ){
 
         return;
 
     }
 
 
+    const product =
+        products[productIndex];
+
+
+    const packIndex =
+        Number(select.value);
+
+
+    if(
+        isNaN(packIndex) ||
+        !product.packs[packIndex]
+    ){
+
+        row.dataset.price =
+            "0";
+
+        row.querySelector(
+            ".rate"
+        ).textContent =
+            "₹0.00";
+
+        calculate();
+
+        return;
+
+    }
+
+
+    setPackPrice(
+        row,
+        product.packs[packIndex]
+    );
+
+}
+
+
+/* =========================================================
+   SET PRICE
+   ========================================================= */
+
+function setPackPrice(row,pack){
+
     const price =
-        Number(
-            product.prices[pack] || 0
-        );
+        Number(pack.price) || 0;
 
 
     row.dataset.price =
         price;
 
 
-    row.querySelector(".rate")
-        .innerText =
+    row.querySelector(
+        ".rate"
+    ).textContent =
         money(price);
 
 
-    calculateBill();
+    calculate();
 
 }
 
 
-/* =====================================================
+/* =========================================================
    CALCULATE BILL
-   ===================================================== */
+   ========================================================= */
 
-function calculateBill(){
+function calculate(){
 
-    let subtotal =
-        0;
+    let subtotal = 0;
 
 
     document
-        .querySelectorAll(".bill-row")
-        .forEach(function(row){
+    .querySelectorAll("#billItems tr")
+    .forEach(row => {
 
-            const price =
-                Number(
-                    row.dataset.price || 0
-                );
-
-
-            const qty =
-                Number(
-                    row.querySelector(".qty").value || 0
-                );
+        const price =
+            Number(
+                row.dataset.price || 0
+            );
 
 
-            const amount =
-                price * qty;
+        const qty =
+            Number(
+                row.querySelector(
+                    ".qty"
+                ).value || 0
+            );
 
 
-            subtotal +=
-                amount;
+        const amount =
+            price * qty;
 
 
-            row.querySelector(".amount")
-                .innerText =
-                money(amount);
+        row.querySelector(
+            ".amount"
+        ).textContent =
+            money(amount);
 
-        });
+
+        subtotal += amount;
+
+    });
 
 
     let discount =
         Number(
-            document.getElementById("discount").value || 0
+            document.getElementById(
+                "discount"
+            ).value || 0
         );
 
 
@@ -1194,101 +1542,277 @@ function calculateBill(){
     }
 
 
-    document.getElementById("subtotal")
-        .innerText =
+    const total =
+        subtotal - discount;
+
+
+    document.getElementById(
+        "subtotal"
+    ).textContent =
         money(subtotal);
 
 
-    document.getElementById("discountTotal")
-        .innerText =
+    document.getElementById(
+        "discountAmount"
+    ).textContent =
         money(discount);
 
 
-    document.getElementById("grandTotal")
-        .innerText =
-        money(subtotal - discount);
+    document.getElementById(
+        "grandTotal"
+    ).textContent =
+        money(total);
 
 }
 
 
-/* =====================================================
-   REFRESH PRODUCT DROPDOWNS
-   ===================================================== */
+/* =========================================================
+   REMOVE ROW
+   ========================================================= */
 
-function refreshProductDropdowns(){
+function removeRow(button){
+
+    const rows =
+        document.querySelectorAll(
+            "#billItems tr"
+        );
+
+
+    if(rows.length <= 1){
+
+        alert(
+            "At least one product row is required."
+        );
+
+        return;
+
+    }
+
+
+    button
+        .closest("tr")
+        .remove();
+
+
+    calculate();
+
+}
+
+
+/* =========================================================
+   REFRESH PRODUCT DROPDOWNS
+   ========================================================= */
+
+function refreshAllProductDropdowns(){
 
     document
-        .querySelectorAll(".productSelect")
-        .forEach(function(select){
+    .querySelectorAll(
+        ".productSelect"
+    )
+    .forEach(select => {
 
-            const oldValue =
-                select.value;
+        const current =
+            select.value;
 
-            select.innerHTML =
-                getProductOptions();
+
+        select.innerHTML =
+            productOptions();
+
+
+        /*
+           Restore previous selection
+           if possible.
+        */
+
+        if(
+            current !== "" &&
+            products[current]
+        ){
 
             select.value =
-                oldValue;
+                current;
+
+            productChanged(select);
+
+        }
+
+    });
+
+}
+
+
+/* =========================================================
+   PRODUCT CATALOGUE
+   ========================================================= */
+
+function renderCatalogue(){
+
+    const box =
+        document.getElementById(
+            "productCatalogue"
+        );
+
+
+    box.innerHTML = "";
+
+
+    products.forEach(product => {
+
+        let packsHTML = "";
+
+
+        product.packs.forEach(pack => {
+
+            packsHTML += `
+
+                <div class="pack-price">
+
+                    <span>
+                        ${escapeHTML(pack.pack)}
+                    </span>
+
+                    <b>
+                        ${money(pack.price)}
+                    </b>
+
+                </div>
+
+            `;
 
         });
 
+
+        box.innerHTML += `
+
+            <div class="product-card">
+
+                <h3>
+                    ${escapeHTML(product.name)}
+                </h3>
+
+
+                ${
+                    product.telugu
+                    ?
+                    `<div class="telugu">
+                        ${escapeHTML(product.telugu)}
+                    </div>`
+                    :
+                    ""
+                }
+
+
+                <div class="category">
+
+                    ${escapeHTML(
+                        product.category
+                    )}
+
+                </div>
+
+
+                ${packsHTML}
+
+            </div>
+
+        `;
+
+    });
+
 }
 
 
-/* =====================================================
-   COLLECT BILL
-   ===================================================== */
+/* =========================================================
+   SAVE BILL
+   ========================================================= */
 
-function collectBill(){
+async function saveBill(){
 
-    const items = [];
+    const status =
+        document.getElementById(
+            "status"
+        );
+
+
+    const rows = [];
 
 
     document
-        .querySelectorAll(".bill-row")
-        .forEach(function(row){
+    .querySelectorAll(
+        "#billItems tr"
+    )
+    .forEach(row => {
 
-            const index =
+        const productSelect =
+            row.querySelector(
+                ".productSelect"
+            );
+
+
+        const packSelect =
+            row.querySelector(
+                ".packSelect"
+            );
+
+
+        const qty =
+            Number(
+                row.querySelector(
+                    ".qty"
+                ).value || 0
+            );
+
+
+        const productIndex =
+            Number(
+                productSelect.value
+            );
+
+
+        const product =
+            products[productIndex];
+
+
+        if(
+            product &&
+            packSelect.value !== "" &&
+            qty > 0
+        ){
+
+            const packIndex =
                 Number(
-                    row.querySelector(".productSelect").value
+                    packSelect.value
                 );
-
-
-            const product =
-                products[index];
 
 
             const pack =
-                row.querySelector(".packSelect").value;
+                product.packs[
+                    packIndex
+                ];
 
 
-            const qty =
-                Number(
-                    row.querySelector(".qty").value || 0
-                );
+            if(pack){
+
+                const rate =
+                    Number(pack.price);
 
 
-            const rate =
-                Number(
-                    row.dataset.price || 0
-                );
-
-
-            if(product && pack && qty > 0 && rate > 0){
-
-                items.push({
+                rows.push({
 
                     productId:
-                        product.productId || "",
+                        product.productId,
 
                     productName:
-                        product.productName,
+                        product.name,
 
                     teluguName:
-                        product.teluguName || "",
+                        product.telugu,
+
+                    category:
+                        product.category,
 
                     packSize:
-                        pack,
+                        pack.pack,
 
                     quantity:
                         qty,
@@ -1303,25 +1827,12 @@ function collectBill(){
 
             }
 
-        });
+        }
+
+    });
 
 
-    return items;
-
-}
-
-
-/* =====================================================
-   SAVE BILL
-   ===================================================== */
-
-async function saveBill(){
-
-    const items =
-        collectBill();
-
-
-    if(!items.length){
+    if(!rows.length){
 
         alert(
             "Please select at least one product."
@@ -1332,21 +1843,22 @@ async function saveBill(){
     }
 
 
-    const subtotal =
-        items.reduce(
-            function(total,item){
+    let subtotal = 0;
 
-                return total +
-                    item.itemAmount;
 
-            },
-            0
-        );
+    rows.forEach(item => {
+
+        subtotal +=
+            item.itemAmount;
+
+    });
 
 
     let discount =
         Number(
-            document.getElementById("discount").value || 0
+            document.getElementById(
+                "discount"
+            ).value || 0
         );
 
 
@@ -1368,29 +1880,48 @@ async function saveBill(){
         subtotal - discount;
 
 
+    const billNo =
+        "BILL-" +
+        Date.now();
+
+
     const bill = {
 
-        action:
-            "saveBill",
+        action:"saveBill",
 
         billNo:
-            document.getElementById("billNo").value,
+            billNo,
 
         billDate:
-            document.getElementById("billDate").value,
+            document.getElementById(
+                "billDate"
+            ).value,
 
         customerName:
-            document.getElementById("customerName").value ||
+            document.getElementById(
+                "customerName"
+            ).value ||
             "Walk-in Customer",
 
-        mobile:
-            document.getElementById("mobile").value,
+        customerMobile:
+            document.getElementById(
+                "customerMobile"
+            ).value,
 
-        address:
-            document.getElementById("address").value,
+        customerAddress:
+            document.getElementById(
+                "customerAddress"
+            ).value,
 
-        items:
-            items,
+        paymentMode:
+            document.getElementById(
+                "paymentMode"
+            ).value,
+
+        paymentStatus:
+            document.getElementById(
+                "paymentStatus"
+            ).value,
 
         subtotal:
             subtotal,
@@ -1401,19 +1932,18 @@ async function saveBill(){
         grandTotal:
             grandTotal,
 
-        paymentMode:
-            document.getElementById("paymentMode").value,
-
-        paymentStatus:
-            document.getElementById("paymentStatus").value
+        items:
+            rows
 
     };
 
 
-    showStatus(
-        "⏳ Saving bill...",
-        ""
-    );
+    status.className =
+        "status";
+
+
+    status.innerText =
+        "⏳ Saving bill...";
 
 
     try{
@@ -1422,77 +1952,186 @@ async function saveBill(){
             await fetch(
                 SCRIPT_URL,
                 {
-
                     method:"POST",
 
-                    headers:{
-                        "Content-Type":
-                            "text/plain;charset=utf-8"
-                    },
-
                     body:
-                        JSON.stringify(bill)
-
+                        JSON.stringify(
+                            bill
+                        )
                 }
             );
 
 
-        const text =
-            await response.text();
+        const result =
+            await response.json();
 
 
         console.log(
             "Save response:",
-            text
+            result
         );
 
 
-        const result =
-            JSON.parse(text);
+        if(
+            result.success
+        ){
+
+            status.className =
+                "status success";
 
 
-        if(result.success){
+            status.innerText =
+                "✅ Bill saved successfully. Bill No: " +
+                (
+                    result.billNo ||
+                    billNo
+                );
 
-            showStatus(
-                "✅ Bill saved successfully!",
-                "success"
-            );
+        }
 
-        }else{
+        else{
 
-            throw new Error(
-                result.message ||
-                "Unable to save bill."
-            );
+            status.className =
+                "status error";
+
+
+            status.innerText =
+                "❌ " +
+                (
+                    result.message ||
+                    "Unable to save bill."
+                );
 
         }
 
     }
+
     catch(error){
 
         console.error(error);
 
-        showStatus(
-            "❌ " + error.message,
-            "error"
-        );
+
+        status.className =
+            "status error";
+
+
+        status.innerText =
+            "❌ Error while saving bill.";
 
     }
 
 }
 
 
-/* =====================================================
+/* =========================================================
    PRINT BILL
-   ===================================================== */
+   ========================================================= */
 
 function printBill(){
 
-    const items =
-        collectBill();
+    const rows = [];
 
 
-    if(!items.length){
+    let subtotal = 0;
+
+
+    document
+    .querySelectorAll(
+        "#billItems tr"
+    )
+    .forEach(row => {
+
+        const productSelect =
+            row.querySelector(
+                ".productSelect"
+            );
+
+
+        const packSelect =
+            row.querySelector(
+                ".packSelect"
+            );
+
+
+        const qty =
+            Number(
+                row.querySelector(
+                    ".qty"
+                ).value || 0
+            );
+
+
+        const productIndex =
+            Number(
+                productSelect.value
+            );
+
+
+        const product =
+            products[productIndex];
+
+
+        if(
+            product &&
+            packSelect.value !== "" &&
+            qty > 0
+        ){
+
+            const packIndex =
+                Number(
+                    packSelect.value
+                );
+
+
+            const pack =
+                product.packs[
+                    packIndex
+                ];
+
+
+            if(pack){
+
+                const rate =
+                    Number(pack.price);
+
+
+                const amount =
+                    rate * qty;
+
+
+                subtotal += amount;
+
+
+                rows.push({
+
+                    product:
+                        product.name,
+
+                    telugu:
+                        product.telugu,
+
+                    pack:
+                        pack.pack,
+
+                    qty:
+                        qty,
+
+                    rate:
+                        rate,
+
+                    amount:
+                        amount
+
+                });
+
+            }
+
+        }
+
+    });
+
+
+    if(!rows.length){
 
         alert(
             "Please select at least one product."
@@ -1503,77 +2142,30 @@ function printBill(){
     }
 
 
-    const subtotal =
-        items.reduce(
-            function(total,item){
-
-                return total +
-                    item.itemAmount;
-
-            },
-            0
+    let discount =
+        Number(
+            document.getElementById(
+                "discount"
+            ).value || 0
         );
 
 
-    const discount =
-        Math.min(
-            Number(
-                document.getElementById("discount").value || 0
-            ),
-            subtotal
-        );
+    if(discount < 0){
+
+        discount = 0;
+
+    }
+
+
+    if(discount > subtotal){
+
+        discount = subtotal;
+
+    }
 
 
     const grandTotal =
         subtotal - discount;
-
-
-    let rows = "";
-
-
-    items.forEach(function(item,index){
-
-        rows += `
-
-        <tr>
-
-            <td>
-                ${index + 1}
-            </td>
-
-            <td>
-
-                ${escapeHTML(item.productName)}
-
-                <br>
-
-                <small>
-                    ${escapeHTML(item.teluguName)}
-                </small>
-
-            </td>
-
-            <td>
-                ${escapeHTML(item.packSize)}
-            </td>
-
-            <td>
-                ${item.quantity}
-            </td>
-
-            <td>
-                ${money(item.rate)}
-            </td>
-
-            <td>
-                ${money(item.itemAmount)}
-            </td>
-
-        </tr>
-
-        `;
-
-    });
 
 
     const popup =
@@ -1594,6 +2186,61 @@ function printBill(){
     }
 
 
+    let tableRows = "";
+
+
+    rows.forEach(
+        (item,index) => {
+
+            tableRows += `
+
+                <tr>
+
+                    <td>
+                        ${index + 1}
+                    </td>
+
+                    <td>
+                        ${escapeHTML(
+                            item.product
+                        )}
+
+                        <br>
+
+                        <small>
+                            ${escapeHTML(
+                                item.telugu
+                            )}
+                        </small>
+
+                    </td>
+
+                    <td>
+                        ${escapeHTML(
+                            item.pack
+                        )}
+                    </td>
+
+                    <td>
+                        ${item.qty}
+                    </td>
+
+                    <td>
+                        ${money(item.rate)}
+                    </td>
+
+                    <td>
+                        ${money(item.amount)}
+                    </td>
+
+                </tr>
+
+            `;
+
+        }
+    );
+
+
     popup.document.write(`
 
 <!DOCTYPE html>
@@ -1602,19 +2249,19 @@ function printBill(){
 
 <head>
 
-<title>
-Yatham Organics Bill
-</title>
+<title>Yatham Organics Bill</title>
 
 <style>
 
 body{
-    font-family:Arial;
-    padding:30px;
+    font-family:Arial,sans-serif;
+    padding:25px;
+    color:#222;
 }
 
 h1{
-    color:#205b32;
+    color:#1f5630;
+    margin-bottom:5px;
 }
 
 table{
@@ -1623,19 +2270,20 @@ table{
     margin-top:20px;
 }
 
-th,td{
-    padding:9px;
+th,
+td{
     border-bottom:1px solid #ddd;
+    padding:9px;
     text-align:left;
+}
+
+.right{
+    text-align:right;
 }
 
 .total{
     font-size:20px;
     font-weight:bold;
-}
-
-.right{
-    text-align:right;
 }
 
 </style>
@@ -1644,35 +2292,74 @@ th,td{
 
 <body>
 
+
 <h1>
 YATHAM ORGANICS
 </h1>
 
-<p>
-Customer Billing
-</p>
+<div>
+Customer Bill
+</div>
 
 <hr>
 
+
 <p>
 
-<b>Bill No:</b>
-${escapeHTML(document.getElementById("billNo").value)}
-
-<br>
-
-<b>Date:</b>
-${escapeHTML(document.getElementById("billDate").value)}
+<b>Bill Date:</b>
+${escapeHTML(
+    document.getElementById(
+        "billDate"
+    ).value
+)}
 
 <br>
 
 <b>Customer:</b>
-${escapeHTML(document.getElementById("customerName").value || "Walk-in Customer")}
+${escapeHTML(
+    document.getElementById(
+        "customerName"
+    ).value ||
+    "Walk-in Customer"
+)}
 
 <br>
 
 <b>Mobile:</b>
-${escapeHTML(document.getElementById("mobile").value || "-")}
+${escapeHTML(
+    document.getElementById(
+        "customerMobile"
+    ).value ||
+    "-"
+)}
+
+<br>
+
+<b>Address:</b>
+${escapeHTML(
+    document.getElementById(
+        "customerAddress"
+    ).value ||
+    "-"
+)}
+
+<br>
+
+<b>Payment:</b>
+${escapeHTML(
+    document.getElementById(
+        "paymentMode"
+    ).value
+)}
+
+<br>
+
+<b>Status:</b>
+${escapeHTML(
+    document.getElementById(
+        "paymentStatus"
+    ).value
+)}
 
 </p>
 
@@ -1702,7 +2389,7 @@ ${escapeHTML(document.getElementById("mobile").value || "-")}
 
 <tbody>
 
-${rows}
+${tableRows}
 
 </tbody>
 
@@ -1713,25 +2400,24 @@ ${rows}
 
 <p>
 Subtotal:
-<b>${money(subtotal)}</b>
+<b>
+${money(subtotal)}
+</b>
 </p>
+
 
 <p>
 Discount:
-<b>${money(discount)}</b>
+<b>
+${money(discount)}
+</b>
 </p>
+
 
 <p class="total">
 
 Grand Total:
 ${money(grandTotal)}
-
-</p>
-
-<p>
-
-Payment:
-${escapeHTML(document.getElementById("paymentMode").value)}
 
 </p>
 
@@ -1745,33 +2431,38 @@ Thank you for choosing Yatham Organics!
 </p>
 
 
+<script>
+
+window.onload=function(){
+
+    window.focus();
+
+    setTimeout(function(){
+
+        window.print();
+
+    },500);
+
+};
+
+<\/script>
+
+
 </body>
 
 </html>
 
-`);
+    `);
 
 
     popup.document.close();
 
-    popup.focus();
-
-
-    setTimeout(
-        function(){
-
-            popup.print();
-
-        },
-        500
-    );
-
 }
 
 
-/* =====================================================
+/* =========================================================
    NEW BILL
-   ===================================================== */
+   ========================================================= */
 
 function newBill(){
 
@@ -1792,12 +2483,12 @@ function newBill(){
 
 
     document.getElementById(
-        "mobile"
+        "customerMobile"
     ).value = "";
 
 
     document.getElementById(
-        "address"
+        "customerAddress"
     ).value = "";
 
 
@@ -1807,75 +2498,94 @@ function newBill(){
 
 
     document.getElementById(
-        "billItems"
-    ).innerHTML = "";
+        "paymentMode"
+    ).value = "Cash";
 
 
     document.getElementById(
-        "billNo"
-    ).value =
-        generateBillNo();
-
-
-    addBillRow();
-
-
-    calculateBill();
-
-
-    showStatus(
-        "",
-        ""
-    );
-
-}
-
-
-/* =====================================================
-   DATE
-   ===================================================== */
-
-function setDate(){
-
-    const today =
-        new Date()
-        .toISOString()
-        .slice(0,10);
+        "paymentStatus"
+    ).value = "Paid";
 
 
     document.getElementById(
         "billDate"
     ).value =
-        today;
+        new Date()
+        .toISOString()
+        .split("T")[0];
+
+
+    document.getElementById(
+        "billItems"
+    ).innerHTML = "";
+
+
+    document.getElementById(
+        "status"
+    ).innerHTML = "";
+
+
+    addBillRow();
+
+
+    calculate();
 
 }
 
 
-/* =====================================================
-   START
-   ===================================================== */
+/* =========================================================
+   MONEY
+   ========================================================= */
 
-document
-    .getElementById("discount")
-    .addEventListener(
-        "input",
-        calculateBill
+function money(value){
+
+    return "₹" +
+        Number(
+            value || 0
+        ).toFixed(2);
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+   ========================================================= */
+
+function escapeHTML(value){
+
+    return String(
+        value ?? ""
+    )
+    .replace(
+        /[&<>"']/g,
+        function(char){
+
+            return {
+
+                "&":"&amp;",
+                "<":"&lt;",
+                ">":"&gt;",
+                '"':"&quot;",
+                "'":"&#039;"
+
+            }[char];
+
+        }
     );
 
-
-setDate();
-
-
-document.getElementById(
-    "billNo"
-).value =
-    generateBillNo();
+}
 
 
-addBillRow();
+/* =========================================================
+   DISCOUNT EVENT
+   ========================================================= */
 
-
-loadProducts();
+document
+.getElementById("discount")
+.addEventListener(
+    "input",
+    calculate
+);
 
 </script>
 
