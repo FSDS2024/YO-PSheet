@@ -1,1031 +1,416 @@
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width,initial-scale=1">
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Yatham Organics Billing</title>
 
-
 <style>
-
-*{
-box-sizing:border-box;
-}
-
-
-body{
-
-margin:0;
-
-font-family:Arial,sans-serif;
-
-background:#f3f6f4;
-
-color:#222;
-
-}
-
-
-.wrap{
-
-max-width:1200px;
-
-margin:auto;
-
-padding:18px;
-
-}
-
-
-.header{
-
-background:#214d2b;
-
-color:white;
-
-padding:24px;
-
-border-radius:16px 16px 0 0;
-
-}
-
-
-.header h1{
-
-margin:0 0 5px;
-
-}
-
-
-.tabs{
-
-display:flex;
-
-gap:8px;
-
-background:#214d2b;
-
-padding:0 14px 14px;
-
-border-radius:0 0 16px 16px;
-
-}
-
-
-.tab{
-
-border:0;
-
-background:#e7f0e5;
-
-color:#214d2b;
-
-padding:13px 22px;
-
-font-weight:bold;
-
-cursor:pointer;
-
-border-radius:9px;
-
-}
-
-
-.tab.active{
-
-background:white;
-
-}
-
-
-.page{
-
-display:none;
-
-}
-
-
-.page.active{
-
-display:block;
-
-}
-
-
-.card{
-
-background:white;
-
-padding:20px;
-
-border-radius:15px;
-
-margin-top:18px;
-
-box-shadow:0 2px 12px #0001;
-
-}
-
-
-h2{
-
-margin-top:0;
-
-color:#214d2b;
-
-}
-
-
-.grid{
-
-display:grid;
-
-grid-template-columns:1fr 1fr;
-
-gap:14px;
-
-}
-
-
-label{
-
-display:block;
-
-font-size:13px;
-
-font-weight:bold;
-
-margin-bottom:6px;
-
-}
-
-
-input,
-select{
-
-width:100%;
-
-padding:11px;
-
-border:1px solid #ccd8c9;
-
-border-radius:9px;
-
-font-size:15px;
-
-background:white;
-
-}
-
-
-.bill-row{
-
-display:grid;
-
-grid-template-columns:
-2fr 130px 80px 110px 120px 45px;
-
-gap:8px;
-
-align-items:end;
-
-margin:14px 0;
-
-}
-
-
-.amount{
-
-padding:11px 0;
-
-font-weight:bold;
-
-text-align:right;
-
-}
-
-
-.btn{
-
-border:0;
-
-border-radius:9px;
-
-padding:11px 16px;
-
-font-weight:bold;
-
-cursor:pointer;
-
-margin:3px;
-
-}
-
-
-.green{
-
-background:#214d2b;
-
-color:white;
-
-}
-
-
-.light{
-
-background:#e7f0e5;
-
-color:#214d2b;
-
-}
-
-
-.red{
-
-background:#f8dddd;
-
-color:#a22;
-
-}
-
-
-.actions{
-
-display:flex;
-
-flex-wrap:wrap;
-
-gap:8px;
-
-}
-
-
-.summary{
-
-max-width:380px;
-
-margin-left:auto;
-
-}
-
-
-.sum{
-
-display:flex;
-
-justify-content:space-between;
-
-padding:8px;
-
-}
-
-
-.grand{
-
-border-top:2px solid #214d2b;
-
-font-size:21px;
-
-font-weight:bold;
-
-padding-top:13px;
-
-}
-
-
-.status{
-
-margin-top:12px;
-
-font-weight:bold;
-
-}
-
-
-.success{
-
-color:#168238;
-
-}
-
-
-.error{
-
-color:#c00000;
-
-}
-
-
-.loading{
-
-color:#a66a00;
-
-}
-
-
-.toolbar{
-
-display:grid;
-
-grid-template-columns:1fr 220px;
-
-gap:10px;
-
-}
-
-
-.catalogue{
-
-display:grid;
-
-grid-template-columns:
-repeat(auto-fill,minmax(260px,1fr));
-
-gap:14px;
-
-margin-top:18px;
-
-}
-
-
-.product{
-
-border:1px solid #dce5d9;
-
-border-radius:12px;
-
-padding:15px;
-
-}
-
-
-.product h3{
-
-margin:0;
-
-color:#214d2b;
-
-}
-
-
-.telugu{
-
-margin:6px 0;
-
-font-size:16px;
-
-}
-
-
-.meta{
-
-font-size:12px;
-
-color:#687268;
-
-margin-bottom:8px;
-
-}
-
-
-.price{
-
-display:flex;
-
-justify-content:space-between;
-
-border-top:1px solid #e5eae3;
-
-padding:8px 0;
-
-}
-
-
-.empty{
-
-text-align:center;
-
-padding:25px;
-
-color:#687268;
-
-}
-
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f3f6f4;color:#222}
+.wrap{max-width:1200px;margin:auto;padding:18px}
+.header{background:#214d2b;color:white;padding:24px;border-radius:16px 16px 0 0}
+.header h1{margin:0 0 5px}
+.tabs{display:flex;gap:8px;background:#214d2b;padding:0 14px 14px;border-radius:0 0 16px 16px}
+.tab{border:0;background:#e7f0e5;color:#214d2b;padding:13px 22px;font-weight:bold;cursor:pointer;border-radius:9px}
+.tab.active{background:white}
+.page{display:none}
+.page.active{display:block}
+.card{background:white;padding:20px;border-radius:15px;margin-top:18px;box-shadow:0 2px 12px #0001}
+h2{margin-top:0;color:#214d2b}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+label{display:block;font-size:13px;font-weight:bold;margin-bottom:6px}
+input,select{width:100%;padding:11px;border:1px solid #ccd8c9;border-radius:9px;font-size:15px;background:white}
+.bill-row{display:grid;grid-template-columns:2fr 130px 80px 110px 120px 45px;gap:8px;align-items:end;margin:14px 0}
+.amount{padding:11px 0;font-weight:bold;text-align:right}
+.btn{border:0;border-radius:9px;padding:11px 16px;font-weight:bold;cursor:pointer;margin:3px}
+.green{background:#214d2b;color:white}
+.light{background:#e7f0e5;color:#214d2b}
+.red{background:#f8dddd;color:#a22}
+.actions{display:flex;flex-wrap:wrap;gap:8px}
+.summary{max-width:380px;margin-left:auto}
+.sum{display:flex;justify-content:space-between;padding:8px}
+.grand{border-top:2px solid #214d2b;font-size:21px;font-weight:bold;padding-top:13px}
+.status{margin-top:12px;font-weight:bold}
+.success{color:#168238}
+.error{color:#c00000}
+.loading{color:#a66a00}
+.toolbar{display:grid;grid-template-columns:1fr 220px;gap:10px}
+.catalogue{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px;margin-top:18px}
+.product{border:1px solid #dce5d9;border-radius:12px;padding:15px}
+.product h3{margin:0;color:#214d2b}
+.telugu{margin:6px 0;font-size:16px}
+.meta{font-size:12px;color:#687268;margin-bottom:8px}
+.price{display:flex;justify-content:space-between;border-top:1px solid #e5eae3;padding:8px 0}
+.empty{text-align:center;padding:25px;color:#687268}
+.wa-note{font-size:12px;color:#687268;margin:8px 0 0}
 
 @media(max-width:800px){
-
-.grid{
-
-grid-template-columns:1fr;
-
+.grid{grid-template-columns:1fr}
+.bill-row{grid-template-columns:1fr 1fr}
+.toolbar{grid-template-columns:1fr}
 }
-
-.bill-row{
-
-grid-template-columns:1fr 1fr;
-
-}
-
-.toolbar{
-
-grid-template-columns:1fr;
-
-}
-
-}
-
-
 @media(max-width:520px){
-
-.wrap{
-
-padding:10px;
-
+.wrap{padding:10px}
+.tabs{overflow-x:auto}
+.tab{white-space:nowrap}
 }
-
-.tabs{
-
-overflow-x:auto;
-
-}
-
-.tab{
-
-white-space:nowrap;
-
-}
-
-}
-
-
 @media print{
-
-.no-print{
-
-display:none!important;
-
+.no-print{display:none!important}
+body{background:white}
+#cataloguePage{display:none!important}
+#billingPage{display:block!important}
+.card{box-shadow:none}
 }
-
-body{
-
-background:white;
-
-}
-
-#cataloguePage{
-
-display:none!important;
-
-}
-
-#billingPage{
-
-display:block!important;
-
-}
-
-.card{
-
-box-shadow:none;
-
-}
-
-}
-
 </style>
-
 </head>
 
-
 <body>
-
-
 <div class="wrap">
 
-
 <div class="header">
-
 <h1>YATHAM ORGANICS</h1>
-
-<div>
-Customer Billing & Product Catalogue
+<div>Customer Billing & Product Catalogue</div>
 </div>
-
-</div>
-
 
 <div class="tabs no-print">
-
-<button
-class="tab active"
-data-page="billingPage">
-
-🧾 Billing
-
-</button>
-
-
-<button
-class="tab"
-data-page="cataloguePage">
-
-📦 Product Catalogue
-
-</button>
-
+<button class="tab active" data-page="billingPage">🧾 Billing</button>
+<button class="tab" data-page="cataloguePage">📦 Product Catalogue</button>
 </div>
-
-
 
 <!-- ================= BILLING ================= -->
-
-<section
-id="billingPage"
-class="page active">
-
+<section id="billingPage" class="page active">
 
 <div class="card">
-
 <h2>Customer Details</h2>
 
-
 <div class="grid">
-
+<div>
+<label>Customer Name</label>
+<input id="customer" placeholder="Walk-in Customer">
+</div>
 
 <div>
-
-<label>
-Customer Name
-</label>
-
-<input
-id="customer"
-placeholder="Walk-in Customer">
-
+<label>Mobile Number</label>
+<input id="mobile" type="tel" inputmode="numeric" placeholder="Optional">
 </div>
-
-
-<div>
-
-<label>
-Mobile Number
-</label>
-
-<input
-id="mobile"
-placeholder="Optional">
-
 </div>
-
-
-</div>
-
 
 <div style="margin-top:14px">
-
-<label>
-Address / Community
-</label>
-
-<input
-id="address"
-placeholder="Optional">
-
+<label>Address / Community</label>
+<input id="address" placeholder="Optional">
 </div>
-
-
 </div>
-
-
 
 <div class="card">
-
-
 <h2>Bill</h2>
 
-
 <div class="grid">
-
+<div>
+<label>Bill Date</label>
+<input id="billDate" type="date">
+</div>
 
 <div>
-
-<label>
-Bill Date
-</label>
-
-<input
-id="billDate"
-type="date">
-
+<label>Discount (₹)</label>
+<input id="discount" type="number" min="0" step="0.01" value="0">
+</div>
 </div>
 
-
-<div>
-
-<label>
-Discount (₹)
-</label>
-
-<input
-id="discount"
-type="number"
-min="0"
-step="0.01"
-value="0">
-
-</div>
-
-
-</div>
-
-
-<div
-id="productStatus"
-class="status loading">
-
+<div id="productStatus" class="status loading">
 ⏳ Loading products...
-
 </div>
-
 
 <div id="billItems"></div>
 
-
-<button
-class="btn light no-print"
-id="addItemBtn"
-type="button">
-
+<button class="btn light no-print" id="addItemBtn" type="button">
 ＋ Add Product
-
 </button>
-
-
 </div>
 
-
-
 <div class="card">
-
-
 <h2>Payment</h2>
 
-
 <div class="grid">
-
-
 <div>
-
-<label>
-Payment Mode
-</label>
-
+<label>Payment Mode</label>
 <select id="paymentMode">
-
 <option>Cash</option>
-
 <option>UPI</option>
-
 <option>Card</option>
-
 <option>Bank Transfer</option>
-
 <option>Other</option>
-
 </select>
-
 </div>
-
 
 <div>
-
-<label>
-Payment Status
-</label>
-
+<label>Payment Status</label>
 <select id="paymentStatus">
-
 <option>Paid</option>
-
 <option>Pending</option>
-
 <option>Partially Paid</option>
-
 </select>
-
 </div>
-
-
 </div>
-
-
 </div>
-
-
 
 <div class="card">
-
-
 <div class="summary">
 
-
 <div class="sum">
-
-<span>
-Subtotal
-</span>
-
-<b id="subtotal">
-₹0.00
-</b>
-
+<span>Subtotal</span>
+<b id="subtotal">₹0.00</b>
 </div>
 
-
 <div class="sum">
-
-<span>
-Discount
-</span>
-
-<b id="discountTotal">
-₹0.00
-</b>
-
+<span>Discount</span>
+<b id="discountTotal">₹0.00</b>
 </div>
-
 
 <div class="sum grand">
-
-<span>
-Grand Total
-</span>
-
-<span id="grandTotal">
-₹0.00
-</span>
-
-</div>
-
-
+<span>Grand Total</span>
+<span id="grandTotal">₹0.00</span>
 </div>
 
 </div>
-
-
+</div>
 
 <div class="card no-print">
-
-
 <div class="actions">
 
-
-<button
-class="btn green"
-id="saveBtn"
-type="button">
-
+<button class="btn green" id="saveBtn" type="button">
 💾 Save Bill
-
 </button>
 
-
-<button
-class="btn green"
-id="printBtn"
-type="button">
-
+<button class="btn green" id="printBtn" type="button">
 🖨 Print Bill
-
 </button>
 
+<button class="btn green" id="whatsappBtn" type="button">
+📱 WhatsApp Bill
+</button>
 
-<button
-class="btn light"
-id="newBtn"
-type="button">
-
+<button class="btn light" id="newBtn" type="button">
 ＋ New Bill
-
 </button>
 
-
-<button
-class="btn light"
-id="refreshBtn"
-type="button">
-
+<button class="btn light" id="refreshBtn" type="button">
 🔄 Refresh Products
-
 </button>
 
-
 </div>
 
-
-<div
-id="saveStatus"
-class="status">
-
+<div class="wa-note">
+WhatsApp will use the customer mobile number when provided. If no number is entered, you can choose the WhatsApp contact manually.
 </div>
 
-
+<div id="saveStatus" class="status"></div>
 </div>
-
 
 </section>
-
-
 
 <!-- ================= CATALOGUE ================= -->
-
-<section
-id="cataloguePage"
-class="page">
-
+<section id="cataloguePage" class="page">
 
 <div class="card">
-
-
-<h2>
-Product Catalogue
-</h2>
-
+<h2>Product Catalogue</h2>
 
 <div class="toolbar">
-
-
-<input
-id="search"
-placeholder="Search product / Telugu / category">
-
+<input id="search" placeholder="Search product / Telugu / category">
 
 <select id="category">
-
-<option value="">
-All Categories
-</option>
-
+<option value="">All Categories</option>
 </select>
-
-
 </div>
 
-
-<div
-id="catalogueStatus"
-class="status loading">
-
+<div id="catalogueStatus" class="status loading">
 ⏳ Loading products...
-
 </div>
 
-
-<div
-id="catalogue"
-class="catalogue">
-
+<div id="catalogue" class="catalogue"></div>
 </div>
-
-
-</div>
-
 
 </section>
 
-
 </div>
 
-
-
 <script>
-
 
 /* ==================================================
    GOOGLE APPS SCRIPT URL
 ================================================== */
 
-
 const SCRIPT_URL =
 "https://script.google.com/macros/s/AKfycbwPfVF9Gvwsq6iJn0bxqsMKUaQImA6EZdHrueeqRn2HGxWZ9P-ruQnlEybS6nPhO_KDJw/exec";
 
-
 let products = [];
 
+/*
+   PRODUCTS FROM GOOGLE SHEETS
+   --------------------------------------------------
+   The sheet may contain multiple rows for the same
+   product, one row per pack size.
 
+   Example:
+   Kandi Pappu | 200 g | ₹41.80
+   Kandi Pappu | 500 g | ₹93.10
+   Kandi Pappu | 1 kg  | ₹178.60
+
+   The billing UI should show Kandi Pappu only once,
+   with all pack sizes available underneath it.
+*/
+function normalizeProducts(rawProducts){
+
+const grouped = new Map();
+
+(rawProducts || []).forEach(function(raw){
+
+const name = String(raw.productName || "").trim();
+
+if(!name){
+return;
+}
+
+/*
+   Product ID is preferred when available.
+   Otherwise product name is used as the grouping key.
+*/
+const key =
+String(raw.productId || "").trim() ||
+name.toLowerCase();
+
+if(!grouped.has(key)){
+
+grouped.set(key,{
+productId: raw.productId || "",
+productName: name,
+teluguName: raw.teluguName || "",
+category: raw.category || "",
+packPrices: []
+});
+
+}
+
+const product = grouped.get(key);
+
+/*
+   Keep useful values if another sheet row contains them.
+*/
+if(!product.teluguName && raw.teluguName){
+product.teluguName = raw.teluguName;
+}
+
+if(!product.category && raw.category){
+product.category = raw.category;
+}
+
+const packText = String(raw.packSize || "").trim();
+const price = Number(raw.sellingPrice);
+
+if(packText){
+
+/*
+   A row can itself contain multiple pack sizes,
+   separated by commas. If there is one price for
+   the row, retain it for each listed pack.
+*/
+packText.split(",")
+.map(function(x){ return x.trim(); })
+.filter(Boolean)
+.forEach(function(pack){
+
+const existing = product.packPrices.find(function(x){
+return x.packSize.toLowerCase() === pack.toLowerCase();
+});
+
+if(!existing){
+
+product.packPrices.push({
+packSize: pack,
+price: Number.isFinite(price) ? price : 0
+});
+
+}
+});
+
+}
+else if(Number.isFinite(price)){
+
+/*
+   Products without a pack size still work as a
+   single selectable product.
+*/
+const existing = product.packPrices.find(function(x){
+return x.packSize === "";
+});
+
+if(!existing){
+
+product.packPrices.push({
+packSize: "",
+price: price
+});
+
+}
+
+}
+
+});
+
+return Array.from(grouped.values());
+}
 
 /* ==================================================
    HELPERS
 ================================================== */
 
-
 function esc(value){
-
-return String(value ?? "")
-.replace(/[&<>"']/g,function(c){
-
+return String(value ?? "").replace(/[&<>"']/g,function(c){
 return {
-
 "&":"&amp;",
 "<":"&lt;",
 ">":"&gt;",
 '"':"&quot;",
 "'":"&#039;"
-
 }[c];
-
 });
-
 }
-
-
 
 function money(value){
-
-return "₹" +
-Number(value || 0)
-.toFixed(2);
-
+return "₹" + Number(value || 0).toFixed(2);
 }
 
-
-
-function setStatus(
-id,
-text,
-type=""
-){
-
-const element =
-document.getElementById(id);
-
-element.className =
-"status " + type;
-
-element.textContent =
-text;
-
+function setStatus(id,text,type=""){
+const element=document.getElementById(id);
+element.className="status " + type;
+element.textContent=text;
 }
-
-
 
 /* ==================================================
    TABS
 ================================================== */
 
+document.querySelectorAll(".tab").forEach(function(button){
+button.addEventListener("click",function(){
 
-document
-.querySelectorAll(".tab")
-.forEach(function(button){
-
-button.addEventListener(
-"click",
-function(){
-
-document
-.querySelectorAll(".tab")
-.forEach(function(tab){
-
+document.querySelectorAll(".tab").forEach(function(tab){
 tab.classList.remove("active");
-
 });
 
-
-document
-.querySelectorAll(".page")
-.forEach(function(page){
-
+document.querySelectorAll(".page").forEach(function(page){
 page.classList.remove("active");
-
 });
-
 
 button.classList.add("active");
 
-
-document
-.getElementById(
-button.dataset.page
-)
-.classList.add("active");
-
+document.getElementById(button.dataset.page).classList.add("active");
 
 });
-
 });
-
-
 
 /* ==================================================
    LOAD PRODUCTS
 ================================================== */
-
 
 async function loadProducts(){
 
@@ -1035,637 +420,361 @@ setStatus(
 "loading"
 );
 
-
 setStatus(
 "catalogueStatus",
 "⏳ Loading products from Google Sheets...",
 "loading"
 );
 
-
 try{
 
-
-const response =
-await fetch(
-SCRIPT_URL +
-"?action=products&ts=" +
-Date.now()
+const response=await fetch(
+SCRIPT_URL + "?action=products&ts=" + Date.now()
 );
-
 
 if(!response.ok){
-
-throw new Error(
-"HTTP " + response.status
-);
-
+throw new Error("HTTP " + response.status);
 }
 
-
-const result =
-await response.json();
-
+const result=await response.json();
 
 if(!result.success){
-
-throw new Error(
-result.message ||
-"Unable to load products"
-);
-
+throw new Error(result.message || "Unable to load products");
 }
 
-
-products =
-result.products || [];
-
+products=normalizeProducts(result.products || []);
 
 setStatus(
 "productStatus",
-"✅ " +
-products.length +
-" products loaded from Google Sheets.",
+"✅ " + products.length + " unique products loaded from Google Sheets.",
 "success"
 );
-
 
 setStatus(
 "catalogueStatus",
-"✅ " +
-products.length +
-" products loaded from Google Sheets.",
+"✅ " + products.length + " unique products loaded from Google Sheets.",
 "success"
 );
 
-
 renderCategories();
-
-
 renderCatalogue();
 
-
-document
-.getElementById("billItems")
-.innerHTML="";
-
-
+document.getElementById("billItems").innerHTML="";
 addBillItem();
-
-
 calculate();
-
 
 }
 catch(error){
 
-
 console.error(error);
-
 
 setStatus(
 "productStatus",
-"❌ Unable to load products. " +
-error.message,
+"❌ Unable to load products. " + error.message,
 "error"
 );
-
 
 setStatus(
 "catalogueStatus",
-"❌ Unable to load products. " +
-error.message,
+"❌ Unable to load products. " + error.message,
 "error"
 );
 
-
 }
-
 }
-
-
 
 /* ==================================================
    PRODUCT OPTIONS
 ================================================== */
 
-
 function productOptions(){
 
 return (
-
 '<option value="">Select Product</option>' +
-
-products
-.map(function(product,index){
+products.map(function(product,index){
 
 return (
-
-'<option value="' +
-index +
-'">' +
-
+'<option value="' + index + '">' +
 esc(product.productName) +
-
-(
-product.teluguName
-?
-" — " +
-esc(product.teluguName)
-:
-""
-) +
-
+(product.teluguName ? " — " + esc(product.teluguName) : "") +
 '</option>'
-
 );
 
-})
-.join("")
-
+}).join("")
 );
 
 }
-
-
 
 /* ==================================================
    ADD BILL ROW
 ================================================== */
 
-
 function addBillItem(){
 
-const row =
-document.createElement("div");
+const row=document.createElement("div");
 
+row.className="bill-row";
 
-row.className =
-"bill-row";
-
-
-row.innerHTML =
-
+row.innerHTML=
 '<div>' +
-
 '<label>Product</label>' +
-
 '<select class="productSelect">' +
-
 productOptions() +
-
 '</select>' +
-
 '</div>' +
 
-
 '<div>' +
-
 '<label>Pack Size</label>' +
-
 '<select class="packSelect">' +
-
 '<option value="">Select Pack</option>' +
-
 '</select>' +
-
 '</div>' +
 
-
 '<div>' +
-
 '<label>Qty</label>' +
-
 '<input class="qty" type="number" min="1" value="1">' +
-
 '</div>' +
 
-
 '<div>' +
-
 '<label>Rate</label>' +
-
 '<div class="rate amount">₹0.00</div>' +
-
 '</div>' +
-
 
 '<div>' +
-
 '<label>Amount</label>' +
-
 '<div class="lineAmount amount">₹0.00</div>' +
-
 '</div>' +
-
 
 '<button class="btn red removeBtn" type="button">✕</button>';
 
+document.getElementById("billItems").appendChild(row);
 
-document
-.getElementById("billItems")
-.appendChild(row);
-
-
-
-row
-.querySelector(".productSelect")
-.addEventListener(
+row.querySelector(".productSelect").addEventListener(
 "change",
 function(){
-
 updateProductRow(row);
-
 }
 );
 
-
-
-row
-.querySelector(".packSelect")
-.addEventListener(
+row.querySelector(".packSelect").addEventListener(
 "change",
 function(){
-
 updatePackRow(row);
-
 }
 );
 
-
-
-row
-.querySelector(".qty")
-.addEventListener(
+row.querySelector(".qty").addEventListener(
 "input",
 calculate
 );
 
-
-
-row
-.querySelector(".removeBtn")
-.addEventListener(
+row.querySelector(".removeBtn").addEventListener(
 "click",
 function(){
-
 row.remove();
-
 calculate();
-
 }
 );
-
 }
-
-
 
 /* ==================================================
    PRODUCT CHANGE
 ================================================== */
 
-
 function updateProductRow(row){
 
-const index =
-Number(
-row.querySelector(
-".productSelect"
-).value
+const index=Number(
+row.querySelector(".productSelect").value
 );
 
+const product=products[index];
 
-const product =
-products[index];
+const pack=row.querySelector(".packSelect");
 
+pack.innerHTML='<option value="">Select Pack</option>';
 
-const pack =
-row.querySelector(
-".packSelect"
-);
-
-
-pack.innerHTML =
-'<option value="">Select Pack</option>';
-
+row.dataset.price="0";
+row.dataset.pack="";
 
 if(!product){
 
-row.dataset.price="0";
-
-row.querySelector(
-".rate"
-).textContent="₹0.00";
-
+row.querySelector(".rate").textContent="₹0.00";
 calculate();
 
 return;
-
 }
 
-
 /*
-Products sheet has ONE pack size
-per product row.
-
-If your Pack Size contains:
-500 g, 1 Kg
-
-both will be available.
+   The product is now shown only once.
+   Its grouped packPrices array contains all
+   available pack sizes and their individual rates.
 */
+if(product.packPrices.length){
 
+product.packPrices.forEach(function(packData){
 
-const packSizes =
-String(
-product.packSize || ""
-)
-.split(",")
-.map(function(x){
+const option=document.createElement("option");
 
-return x.trim();
+option.value=packData.packSize;
+option.textContent=packData.packSize || "Standard";
 
-})
-.filter(Boolean);
-
-
-if(packSizes.length){
-
-packSizes.forEach(function(size){
-
-pack.insertAdjacentHTML(
-"beforeend",
-
-'<option value="' +
-esc(size) +
-'">' +
-esc(size) +
-'</option>'
-
-);
+pack.appendChild(option);
 
 });
 
-
-pack.value =
-packSizes[0];
-
+/*
+   Automatically select the first available pack.
+*/
+pack.selectedIndex=1;
 
 updatePackRow(row);
-
 
 }
 else{
 
-
-row.dataset.price =
-String(
-Number(
-product.sellingPrice
-) || 0
-);
-
-
-row.querySelector(
-".rate"
-).textContent =
-money(
-product.sellingPrice
-);
-
-
+row.querySelector(".rate").textContent="Price not set";
 calculate();
 
 }
-
 }
-
-
 
 /* ==================================================
    PACK CHANGE
 ================================================== */
 
-
 function updatePackRow(row){
 
-const index =
-Number(
-row.querySelector(
-".productSelect"
-).value
+const index=Number(
+row.querySelector(".productSelect").value
 );
 
-
-const product =
-products[index];
-
+const product=products[index];
 
 if(!product){
-
 return;
-
 }
 
+const selectedPack=
+row.querySelector(".packSelect").value;
 
-const price =
-Number(
-product.sellingPrice
-) || 0;
+const packData=product.packPrices.find(function(item){
 
+return item.packSize.toLowerCase() ===
+selectedPack.toLowerCase();
 
-row.dataset.price =
-String(price);
+});
 
+if(!packData){
 
-row.querySelector(
-".rate"
-).textContent =
-price
-?
-money(price)
-:
-"Price not set";
+row.dataset.price="0";
+row.dataset.pack=selectedPack || "";
 
+row.querySelector(".rate").textContent="Price not set";
+
+calculate();
+
+return;
+}
+
+const price=Number(packData.price) || 0;
+
+row.dataset.price=String(price);
+row.dataset.pack=selectedPack;
+
+row.querySelector(".rate").textContent=
+price ? money(price) : "Price not set";
 
 calculate();
 
 }
-
-
-
 /* ==================================================
    CALCULATE
 ================================================== */
 
-
 function calculate(){
 
-let subtotal = 0;
+let subtotal=0;
 
+document.querySelectorAll(".bill-row").forEach(function(row){
 
-document
-.querySelectorAll(".bill-row")
-.forEach(function(row){
+const price=Number(row.dataset.price || 0);
 
-const price =
-Number(
-row.dataset.price || 0
+const qty=Number(
+row.querySelector(".qty").value || 0
 );
 
-
-const qty =
-Number(
-row.querySelector(
-".qty"
-).value || 0
-);
-
-
-const amount =
-price * qty;
-
+const amount=price * qty;
 
 subtotal += amount;
 
-
-row.querySelector(
-".lineAmount"
-).textContent =
+row.querySelector(".lineAmount").textContent=
 money(amount);
 
 });
 
-
-const discount =
-Math.min(
-
+const discount=Math.min(
 Math.max(
-
-Number(
-document.getElementById(
-"discount"
-).value || 0
-),
-
+Number(document.getElementById("discount").value || 0),
 0
-
 ),
-
 subtotal
-
 );
 
-
-document.getElementById(
-"subtotal"
-).textContent =
+document.getElementById("subtotal").textContent=
 money(subtotal);
 
-
-document.getElementById(
-"discountTotal"
-).textContent =
+document.getElementById("discountTotal").textContent=
 money(discount);
 
-
-document.getElementById(
-"grandTotal"
-).textContent =
-money(
-subtotal - discount
-);
+document.getElementById("grandTotal").textContent=
+money(subtotal - discount);
 
 }
-
-
 
 /* ==================================================
    GET BILL DATA
 ================================================== */
 
-
 function getBillData(){
 
-const items = [];
+const items=[];
+let subtotal=0;
 
-let subtotal = 0;
+document.querySelectorAll(".bill-row").forEach(function(row){
 
-
-document
-.querySelectorAll(".bill-row")
-.forEach(function(row){
-
-
-const index =
-Number(
-row.querySelector(
-".productSelect"
-).value
+const index=Number(
+row.querySelector(".productSelect").value
 );
 
+const product=products[index];
 
-const product =
-products[index];
+const packSize=row.querySelector(".packSelect").value;
 
-
-const packSize =
-row.querySelector(
-".packSelect"
-).value;
-
-
-const quantity =
-Number(
-row.querySelector(
-".qty"
-).value || 0
+const quantity=Number(
+row.querySelector(".qty").value || 0
 );
 
+const rate=Number(row.dataset.price || 0);
 
-const rate =
-Number(
-row.dataset.price || 0
-);
+if(product && quantity > 0 && rate > 0){
 
-
-if(
-product &&
-quantity > 0 &&
-rate > 0
-){
-
-
-const amount =
-quantity * rate;
-
+const amount=quantity * rate;
 
 subtotal += amount;
 
-
 items.push({
 
-productId:
-product.productId || "",
-
-productName:
-product.productName || "",
-
-teluguName:
-product.teluguName || "",
-
+productId:product.productId || "",
+productName:product.productName || "",
+teluguName:product.teluguName || "",
 packSize:
 packSize ||
-product.packSize ||
-"",
-
-quantity:
-quantity,
-
-rate:
-rate,
-
-amount:
-amount
+(product.packPrices.length
+? product.packPrices[0].packSize
+: ""),
+quantity:quantity,
+rate:rate,
+amount:amount
 
 });
 
@@ -1673,108 +782,57 @@ amount
 
 });
 
-
-const discount =
-Math.min(
-
+const discount=Math.min(
 Math.max(
-
-Number(
-document.getElementById(
-"discount"
-).value || 0
-),
-
+Number(document.getElementById("discount").value || 0),
 0
-
 ),
-
 subtotal
-
 );
-
 
 return {
 
-action:
-"saveBill",
+action:"saveBill",
 
+billId:"BILL-" + Date.now(),
 
-billId:
-"BILL-" +
-Date.now(),
-
-
-billDate:
-document.getElementById(
-"billDate"
-).value,
-
+billDate:document.getElementById("billDate").value,
 
 customerName:
-document.getElementById(
-"customer"
-).value ||
+document.getElementById("customer").value ||
 "Walk-in Customer",
 
-
 mobile:
-document.getElementById(
-"mobile"
-).value ||
-"",
-
+document.getElementById("mobile").value || "",
 
 address:
-document.getElementById(
-"address"
-).value ||
-"",
+document.getElementById("address").value || "",
 
+subtotal:subtotal,
 
-subtotal:
-subtotal,
+discount:discount,
 
-
-discount:
-discount,
-
-
-grandTotal:
-subtotal - discount,
-
+grandTotal:subtotal - discount,
 
 paymentMode:
-document.getElementById(
-"paymentMode"
-).value,
-
+document.getElementById("paymentMode").value,
 
 paymentStatus:
-document.getElementById(
-"paymentStatus"
-).value,
+document.getElementById("paymentStatus").value,
 
-
-items:
-items
+items:items
 
 };
 
 }
 
-
-
 /* ==================================================
    SAVE BILL
 ================================================== */
 
-
 async function saveBill(){
 
-const data =
-getBillData();
-
+const data=getBillData();
 
 if(!data.items.length){
 
@@ -1788,260 +846,146 @@ return;
 
 }
 
-
 setStatus(
 "saveStatus",
 "⏳ Saving bill to Google Sheets...",
 "loading"
 );
 
-
 try{
 
-
-const response =
-await fetch(
+const response=await fetch(
 SCRIPT_URL,
 {
-
 method:"POST",
-
 body:JSON.stringify(data)
-
 }
 );
-
 
 if(!response.ok){
-
-throw new Error(
-"HTTP " +
-response.status
-);
-
+throw new Error("HTTP " + response.status);
 }
 
-
-const result =
-await response.json();
-
+const result=await response.json();
 
 if(!result.success){
-
-throw new Error(
-result.message ||
-"Save failed"
-);
-
+throw new Error(result.message || "Save failed");
 }
-
 
 setStatus(
 "saveStatus",
-"✅ Bill saved successfully. Bill ID: " +
-result.billId,
+"✅ Bill saved successfully. Bill ID: " + result.billId,
 "success"
 );
-
 
 }
 catch(error){
 
-
 console.error(error);
-
 
 setStatus(
 "saveStatus",
-"❌ Error while saving bill: " +
-error.message,
+"❌ Error while saving bill: " + error.message,
 "error"
 );
 
 }
-
 }
-
-
 
 /* ==================================================
    PRINT
 ================================================== */
 
-
 function printBill(){
 
-const data =
-getBillData();
-
+const data=getBillData();
 
 if(!data.items.length){
 
-alert(
-"Please select at least one product."
-);
+alert("Please select at least one product.");
 
 return;
-
 }
 
-
-const rows =
-data.items
-.map(function(item,index){
+const rows=data.items.map(function(item,index){
 
 return (
-
 "<tr>" +
-
-"<td>" +
-(index + 1) +
-"</td>" +
-
+"<td>" + (index + 1) + "</td>" +
 "<td>" +
 esc(item.productName) +
 "<br><small>" +
 esc(item.teluguName) +
 "</small>" +
 "</td>" +
-
-"<td>" +
-esc(item.packSize) +
-"</td>" +
-
-"<td>" +
-item.quantity +
-"</td>" +
-
-"<td>" +
-money(item.rate) +
-"</td>" +
-
-"<td>" +
-money(item.amount) +
-"</td>" +
-
+"<td>" + esc(item.packSize) + "</td>" +
+"<td>" + item.quantity + "</td>" +
+"<td>" + money(item.rate) + "</td>" +
+"<td>" + money(item.amount) + "</td>" +
 "</tr>"
-
 );
 
-})
-.join("");
+}).join("");
 
-
-const popup =
-window.open(
-"",
-"_blank"
-);
-
+const popup=window.open("","_blank");
 
 if(!popup){
 
-alert(
-"Please allow pop-ups."
-);
+alert("Please allow pop-ups.");
 
 return;
-
 }
-
 
 popup.document.write(
 
 "<!DOCTYPE html>" +
-
 "<html>" +
-
 "<head>" +
-
-"<title>" +
-esc(data.billId) +
-"</title>" +
-
+"<title>" + esc(data.billId) + "</title>" +
 "<style>" +
-
 "body{font-family:Arial;padding:25px}" +
-
 "h1{color:#214d2b}" +
-
 "table{width:100%;border-collapse:collapse;margin-top:20px}" +
-
 "th,td{padding:9px;border-bottom:1px solid #ddd;text-align:left}" +
-
 ".right{text-align:right}" +
-
 ".total{font-size:20px;font-weight:bold}" +
-
 "</style>" +
-
 "</head>" +
-
 "<body>" +
 
 "<h1>YATHAM ORGANICS</h1>" +
-
 "<div>Customer Bill</div>" +
-
 "<hr>" +
 
 "<p>" +
-
-"<b>Bill ID:</b> " +
-esc(data.billId) +
-
+"<b>Bill ID:</b> " + esc(data.billId) +
 "<br>" +
-
-"<b>Date:</b> " +
-esc(data.billDate) +
-
+"<b>Date:</b> " + esc(data.billDate) +
 "<br>" +
-
-"<b>Customer:</b> " +
-esc(data.customerName) +
-
+"<b>Customer:</b> " + esc(data.customerName) +
 "<br>" +
-
-"<b>Mobile:</b> " +
-esc(data.mobile || "-") +
-
+"<b>Mobile:</b> " + esc(data.mobile || "-") +
 "<br>" +
-
-"<b>Payment:</b> " +
-esc(data.paymentMode) +
+"<b>Payment:</b> " + esc(data.paymentMode) +
 " / " +
 esc(data.paymentStatus) +
-
 "</p>" +
 
 "<table>" +
-
 "<thead>" +
-
 "<tr>" +
-
 "<th>#</th>" +
-
 "<th>Product</th>" +
-
 "<th>Pack</th>" +
-
 "<th>Qty</th>" +
-
 "<th>Rate</th>" +
-
 "<th>Amount</th>" +
-
 "</tr>" +
-
 "</thead>" +
 
 "<tbody>" +
-
 rows +
-
 "</tbody>" +
-
 "</table>" +
 
 "<div class='right'>" +
@@ -2061,221 +1005,223 @@ money(data.grandTotal) +
 "</div>" +
 
 "<p style='text-align:center;margin-top:35px'>" +
-
 "Thank you for choosing Yatham Organics!" +
-
 "</p>" +
 
 "</body>" +
-
 "</html>"
-
 );
 
-
 popup.document.close();
-
 popup.focus();
 
-
-setTimeout(
-function(){
-
+setTimeout(function(){
 popup.print();
+},500);
 
-},
-500
+}
+
+/* ==================================================
+   WHATSAPP BILL
+   Integrated from older version, with safer encoding
+================================================== */
+
+function shareWhatsApp(){
+
+const data=getBillData();
+
+if(!data.items.length){
+
+alert("Please select at least one valid product before sending the bill on WhatsApp.");
+
+return;
+}
+
+/*
+Build the complete message as normal text first.
+encodeURIComponent() is applied only once to the
+complete message, which keeps Telugu and special
+characters working correctly.
+*/
+
+let message =
+"*YATHAM ORGANICS*\n" +
+"Customer Bill\n" +
+"Bill ID: " + data.billId + "\n" +
+"Date: " + data.billDate + "\n" +
+"Customer: " + data.customerName + "\n";
+
+if(data.mobile){
+message += "Mobile: " + data.mobile + "\n";
+}
+
+if(data.address){
+message += "Address: " + data.address + "\n";
+}
+
+message += "\n*Items:*\n";
+
+data.items.forEach(function(item,index){
+
+message +=
+(index + 1) + ". " +
+item.productName +
+(item.teluguName ? " (" + item.teluguName + ")" : "") +
+" - " +
+item.packSize +
+" × " +
+item.quantity +
+" = " +
+money(item.amount) +
+"\n";
+
+});
+
+message +=
+"\nSubtotal: " + money(data.subtotal) +
+"\nDiscount: " + money(data.discount) +
+"\n*Grand Total: " + money(data.grandTotal) + "*" +
+"\nPayment: " + data.paymentMode + " / " + data.paymentStatus +
+"\n\nThank you for choosing Yatham Organics!";
+
+const encodedMessage=encodeURIComponent(message);
+
+/*
+WhatsApp wa.me expects an international number.
+For Indian customers:
+10 digits -> automatically add 91.
+12 digits beginning with 91 -> use as-is.
+Any other number is cleaned and used as supplied.
+*/
+
+let mobile=String(data.mobile || "").replace(/\D/g,"");
+
+if(mobile.length === 10){
+mobile="91" + mobile;
+}
+
+const whatsappUrl=mobile
+? "https://wa.me/" + mobile + "?text=" + encodedMessage
+: "https://wa.me/?text=" + encodedMessage;
+
+const whatsappWindow=window.open(
+whatsappUrl,
+"_blank"
+);
+
+if(!whatsappWindow){
+
+alert(
+"WhatsApp could not be opened. Please allow pop-ups for this website."
 );
 
 }
 
-
+}
 
 /* ==================================================
    NEW BILL
 ================================================== */
 
-
 function newBill(){
 
-document.getElementById(
-"customer"
-).value="";
+document.getElementById("customer").value="";
+document.getElementById("mobile").value="";
+document.getElementById("address").value="";
+document.getElementById("discount").value="0";
 
+document.getElementById("paymentMode").value="Cash";
+document.getElementById("paymentStatus").value="Paid";
 
-document.getElementById(
-"mobile"
-).value="";
+document.getElementById("saveStatus").textContent="";
 
-
-document.getElementById(
-"address"
-).value="";
-
-
-document.getElementById(
-"discount"
-).value="0";
-
-
-document.getElementById(
-"paymentMode"
-).value="Cash";
-
-
-document.getElementById(
-"paymentStatus"
-).value="Paid";
-
-
-document.getElementById(
-"saveStatus"
-).textContent="";
-
-
-document.getElementById(
-"billItems"
-).innerHTML="";
-
+document.getElementById("billItems").innerHTML="";
 
 addBillItem();
-
-
 calculate();
 
 }
-
-
 
 /* ==================================================
    CATEGORIES
 ================================================== */
 
-
 function renderCategories(){
 
-const select =
-document.getElementById(
-"category"
-);
+const select=document.getElementById("category");
 
-
-const categories =
-[
+const categories=[
 ...new Set(
-
 products
 .map(function(p){
-
 return p.category;
-
 })
 .filter(Boolean)
-
 )
 ].sort();
 
-
-select.innerHTML =
+select.innerHTML=
 '<option value="">All Categories</option>' +
 
-categories
-.map(function(category){
+categories.map(function(category){
 
 return (
-
 '<option value="' +
 esc(category) +
 '">' +
 esc(category) +
 '</option>'
-
 );
 
-})
-.join("");
+}).join("");
 
 }
-
-
 
 /* ==================================================
    CATALOGUE
 ================================================== */
 
-
 function renderCatalogue(){
 
-const search =
-document.getElementById(
-"search"
-)
+const search=document.getElementById("search")
 .value
 .toLowerCase()
 .trim();
 
+const category=document.getElementById("category").value;
 
-const category =
-document.getElementById(
-"category"
-).value;
+const list=products.filter(function(product){
 
-
-const list =
-products.filter(function(product){
-
-
-const text = [
-
+const text=[
 product.productId,
-
 product.productName,
-
 product.teluguName,
-
 product.category,
-
-product.packSize
-
+product.packPrices.map(function(pack){
+return pack.packSize;
+}).join(" ")
 ]
 .join(" ")
 .toLowerCase();
 
-
 return (
-
-(!search ||
-text.includes(search))
-
-&&
-
-(!category ||
-product.category === category)
-
+(!search || text.includes(search)) &&
+(!category || product.category === category)
 );
 
 });
 
-
-const box =
-document.getElementById(
-"catalogue"
-);
-
+const box=document.getElementById("catalogue");
 
 if(!list.length){
 
-box.innerHTML =
+box.innerHTML=
 '<div class="empty">No products found.</div>';
 
 return;
-
 }
 
-
-box.innerHTML =
-list
-.map(function(product){
+box.innerHTML=list.map(function(product){
 
 return (
 
@@ -2290,135 +1236,70 @@ esc(product.teluguName) +
 "</div>" +
 
 '<div class="meta">' +
-
 "ID: " +
 esc(product.productId) +
-
 " • " +
-
 esc(product.category) +
-
 "</div>" +
 
 '<div class="price">' +
-
-"<span>Pack Size</span>" +
-
+"<span>Available Packs</span>" +
 "<b>" +
-esc(product.packSize) +
+product.packPrices.map(function(pack){
+return esc(pack.packSize || "Standard") +
+" — " + money(pack.price);
+}).join("<br>") +
 "</b>" +
-
-"</div>" +
-
-'<div class="price">' +
-
-"<span>Selling Price</span>" +
-
-"<b>" +
-money(product.sellingPrice) +
-"</b>" +
-
 "</div>" +
 
 "</div>"
-
 );
 
-})
-.join("");
+}).join("");
 
 }
-
-
 
 /* ==================================================
    EVENTS
 ================================================== */
 
+document.getElementById("addItemBtn")
+.addEventListener("click",addBillItem);
 
-document
-.getElementById("addItemBtn")
-.addEventListener(
-"click",
-addBillItem
-);
+document.getElementById("saveBtn")
+.addEventListener("click",saveBill);
 
+document.getElementById("printBtn")
+.addEventListener("click",printBill);
 
-document
-.getElementById("saveBtn")
-.addEventListener(
-"click",
-saveBill
-);
+document.getElementById("whatsappBtn")
+.addEventListener("click",shareWhatsApp);
 
+document.getElementById("newBtn")
+.addEventListener("click",newBill);
 
-document
-.getElementById("printBtn")
-.addEventListener(
-"click",
-printBill
-);
+document.getElementById("refreshBtn")
+.addEventListener("click",loadProducts);
 
+document.getElementById("discount")
+.addEventListener("input",calculate);
 
-document
-.getElementById("newBtn")
-.addEventListener(
-"click",
-newBill
-);
+document.getElementById("search")
+.addEventListener("input",renderCatalogue);
 
-
-document
-.getElementById("refreshBtn")
-.addEventListener(
-"click",
-loadProducts
-);
-
-
-document
-.getElementById("discount")
-.addEventListener(
-"input",
-calculate
-);
-
-
-document
-.getElementById("search")
-.addEventListener(
-"input",
-renderCatalogue
-);
-
-
-document
-.getElementById("category")
-.addEventListener(
-"change",
-renderCatalogue
-);
-
-
+document.getElementById("category")
+.addEventListener("change",renderCatalogue);
 
 /* ==================================================
    START
 ================================================== */
 
-
-document.getElementById(
-"billDate"
-).value =
-new Date()
-.toISOString()
-.slice(0,10);
-
+document.getElementById("billDate").value=
+new Date().toISOString().slice(0,10);
 
 loadProducts();
 
 </script>
 
-
 </body>
-
 </html>
